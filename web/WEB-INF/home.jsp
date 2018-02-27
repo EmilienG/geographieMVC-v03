@@ -13,6 +13,6 @@
             <c:import url="${url01}" />
         </nav>
         <hr />
-        <h1>home</h1>
+        <h1>home</h1>       
     </body>
 </html>
