@@ -8,10 +8,11 @@
         <link href="LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <ul class="menu">
+        <ul class="catalogue">
             <c:forEach var="monLivre" items="${mesLivres}">
                 <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
                 </c:forEach>
         </ul>
+        <a href='cart.jsp?add=monLivre'><img src="image/shopping_bag.jpg"></a>
     </body>
 </html>
