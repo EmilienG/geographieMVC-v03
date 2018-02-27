@@ -22,7 +22,7 @@ public class PaysDAO implements Serializable {
     public List<Pays> selectAllPays() throws SQLException {
         String req = "select p.Pays, p.A2, p.A3, p.Number "
                 + "from iso3166 p order by p.Pays";
-        Connection cnt = mc.getConnection();
+        Connection cnt = mc.getConnection2();
         Statement stm = cnt.createStatement();
         List<Pays> lp = new ArrayList<>();
         try {
@@ -50,7 +50,7 @@ public class PaysDAO implements Serializable {
                 + "from iso3166 p where p.A2 = ? "
                 + "order by p.Pays";
         Pays p = null;
-        try (Connection cnt = mc.getConnection();
+        try (Connection cnt = mc.getConnection2();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
             stm.setString(1, a2);
             ResultSet rs = stm.executeQuery();

@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<c:forEach var="gestionLivre" items="unLivre">
-    -
+<c:forEach var="unLivre" items="${gestionLivre}">
+    ${unLivre}
 </c:forEach>
 
 <ul class="menu">

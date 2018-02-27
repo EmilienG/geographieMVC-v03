@@ -2,6 +2,7 @@ package controleurs;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.naming.NamingException;
@@ -28,7 +29,14 @@ public class ControllerMain extends HttpServlet {
         String section = request.getParameter("section");
 //============================================================
         try {
-            getServletContext().setAttribute("gestionLivre", new GestionLivres());
+            ArrayList<String> maListeTest = new ArrayList<>();
+            maListeTest.add("1");
+            maListeTest.add("2");
+            maListeTest.add("3");
+            maListeTest.add("4");
+            maListeTest.add("5");
+            session.setAttribute("gestionLivre", maListeTest);
+            session.setAttribute("gestionLivre2", new GestionLivres());
         } catch (NamingException ex) {
             ex.printStackTrace();
         }

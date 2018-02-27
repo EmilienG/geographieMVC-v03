@@ -19,6 +19,7 @@ public class LivresDAO implements Serializable {
     public ArrayList<String> selectAllLivre() throws SQLException {
         ArrayList<String> mesLivres = new ArrayList<>();
         String req = "select titreLivre from livre";
+        System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         String nom = null;
@@ -26,6 +27,7 @@ public class LivresDAO implements Serializable {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
                 nom = rs.getString("titreLivre");
+                System.out.println(nom);
                 mesLivres.add(nom);
             }
             rs.close();
