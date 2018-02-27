@@ -14,6 +14,11 @@
         </nav>
         <hr />
         <h1>home</h1>
-        
+
+        <ul class="menu">
+            <c:forEach var="unLivre" items="${gestionLivre}">
+                <li> ${unLivre} </li>
+            </c:forEach>
+        </ul>
     </body>
 </html>
