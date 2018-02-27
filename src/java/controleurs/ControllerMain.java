@@ -31,16 +31,8 @@ public class ControllerMain extends HttpServlet {
         String section = request.getParameter("section");
 //============================================================
         try {
-            ArrayList<String> maListeTest = new ArrayList<>();
-            maListeTest.add("1");
-            maListeTest.add("2");
-            maListeTest.add("3");
-            maListeTest.add("4");
-            maListeTest.add("5");
-            session.setAttribute("gestionLivre", maListeTest);
             GestionLivres gl= new GestionLivres();
-            session.setAttribute("gestionLivre2", gl.findLivres());
-            
+            session.setAttribute("gestionLivre", gl.findLivres());
         } catch (NamingException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {

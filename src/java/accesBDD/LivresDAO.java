@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.naming.NamingException;
+import obj.Livres;
 
 public class LivresDAO implements Serializable {
 
@@ -16,19 +17,25 @@ public class LivresDAO implements Serializable {
         mc = new MaConnexion();
     }
 
-    public ArrayList<String> selectAllLivre() throws SQLException {
+    public  Livres selectAllLivre() throws SQLException {
+//    public ArrayList<String> selectAllLivre() throws SQLException {
         ArrayList<String> mesLivres = new ArrayList<>();
+        Livres monLivre = new Livres();
         String req = "select titreLivre from livre";
-        System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
-        String nom = null;
+        String RStitreLivre = null;
+        String RSSousTitreLivre = null;
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
-                nom = rs.getString("titreLivre");
-                System.out.println(nom);
-                mesLivres.add(nom);
+                RStitreLivre = rs.getString("titreLivre");
+                monLivre.setTitreLivre(RStitreLivre);
+                RSSousTitreLivre = rs.getString("sousTitreLivre");
+                monLivre.setSousTitreLivre(RSSousTitreLivre);
+
+                mesLivres.add(RStitreLivre);
+
             }
             rs.close();
         } finally {
@@ -36,7 +43,7 @@ public class LivresDAO implements Serializable {
                 cnt.close();
             }
         }
-        return mesLivres;
+        return monLivre;
     }
 
 }
