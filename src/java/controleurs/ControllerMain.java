@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import obj.Evenement;
 import obj.Livres;
 import obj.Pays;
+import traitements.GestionEvenement;
 import traitements.GestionLivres;
 import traitements.GestionPays;
 
@@ -34,6 +36,23 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
                 session.setAttribute("mesLivres", mesLivres);
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+//============================================================
+
+        if ("Evenement".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/Evenement.jsp";
+                GestionEvenement maGestionEvenement = new GestionEvenement();
+                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
+                session.setAttribute("mesEvenements", mesEvenements);
+                for (Evenement mesEvenement : mesEvenements) {
+                    System.out.println(mesEvenement.getNomEvenement()+" ==> "+ mesEvenement.getDateDebutEvenement());
+                }
             } catch (NamingException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {

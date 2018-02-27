@@ -8,7 +8,7 @@
         <link href="LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <ul class="menu">
+        <ul class="menu02">
             <c:forEach var="monLivre" items="${mesLivres}">
                 <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
                 </c:forEach>
