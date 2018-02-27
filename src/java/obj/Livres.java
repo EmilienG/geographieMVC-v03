@@ -231,6 +231,11 @@ public class Livres {
         this.descriptionStatut = descriptionStatut;
     }
 
+    @Override
+    public String toString() {
+        return "Livres{" + "IDLivre=" + IDLivre + ", ISBNlivre=" + ISBNlivre + ", titreLivre=" + titreLivre + ", sousTitreLivre=" + sousTitreLivre + ", nomAuteur=" + nomAuteur + ", prenomAuteur=" + prenomAuteur + ", prixHTLivre=" + prixHTLivre + ", quantiteStockLivre=" + quantiteStockLivre + ", couvertureLivre=" + couvertureLivre + ", nomGenreAuteur=" + nomGenreAuteur + ", dateNaissanceAuteur=" + dateNaissanceAuteur + ", dateDecesAuteur=" + dateDecesAuteur + ", biographieAuteur=" + biographieAuteur + ", commentaireAuteur=" + commentaireAuteur + ", sexeAuteur=" + sexeAuteur + ", IDAuteur=" + IDAuteur + ", NBPageLivre=" + NBPageLivre + ", poidsLivre=" + poidsLivre + ", gabariLivre=" + gabariLivre + ", resumeLivre=" + resumeLivre + ", nomEditeur=" + nomEditeur + ", nomEdition=" + nomEdition + ", dateParutionLivre=" + dateParutionLivre + ", IDStatutLivre=" + IDStatutLivre + ", descriptionStatut=" + descriptionStatut + '}';
+    }
+
 
 
 }

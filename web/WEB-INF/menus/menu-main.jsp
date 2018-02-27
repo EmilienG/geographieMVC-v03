@@ -11,4 +11,9 @@
         <c:url value="ControllerMain?section=afficher-pays" var="url02" />
         <a href="${url02}">pays</a>
     </li>
+    
+    <li>
+        <c:url value="ControllerMain?section=catalogue" var="url03" />
+        <a href="${url03}">Catalogue</a>
+    </li>
 </ul>

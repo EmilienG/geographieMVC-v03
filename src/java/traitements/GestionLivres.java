@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.naming.NamingException;
+import obj.Livres;
 
 public class GestionLivres implements Serializable {
 
@@ -14,9 +15,9 @@ public class GestionLivres implements Serializable {
         lDAO = new LivresDAO();
     }
 
-    public ArrayList<String> findLivres() throws SQLException {
-        ArrayList<String> a = lDAO.selectAllLivre();
-        return a;
+    public ArrayList<Livres> findLivres() throws SQLException {
+        ArrayList<Livres> livres = lDAO.selectAllLivre();
+        return livres;
     }
 
 }

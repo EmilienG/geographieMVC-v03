@@ -17,11 +17,9 @@ public class LivresDAO implements Serializable {
         mc = new MaConnexion();
     }
 
-    public  Livres selectAllLivre() throws SQLException {
-//    public ArrayList<String> selectAllLivre() throws SQLException {
-        ArrayList<String> mesLivres = new ArrayList<>();
-        Livres monLivre = new Livres();
-        String req = "select titreLivre from livre";
+    public ArrayList<Livres> selectAllLivre() throws SQLException {
+        ArrayList<Livres> mesLivres = new ArrayList<>();
+        String req = "select * from livre";
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         String RStitreLivre = null;
@@ -29,13 +27,13 @@ public class LivresDAO implements Serializable {
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
+        Livres monLivre = new Livres();
                 RStitreLivre = rs.getString("titreLivre");
                 monLivre.setTitreLivre(RStitreLivre);
                 RSSousTitreLivre = rs.getString("sousTitreLivre");
                 monLivre.setSousTitreLivre(RSSousTitreLivre);
 
-                mesLivres.add(RStitreLivre);
-
+                mesLivres.add(monLivre);
             }
             rs.close();
         } finally {
@@ -43,7 +41,7 @@ public class LivresDAO implements Serializable {
                 cnt.close();
             }
         }
-        return monLivre;
+        return mesLivres;
     }
 
 }

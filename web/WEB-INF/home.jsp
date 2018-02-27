@@ -16,9 +16,9 @@
         <h1>home</h1>
 
         <ul class="menu">
-            <c:forEach var="unLivre" items="${gestionLivre}">
-                <li> ${unLivre} </li>
-            </c:forEach>
+            <c:forEach var="monLivre" items="${mesLivres}">
+                <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
+                </c:forEach>
         </ul>
     </body>
 </html>
