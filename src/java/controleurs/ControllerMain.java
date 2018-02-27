@@ -26,12 +26,18 @@ public class ControllerMain extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
 
-        String pageJSP = "/WEB-INF/home.jsp";
+        String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-//============================================================
+
+        if ("menu-main".equals(section)) {
+            pageJSP = "/WEB-INF/menus/menu-main.jsp";
+        }
+        if ("home".equals(section)) {
+            pageJSP = "/WEB-INF/home.jsp";
+        }
         if ("catalogue".equals(section)) {
             try {
-                pageJSP = "/WEB-INF/Catalogue.jsp";
+                pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
                 session.setAttribute("mesLivres", mesLivres);
@@ -41,7 +47,6 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-//============================================================
 
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
@@ -54,10 +59,6 @@ public class ControllerMain extends HttpServlet {
         }
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
 
-        ///---------------------------------------------------------------
-        if ("menu-main".equals(section)) {
-            pageJSP = "/WEB-INF/menus/menu-main.jsp";
-        }
         if ("afficher-pays".equals(section)) {
             try {
                 HashMap<String, List<Pays>> mp = gestionPays.findPays();
