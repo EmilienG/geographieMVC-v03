@@ -36,6 +36,8 @@ public class ControllerMain extends HttpServlet {
                 //to do
             }
         }
+        
+        //hello les boyz 2 !!!
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
         
         
@@ -63,6 +65,8 @@ public class ControllerMain extends HttpServlet {
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
     }
+    
+    //hello les boyz !!!
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
