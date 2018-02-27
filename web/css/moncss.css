@@ -1,9 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 .menu, .menu li {
     display: inline;
 }
 
 body{
-    background-image: url("/LibrairieFusion-v1.0/image/background_fruits.jpg");
+    background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 

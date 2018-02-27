@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>home</title>
-        <link href="LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
+        <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <nav>
@@ -14,6 +14,7 @@
         </nav>
         <hr />
         <h1>home</h1>
+
         <ul class="menu">
             <c:forEach var="unLivre" items="${gestionLivre}">
                 <li> ${unLivre} </li>
