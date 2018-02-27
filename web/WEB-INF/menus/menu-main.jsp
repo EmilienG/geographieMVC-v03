@@ -2,6 +2,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <ul class="menu">
+    <c:forEach var="unLivre" items="${gestionLivre2}">
+        <li> ${unLivre} </li>
+        </c:forEach>
+</ul>
+
+<ul class="menu">
     <li>
         <c:url value="ControllerMain" var="url01" />
         <a href="${url01}">home</a> 
