@@ -1,4 +1,3 @@
-
 package controleurs;
 
 import java.io.IOException;
@@ -21,31 +20,28 @@ public class ControllerMain extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");        
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        
-        String pageJSP = "/WEB-INF/home.jsp";        
+
+        String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
-        
-        if(getServletContext().getAttribute("gestionPays") == null){
+
+        if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
             } catch (NamingException ex) {
                 ex.printStackTrace();
-                
+
                 //to do
             }
         }
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
-        
-        
-        
+
         ///---------------------------------------------------------------
-        if("menu-main".equals(section)){
+        if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
-       
-        if("afficher-pays".equals(section)){
+        if ("afficher-pays".equals(section)) {
             try {
                 HashMap<String, List<Pays>> mp = gestionPays.findPays();
                 List<String> clefs = gestionPays.getCleDefaut();
@@ -54,14 +50,18 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/pays.jsp";
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                
+
                 // to do
-                
             }
         }
-        
+
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
+    }
+
+    public void test() {
+        String s = "kljdlskj";
+        System.out.println(s);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
