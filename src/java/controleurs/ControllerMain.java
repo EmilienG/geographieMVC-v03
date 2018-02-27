@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import obj.Livres;
 import obj.Pays;
 import traitements.GestionLivres;
 import traitements.GestionPays;
@@ -30,13 +29,16 @@ public class ControllerMain extends HttpServlet {
         String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
 //============================================================
-        try {
-            GestionLivres gl= new GestionLivres();
-            session.setAttribute("gestionLivre", gl.findLivres());
-        } catch (NamingException ex) {
-            ex.printStackTrace();
-        } catch (SQLException ex) {
-            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+        if ("catalogue".equals(section)) {
+            try {
+                GestionLivres maGestionLivre = new GestionLivres();
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
+                session.setAttribute("mesLivres", mesLivres);
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 //============================================================
 
