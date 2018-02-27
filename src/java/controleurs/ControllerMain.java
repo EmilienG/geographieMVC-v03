@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,9 +38,13 @@ public class ControllerMain extends HttpServlet {
             maListeTest.add("4");
             maListeTest.add("5");
             session.setAttribute("gestionLivre", maListeTest);
-            session.setAttribute("gestionLivre2", new GestionLivres());
+            GestionLivres gl= new GestionLivres();
+            session.setAttribute("gestionLivre2", gl.findLivres());
+            
         } catch (NamingException ex) {
             ex.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 //============================================================
 
