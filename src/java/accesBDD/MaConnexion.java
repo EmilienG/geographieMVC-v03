@@ -12,7 +12,7 @@ public class MaConnexion implements Serializable{
 
     public MaConnexion() throws NamingException {
         InitialContext context = new InitialContext();
-        ds = (DataSource) context.lookup("jdbc/maBase");
+        ds = (DataSource) context.lookup("jdbc/librairie");
     }
     
     public Connection getConnection() throws SQLException{

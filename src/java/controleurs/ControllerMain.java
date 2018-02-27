@@ -59,10 +59,7 @@ public class ControllerMain extends HttpServlet {
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
     }
 
-    public void test() {
-        String s = "kljdlskj";
-        System.out.println(s);
-    }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

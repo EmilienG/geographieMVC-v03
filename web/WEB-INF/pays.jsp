@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>pays</title>
-        <link href="/geographieMVC-v02/css/moncss.css" rel="stylesheet" type="text/css"/>
+        <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <nav>
