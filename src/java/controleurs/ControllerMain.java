@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import obj.Pays;
+import traitements.GestionLivres;
 import traitements.GestionPays;
 
 @WebServlet(name = "ControllerMain", urlPatterns = {"/ControllerMain"})
@@ -25,6 +26,13 @@ public class ControllerMain extends HttpServlet {
 
         String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
+//============================================================
+        try {
+            getServletContext().setAttribute("gestionLivre", new GestionLivres());
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+        }
+//============================================================
 
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
@@ -57,11 +65,6 @@ public class ControllerMain extends HttpServlet {
 
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
-    }
-
-    public void test() {
-        String s = "kljdlskj";
-        System.out.println(s);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
