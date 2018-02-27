@@ -10,7 +10,7 @@ public class LigneCommande implements Serializable {
     private String IDLigneCommande;
     private String IDCommandeLigneCommande;
     private String IDLivreLigneCommande;
-    private String quantiteLigneCommande;
+    private int quantiteLigneCommande;
     private float TVALigneCommande;
     private float prixHTLivreLigneCommande;
     private float valeurPromoLigneCommande;
@@ -20,7 +20,7 @@ public class LigneCommande implements Serializable {
     public LigneCommande() {
     }
 
-    public LigneCommande(String IDLigneCommande, String IDCommandeLigneCommande, String IDLivreLigneCommande, String quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande, String IDStatutLigneCommande, Date dateStatutLigneCommande) {
+    public LigneCommande(String IDLigneCommande, String IDCommandeLigneCommande, String IDLivreLigneCommande, int quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande, String IDStatutLigneCommande, Date dateStatutLigneCommande) {
         this.IDLigneCommande = IDLigneCommande;
         this.IDCommandeLigneCommande = IDCommandeLigneCommande;
         this.IDLivreLigneCommande = IDLivreLigneCommande;
@@ -56,11 +56,11 @@ public class LigneCommande implements Serializable {
         this.IDLivreLigneCommande = IDLivreLigneCommande;
     }
 
-    public String getQuantiteLigneCommande() {
+    public int getQuantiteLigneCommande() {
         return quantiteLigneCommande;
     }
 
-    public void setQuantiteLigneCommande(String quantiteLigneCommande) {
+    public void setQuantiteLigneCommande(int quantiteLigneCommande) {
         this.quantiteLigneCommande = quantiteLigneCommande;
     }
 
@@ -103,6 +103,8 @@ public class LigneCommande implements Serializable {
     public void setDateStatutLigneCommande(Date dateStatutLigneCommande) {
         this.dateStatutLigneCommande = dateStatutLigneCommande;
     }
+    
+    
 
     @Override
     public String toString() {
