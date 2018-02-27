@@ -37,30 +37,29 @@ public class PaysDAO implements Serializable {
                 lp.add(p);
             }
             rs.close();
-        }finally{
-            if(cnt != null){
+        } finally {
+            if (cnt != null) {
                 cnt.close();
             }
-        }        
+        }
         return lp;
     }
-    
-    public Pays selectPaysById(String a2) throws SQLException{
+
+    public Pays selectPaysById(String a2) throws SQLException {
         String req = "select p.Pays, p.A2, p.A3, p.Number "
                 + "from iso3166 p where p.A2 = ? "
                 + "order by p.Pays";
         Pays p = null;
-        try(Connection cnt = mc.getConnection();
-            PreparedStatement stm = cnt.prepareStatement(req);
-            ){
+        try (Connection cnt = mc.getConnection();
+                PreparedStatement stm = cnt.prepareStatement(req);) {
             stm.setString(1, a2);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 String nom = rs.getString("Pays");
                 a2 = rs.getString("A2");
                 String a3 = rs.getString("A3");
                 int number = rs.getInt("Number");
-                p= new Pays(nom, a2, a3, number);
+                p = new Pays(nom, a2, a3, number);
             }
         }
         return p;
