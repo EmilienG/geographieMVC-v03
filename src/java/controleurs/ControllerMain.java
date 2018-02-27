@@ -46,6 +46,12 @@ public class ControllerMain extends HttpServlet {
         if("menu-main".equals(section)){
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
+         String joseph=null;
+            if(joseph != null){
+                String recherche;
+            }else {
+                String zioup;
+            }
         
         if("afficher-pays".equals(section)){
             try {
