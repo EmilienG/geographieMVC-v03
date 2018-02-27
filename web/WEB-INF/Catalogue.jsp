@@ -8,6 +8,11 @@
         <link href="LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <nav>
+            <c:url value="ControllerMain?section=menu-main" var="url01" />
+            <c:import url="${url01}" />
+        </nav>
+        <hr>
         <ul class="catalogue">
             <c:forEach var="monLivre" items="${mesLivres}">
                 <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>

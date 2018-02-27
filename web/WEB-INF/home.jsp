@@ -14,11 +14,5 @@
         </nav>
         <hr />
         <h1>home</h1>
-
-        <ul class="menu">
-            <c:forEach var="monLivre" items="${mesLivres}">
-                <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
-                </c:forEach>
-        </ul>
     </body>
 </html>

@@ -31,6 +31,7 @@ public class ControllerMain extends HttpServlet {
 //============================================================
         if ("catalogue".equals(section)) {
             try {
+                pageJSP = "/WEB-INF/Catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
                 session.setAttribute("mesLivres", mesLivres);
