@@ -36,6 +36,8 @@ public class ControllerMain extends HttpServlet {
                 //to do
             }
         }
+        
+        //hello les boyz 2 !!!
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
         
         
@@ -44,6 +46,12 @@ public class ControllerMain extends HttpServlet {
         if("menu-main".equals(section)){
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
+         String joseph=null;
+            if(joseph != null){
+                String recherche;
+            }else {
+                String zioup;
+            }
         
         if("afficher-pays".equals(section)){
             try {
@@ -64,10 +72,14 @@ public class ControllerMain extends HttpServlet {
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
     }
     
+
     public void test(){
         String s = "kljdlskj";
         System.out.println(s);
     }
+
+    //hello les boyz !!!
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
