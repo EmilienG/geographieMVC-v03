@@ -11,7 +11,7 @@
         <h1>Evenement</h1>
           <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
-            <c:import url="${url01}" />
+            <c:import url="${url01}" />//
         </nav>
         <hr />
          <ul class="menu">
