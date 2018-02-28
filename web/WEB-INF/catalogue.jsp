@@ -20,44 +20,43 @@
             <table>
                 <tr>
                     <td>
-                        Titre1
+                        Colonne1
                     </td>
                     <td>
-                        Titre2
+                        Colonne2
                     </td>
                     <td>
-                        Titre3
+                        Colonne3
                     </td>
                 </tr>
                 <c:forEach  var="unLivre" items="${maListeLivres}">
                     <tr> 
-                        <td><i>ISBN:${unLivre.getISBNlivre()}</i>
+                        <td>  <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
                             <br>
                             <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
                             <br>
                             ${unLivre.getSousTitreLivre()}
                             <br>
-                            ( ${unLivre.getDateParutionLivre()})
-                        </td>
-                        <td>
-                            <i>${unLivre.getResumeCourt()}(...)</i>
+                            <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
+                            <hr>    
+                            <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
                             <br>
-                            <a href="#">[+info]</a>
-                        </td>
-                        <td>
-                            <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>
+                            <span class="resume">
+                                <i>${unLivre.getResumeCourt()}(...)</i>
+                                <br>
+                                <a href="#">[+info]</a>
+                            </span>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <c:if test="${unLivre.getDisponibilite()}">
-                                Disponible
-                            </c:if> <c:if test="${!unLivre.getDisponibilite()}">
-                                Rupture
+                                <span class="dispo"><b></b>Disponible</b></span>
+                                    </c:if> <c:if test="${!unLivre.getDisponibilite()}">
+                                <span class="rupture"><b>Rupture</b></span>
                             </c:if>
-                        </td>
-                        <td>
-                            Prix : ${unLivre.getPrixHTLivre()} €
+                            <br>
+                            Prix : <b>${unLivre.getPrixHTLivre()} €</b>
                         </td>
                     </tr>
                 </c:forEach> 

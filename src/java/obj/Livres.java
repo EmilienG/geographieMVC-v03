@@ -236,7 +236,7 @@ public class Livres implements Serializable {
 
     //==================GetSet maison==============
     public String getResumeCourt() {
-        return resumeLivre.substring(0, resumeLivre.length() / 3);
+        return resumeLivre.substring(0, resumeLivre.length() / 2);
     }
 
     public void setResumeCourt(String descriptionStatut) {
