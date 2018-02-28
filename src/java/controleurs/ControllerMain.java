@@ -40,6 +40,7 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
+                //
             }
         }
 //============================================================
