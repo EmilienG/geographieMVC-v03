@@ -3,7 +3,10 @@ package traitements;
 
 import accesBDD.CommandeDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.util.List;
 import javax.naming.NamingException;
+import obj.Commande;
 
 
 public class GestionCommandes implements Serializable {
@@ -14,6 +17,9 @@ public class GestionCommandes implements Serializable {
         cDAO = new CommandeDAO();
     }
     
-//    public List<String> 
+    public List<Commande> findOrder() throws SQLException{
+    List<Commande> Commandes = cDAO.selectOrderByCustomer();
+    return Commandes;
+}
     
 }
