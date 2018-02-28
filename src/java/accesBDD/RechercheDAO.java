@@ -1,4 +1,3 @@
-
 package accesBDD;
 
 import java.io.Serializable;
@@ -6,59 +5,79 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import obj.Livres;
 
-public class RechercheDAO implements Serializable{
+public class RechercheDAO implements Serializable {
+
     private MaConnexion mc;
 
     public RechercheDAO(MaConnexion mc) throws NamingException {
         mc = new MaConnexion();
     }
-    
-      public Livres recherche() throws SQLException {
-        String req = "select prenomAuteur,nomAuteur,titreLivre,sousTitreLivre,nomEditeur,nomEdition, nomGenre\n" +
-" from Editeur \n" +
-" join Livre on IDEditeur=IDEditeurLivre\n" +
-"  join Ecriture on  IDLivre=IDLivreEcriture\n" +
-"  join Auteur on IDAuteur=IDAuteurEcriture \n" +
-"  join description on IDLivre=IDLivreDescription\n" +
-"  join genre on IDGenre=IDGenreDescription\n" +
-"where titreLivre like '%?%'or nomAuteur like '%?%'or prenomAuteur like '%?%'or\n" +
-"sousTitreLivre like '%?%'or nomEditeur like '%?%'or nomEdition like '%?%'or\n" +
-"nomGenre like '%?%'";
-        HttpServletRequest request=null;
-        Livres l = null;
-        try (Connection cnt = mc.getConnection();
-                PreparedStatement stm = cnt.prepareStatement(req);) {
-            stm.setString(1, request.getParameter("doIt"));
-            stm.setString(2, request.getParameter("doIt"));
-            stm.setString(3, request.getParameter("doIt"));
-            stm.setString(4, request.getParameter("doIt"));
-            stm.setString(5, request.getParameter("doIt"));
-            stm.setString(6, request.getParameter("doIt"));
-            stm.setString(7, request.getParameter("doIt"));
-            ResultSet rs = stm.executeQuery();
-            if (rs.next()) {
-                l = new Livres();
-                String prenom = rs.getString("prenomAuteur");
-                l.setPrenomAuteur(prenom);
-                String nom = rs.getString("nomAuteur");
-                l.setNomAuteur(nom);
-                String titre = rs.getString("titreLivre");
-                l.setTitreLivre(titre);
-                String sousTitre = rs.getString("sousTitreLivre");
-                l.setSousTitreLivre(sousTitre);
-                String editeur = rs.getString("nomEditeur");
-                l.setNomEditeur(editeur);
-                String edition = rs.getString("nomEdition");
-                l.setNomEdition(edition);
-                String genre = rs.getString("nomGenre");
-                l.setNomGenreAuteur(editeur);
+
+    public ArrayList<Livres> recherche() throws SQLException {
+        ArrayList<Livres> mesResultats = new ArrayList<>();
+        String req = "select prenomAuteur,nomAuteur,titreLivre,sousTitreLivre,nomEditeur,nomEdition, nomGenreAuteur"
+                + " from Editeur "
+                + " join Livre on IDEditeur=IDEditeurLivre"
+                + "  join Ecriture on  IDLivre=IDLivreEcriture"
+                + "  join Auteur on IDAuteur=IDAuteurEcriture "
+                + "  join Documentation on IDAuteur = IDAuteurDocumentation"
+                + "  join GenreAuteur on IDGenreAuteur=IDGenreAuteurDocumentation"
+                + " where titreLivre like '%?%'or nomAuteur like '%?%'or prenomAuteur like '%?%'or"
+                + " sousTitreLivre like '%?%'or nomEditeur like '%?%'or nomEdition like '%?%'or"
+                + " nomGenreAuteur like '%?%'";
+        Connection cnt = mc.getConnection();
+        PreparedStatement stm = cnt.prepareStatement(req);
+        HttpServletRequest request = null;
+        Livres maRecherche = null;
+        try {
+            System.out.println("avant le if doit");
+            if (request.getParameter("doIt") != null) {
+                
+                String saisie = request.getParameter("doIt");
+                System.out.println(saisie);
+                System.out.println(saisie);
+                stm.setString(1, saisie);
+                stm.setString(2, saisie);
+                stm.setString(3, saisie);
+                stm.setString(4, saisie);
+                stm.setString(5, saisie);
+                stm.setString(6, saisie);
+                stm.setString(7, saisie);
+
+            }
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    maRecherche = new Livres();
+                    String prenom = rs.getString("prenomAuteur");
+                    maRecherche.setPrenomAuteur(prenom);
+                    String nom = rs.getString("nomAuteur");
+                    maRecherche.setNomAuteur(nom);
+                    String titre = rs.getString("titreLivre");
+                    maRecherche.setTitreLivre(titre);
+                    String sousTitre = rs.getString("sousTitreLivre");
+                    maRecherche.setSousTitreLivre(sousTitre);
+                    String editeur = rs.getString("nomEditeur");
+                    maRecherche.setNomEditeur(editeur);
+                    String edition = rs.getString("nomEdition");
+                    maRecherche.setNomEdition(edition);
+                    String genre = rs.getString("nomGenreAuteur");
+                    maRecherche.setNomGenreAuteur(editeur);
+                    
+                    mesResultats.add(maRecherche);
+                }
+            }
+
+        } finally {
+            if (cnt != null) {
+                cnt.close();
             }
         }
-        return l;
+        return mesResultats;
     }
 }
