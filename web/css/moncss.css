@@ -12,17 +12,20 @@
     text-align: center;
 }
 table {
-    border: window;
-    border-style: groove;
-    border-top-right-radius: 2%;
-    border-top-left-radius: 2%;
-    border-bottom-right-radius: 2%;
-    border-bottom-left-radius: 2%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px groove appworkspace;
 }
-td {
-    border: bisque;
-    border-style: outset;
-    border-top-right-radius: 10%;
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px outset activeborder;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2
 }
 body{
     /*  background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); */
