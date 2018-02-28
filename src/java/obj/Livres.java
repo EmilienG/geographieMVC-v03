@@ -2,7 +2,7 @@ package obj;
 
 import java.io.Serializable;
 
-public class Livres implements Serializable{
+public class Livres implements Serializable {
 
     private int IDLivre;
     private String ISBNlivre;
@@ -29,6 +29,7 @@ public class Livres implements Serializable{
     private String dateParutionLivre;
     private int IDStatutLivre;
     private String descriptionStatut;
+    private boolean disponiblite;
 
     public Livres() {
     }
@@ -233,11 +234,38 @@ public class Livres implements Serializable{
         this.descriptionStatut = descriptionStatut;
     }
 
+    //==================GetSet maison==============
+    public String getResumeCourt() {
+        return resumeLivre.substring(0, resumeLivre.length() / 2);
+    }
+
+    public void setResumeCourt(String descriptionStatut) {
+        this.resumeLivre = resumeLivre;
+    }
+
+    public boolean getDisponibilite() {
+        disponiblite = false;
+        if (quantiteStockLivre > 2) {
+            disponiblite = true;
+        } else {
+            disponiblite = false;
+        }
+        return disponiblite;
+    }
+
+    public void setDisponibilite(String descriptionStatut) {
+        disponiblite = false;
+        if (quantiteStockLivre > 2) {
+            disponiblite = true;
+        } else {
+            disponiblite = false;
+        }
+    }
+//===================================
+
     @Override
     public String toString() {
         return "Livres{" + "IDLivre=" + IDLivre + ", ISBNlivre=" + ISBNlivre + ", titreLivre=" + titreLivre + ", sousTitreLivre=" + sousTitreLivre + ", nomAuteur=" + nomAuteur + ", prenomAuteur=" + prenomAuteur + ", prixHTLivre=" + prixHTLivre + ", quantiteStockLivre=" + quantiteStockLivre + ", couvertureLivre=" + couvertureLivre + ", nomGenreAuteur=" + nomGenreAuteur + ", dateNaissanceAuteur=" + dateNaissanceAuteur + ", dateDecesAuteur=" + dateDecesAuteur + ", biographieAuteur=" + biographieAuteur + ", commentaireAuteur=" + commentaireAuteur + ", sexeAuteur=" + sexeAuteur + ", IDAuteur=" + IDAuteur + ", NBPageLivre=" + NBPageLivre + ", poidsLivre=" + poidsLivre + ", gabariLivre=" + gabariLivre + ", resumeLivre=" + resumeLivre + ", nomEditeur=" + nomEditeur + ", nomEdition=" + nomEdition + ", dateParutionLivre=" + dateParutionLivre + ", IDStatutLivre=" + IDStatutLivre + ", descriptionStatut=" + descriptionStatut + '}';
     }
-
-
 
 }

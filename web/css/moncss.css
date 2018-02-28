@@ -128,3 +128,69 @@ body {
     -o-transition: all .5s; 
     transition: all .5s;
 }
+.dispo{
+    color: #009933;
+    font-size: medium;
+    font-style: oblique;
+}
+.rupture{
+    color: red;
+    font-size: medium;
+    font-style: oblique;
+}
+.resume{
+    color: royalblue;
+    font-size: x-small;
+    font-style: oblique;
+}
+.parution{
+    color: midnightblue;
+    font-size: x-small;
+    font-style: italic;
+}
+.isbn{
+    color: darkblue;
+    font-size: x-small;
+    font-style: italic;
+    font-family: monospace;
+}
+#tableau {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+#tableau th {
+    font-size: 13px;
+    font-weight: normal;
+    padding: 8px;
+    background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
+    border-top: 2px solid #d3ddff;
+    border-bottom: 1px solid #fff;
+    color: #039;
+}
+#tableau td {
+    padding: 8px;
+    border-bottom: 1px solid #fff;
+    color: #669;
+    border-top: 1px solid #fff;
+    background: #e8edff url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
+}
+#tableau tfoot tr td {
+    background: #e8edff;
+    font-size: 16px;
+    color: #99c;
+    text-align:center;
+}
+#tableau tbody tr:hover td {
+    background: #d0dafd url('/LibrairieFusion-v1.0/img/gradhover.png') repeat-x;
+    color: #339;
+}
+#tableau a:hover {
+    text-decoration:underline;
+}
+.titre{
+    margin-left: 20%;
+}

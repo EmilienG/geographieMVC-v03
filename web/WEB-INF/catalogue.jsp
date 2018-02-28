@@ -17,43 +17,59 @@
             <c:import url="${url01}" />
         </nav>
         <div style="overflow-x:auto;">
-            <table>
-                <tr>
-                    <td>
-                        Titre1
-                    </td>
-                    <td>
-                        Titre2
-                    </td>
-                    <td>
-                        Titre3
-                    </td>
-                </tr>
-                <c:forEach  var="unLivre" items="${maListeLivres}">
-                    <tr> 
-                        <td>
-                            ${unLivre.getTitreLivre()}
-                            <br>
-                            ${unLivre.getSousTitreLivre()}
-                            <br>
-                            ( ${unLivre.getDateParutionLivre()})
-                        </td>
-                        <td>
-                            ${unLivre.getResumeLivre()}
-                        </td>
-                        <td>
-                            <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>
-                        </td>
-                    </tr>
+            <table  id="tableau">
+                <tr>  
+                <thead>
+                <th scope="col">
+                    Fiche de l'ouvrage
+                </th>
+                <th scope="col">
+                    Details
+                </th>
+                <th scope="col">
+                    Panier
+                </th>
+                </thead>
+                <tfoot>
                     <tr>
-                        <td>
-                            Qté : ${unLivre.getQuantiteStockLivre()}
-                        </td>
-                        <td>
-                            Prix : ${unLivre.getPrixHTLivre()} €
-                        </td>
+                        <td colspan="5">Catalogue Librairie Fusion</td>
                     </tr>
-                </c:forEach> 
+                </tfoot>
+                <tbody>
+                    </tr>
+                    <c:forEach  var="unLivre" items="${maListeLivres}">
+                        <tr> 
+                            <td> 
+                                <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
+                                <span class="titre" <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
+                                    ${unLivre.getSousTitreLivre()}</span>
+                                <br>
+                                <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
+                                <hr>    
+                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
+                                <br>
+                                <span class="resume">
+                                    <i>${unLivre.getResumeCourt()}(...)</i>
+                                    <br>
+                                    <a href="#">[+info]</a>
+                                </span>
+                            </td>
+
+                            <td>
+                                <c:if test="${unLivre.getDisponibilite()}">
+                                    <span class="dispo"><b></b>Disponible</b></span>
+                                        </c:if> <c:if test="${!unLivre.getDisponibilite()}">
+                                    <span class="rupture"><b>Rupture</b></span>
+                                </c:if>
+                                <br>
+                                Prix : <b>${unLivre.getPrixHTLivre()} €</b>
+                            </td>
+                            <td>
+                                Ajouter au panier
+                            </td>
+                        </tr>
+                    </c:forEach> 
+                </tbody>
             </table>
         </div>
     </center>
