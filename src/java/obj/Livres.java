@@ -1,6 +1,8 @@
 package obj;
 
-public class Livres {
+import java.io.Serializable;
+
+public class Livres implements Serializable{
 
     private int IDLivre;
     private String ISBNlivre;

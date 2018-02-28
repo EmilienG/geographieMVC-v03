@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +28,6 @@ public class ControllerMain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
 
@@ -42,7 +42,30 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
-                session.setAttribute("mesLivres", mesLivres);
+                ArrayList<String> affMesLivres = new ArrayList<>();
+                ArrayList<String> affMesLivres2 = new ArrayList<>();
+                for (Livres unLivre : mesLivres) {
+                    String ISBN = unLivre.getISBNlivre();
+                    String titre = unLivre.getTitreLivre();
+                    String sousTitre = "";
+                    if (!unLivre.getSousTitreLivre().equalsIgnoreCase("")) {
+                        sousTitre = " (" + unLivre.getSousTitreLivre() + ")";
+                    }
+                    String dateParution = unLivre.getDateParutionLivre();
+                    String couverture = unLivre.getCouvertureLivre();
+
+                    String result = "ISBN " + ISBN + "<br>Titre : " + titre + sousTitre
+                            + "<br>Date : " + dateParution;
+                    String result2 = couverture;
+                    affMesLivres.add(result);
+                    affMesLivres2.add(result2);
+
+                    HashMap< ArrayList<String>, ArrayList<String>> maHash = new HashMap<>();
+                    maHash.put(affMesLivres, affMesLivres2);
+                    session.setAttribute("mesLivres", maHash);
+                    request.setAttribute("clefs2", result2);
+                }
+
             } catch (NamingException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
@@ -59,7 +82,7 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
                 session.setAttribute("mesEvenements", mesEvenements);
                 for (Evenement mesEvenement : mesEvenements) {
-                    System.out.println(mesEvenement.getNomEvenement()+" ==> "+ mesEvenement.getDateDebutEvenement());
+                    System.out.println(mesEvenement.getNomEvenement() + " ==> " + mesEvenement.getDateDebutEvenement());
                 }
             } catch (NamingException ex) {
                 ex.printStackTrace();

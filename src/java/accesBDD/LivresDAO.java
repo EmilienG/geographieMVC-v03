@@ -19,11 +19,14 @@ public class LivresDAO implements Serializable {
 
     public ArrayList<Livres> selectAllLivre() throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
-        String req = "select * from livre";
+        String req = "select * from VueEmilien";
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         String RStitreLivre = null;
         String RSSousTitreLivre = null;
+        String RSISBNLivre = null;
+        String RSDateParution = null;
+        String RSCouverture = null;
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
@@ -32,6 +35,14 @@ public class LivresDAO implements Serializable {
                 monLivre.setTitreLivre(RStitreLivre);
                 RSSousTitreLivre = rs.getString("sousTitreLivre");
                 monLivre.setSousTitreLivre(RSSousTitreLivre);
+                RSISBNLivre = rs.getString("ISBNLivre");
+                monLivre.setISBNlivre(RSISBNLivre);
+                monLivre.setSousTitreLivre(RSSousTitreLivre);
+                RSDateParution = rs.getString("dateParutionLivre");
+                monLivre.setDateParutionLivre(RSDateParution);
+                monLivre.setSousTitreLivre(RSSousTitreLivre);
+                RSCouverture = rs.getString("couvertureLivre");
+                monLivre.setCouvertureLivre(RSCouverture);
 
                 mesLivres.add(monLivre);
             }

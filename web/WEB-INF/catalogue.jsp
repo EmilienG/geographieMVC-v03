@@ -15,11 +15,15 @@
         </nav>
         <hr />
         <table>
-            <tr>
-                <c:forEach var="monLivre" items="${mesLivres}">
-                    <td> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </td>
-                </c:forEach>
-            </tr>
+           <tr> <c:forEach  var="c" items="${mesLivres}">
+                 <td>${c}</td>
+                    <c:forEach items="${mesLivres.get(c)}" var="p">
+                        <td>
+                            <a href="#">${p}</a>
+                        </td>
+                    </c:forEach>
+               
+            </c:forEach> </tr>
         </table>
     </body>
 </html>
