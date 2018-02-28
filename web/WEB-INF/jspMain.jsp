@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,9 +7,7 @@
         <title>JSP main</title>
     </head>
     <body>
-        <h1>JSP main </h1>
         <jsp:include page="/ControllerMain?section=menu-main" flush="true"/>
-        <hr>
-        <jsp:include page="/ControllerMain?section=catalogue" flush="true"/>
+        <hr/>
     </body>
 </html>
