@@ -54,6 +54,16 @@ public class Commande implements Serializable {
         this.dateStatutCommande = dateStatutCommande;
     }
 
+    public Commande(String IDCommande, String IDCompteCommande, Date dateCommande, String IDStatutCommande, float montantCommande) {
+        this.IDCommande = IDCommande;
+        this.IDCompteCommande = IDCompteCommande;
+        this.dateCommande = dateCommande;
+        this.IDStatutCommande = IDStatutCommande;
+        this.montantCommande = montantCommande;
+    }
+    
+    
+
     public String getIDCommande() {
         return IDCommande;
     }
@@ -216,10 +226,10 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "Commande : " + "IDCommande=" + IDCommande + ", IDAdresseFacturationCommande=" + IDAdresseFacturationCommande + ", IDAdresseLivraisonCommande=" + IDAdresseLivraisonCommande + ", IDCompteCommande=" + IDCompteCommande + ", IDLivreurCommande=" + IDLivreurCommande + ", IDOrganismePaiementCommande=" + IDOrganismePaiementCommande + ", dateCommande=" + dateCommande + ", adresseIPCommande=" + adresseIPCommande + ", commentaireCommande=" + commentaireCommande + ", IDStatutCommande=" + IDStatutCommande + ", tarifLivraisonCommande=" + tarifLivraisonCommande + ", modeLivraisonCommande=" + modeLivraisonCommande + ", IDLivraisonCommande=" + IDLivraisonCommande + ", IDStatutLivraisonCommande=" + IDStatutLivraisonCommande + ", montantCommande=" + montantCommande + ", modeReglementCommande=" + modeReglementCommande + ", numTransactionReglementCommande=" + numTransactionReglementCommande + ", dateExpeditionCommande=" + dateExpeditionCommande + ", IDStatutReglementCommande=" + IDStatutReglementCommande + ", dateStatutCommande=" + dateStatutCommande;
+        return "Vos Commandes : \n" + "N° Commande" + IDCommande + ", IDAdresseFacturationCommande=" + IDAdresseFacturationCommande + ", IDAdresseLivraisonCommande=" + IDAdresseLivraisonCommande + ", IDCompteCommande=" + IDCompteCommande + ", IDLivreurCommande=" + IDLivreurCommande + ", IDOrganismePaiementCommande=" + IDOrganismePaiementCommande + " Date d'achat : " + dateCommande + " Commentaires : " + commentaireCommande + ", IDStatutCommande=" + IDStatutCommande + "Frais de livraison : " + tarifLivraisonCommande + ", modeLivraisonCommande=" + modeLivraisonCommande + ", IDLivraisonCommande=" + IDLivraisonCommande + ", IDStatutLivraisonCommande=" + IDStatutLivraisonCommande + ", montantCommande=" + montantCommande + ", modeReglementCommande=" + modeReglementCommande + ", numTransactionReglementCommande=" + numTransactionReglementCommande + ", dateExpeditionCommande=" + dateExpeditionCommande + ", IDStatutReglementCommande=" + IDStatutReglementCommande + ", dateStatutCommande=" + dateStatutCommande;
     }
     
-    
+   
     
     
 }
