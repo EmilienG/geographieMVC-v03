@@ -21,29 +21,28 @@
                 <tr>  
                 <thead>
                 <th scope="col">
-                    Colonne1
+                    Fiche de l'ouvrage
                 </th>
                 <th scope="col">
-                    Colonne2
+                    Details
                 </th>
                 <th scope="col">
-                    Colonne3
+                    Panier
                 </th>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="5">Classement Blogspot par Wikio - Mai 2010</td>
+                        <td colspan="5">Catalogue Librairie Fusion</td>
                     </tr>
                 </tfoot>
                 <tbody>
                     </tr>
                     <c:forEach  var="unLivre" items="${maListeLivres}">
                         <tr> 
-                            <td>  <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
-                                <br>
-                                <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
-                                <br>
-                                ${unLivre.getSousTitreLivre()}
+                            <td> 
+                                <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
+                                <span class="titre" <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
+                                    ${unLivre.getSousTitreLivre()}</span>
                                 <br>
                                 <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
                                 <hr>    
@@ -55,8 +54,7 @@
                                     <a href="#">[+info]</a>
                                 </span>
                             </td>
-                        </tr>
-                        <tr>
+
                             <td>
                                 <c:if test="${unLivre.getDisponibilite()}">
                                     <span class="dispo"><b></b>Disponible</b></span>
@@ -65,6 +63,9 @@
                                 </c:if>
                                 <br>
                                 Prix : <b>${unLivre.getPrixHTLivre()} €</b>
+                            </td>
+                            <td>
+                                Ajouter au panier
                             </td>
                         </tr>
                     </c:forEach> 

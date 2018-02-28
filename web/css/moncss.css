@@ -166,7 +166,7 @@ body {
     font-size: 13px;
     font-weight: normal;
     padding: 8px;
-    background: #b9c9fe url('http://4.bp.blogspot.com/_xDpoN6UfFFY/S-J2gjh1nPI/AAAAAAAACbg/7lNsVpks2oY/s1600/gradhead.png') repeat-x;
+    background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
     border-top: 2px solid #d3ddff;
     border-bottom: 1px solid #fff;
     color: #039;
@@ -176,7 +176,7 @@ body {
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
-    background: #e8edff url('http://1.bp.blogspot.com/_xDpoN6UfFFY/S-J2f5yBC3I/AAAAAAAACbY/zWXYXsR-w5E/s1600/gradback.png') repeat-x;
+    background: #e8edff url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
 }
 #tableau tfoot tr td {
     background: #e8edff;
@@ -185,9 +185,12 @@ body {
     text-align:center;
 }
 #tableau tbody tr:hover td {
-    background: #d0dafd url('http://4.bp.blogspot.com/_xDpoN6UfFFY/S-J2hsztUzI/AAAAAAAACbo/ztV1CK0RUrE/s1600/gradhover.png') repeat-x;
+    background: #d0dafd url('/LibrairieFusion-v1.0/img/gradhover.png') repeat-x;
     color: #339;
 }
 #tableau a:hover {
     text-decoration:underline;
+}
+.titre{
+    margin-left: 20%;
 }
