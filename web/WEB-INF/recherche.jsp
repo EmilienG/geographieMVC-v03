@@ -1,5 +1,4 @@
 
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,17 +13,13 @@
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url04"/>    
             <c:import url="${url04}"/>
-
         </nav>
-              <table>
-            <tr>
-                <c:forEach var="maRecherche" items="${mesResultats}">
-                    <td> ${maRecherche.getTitreLivre()}, ${maRecherche.getSousTitreLivre()}
-                    , ${maRecherche.getNomAuteur}, ${maRecherche.getPrenomAuteur()}, 
-                    ${maRecherche.getNomEditeur()},${maRecherche.getNomEdition()},
-                    ${maRecherche.getNomGenreAuteur()}</td>
+        <hr/>
+                <c:forEach var="maRecherche" items="${mesResultats}">     
+                    ${maRecherche}
+                    <% System.out.println(pageContext.findAttribute("maRecherche"));%>
                 </c:forEach>
-            </tr>
-        </table>
+              
+     
     </body>
 </html>
