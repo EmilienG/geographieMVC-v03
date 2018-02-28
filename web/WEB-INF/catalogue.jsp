@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,15 +14,18 @@
         </nav>
         <hr />
         <table>
-           <tr> <c:forEach  var="c" items="${mesLivres}">
-                 <td>${c}</td>
-                    <c:forEach items="${mesLivres.get(c)}" var="p">
-                        <td>
-                            <a href="#">${p}</a>
-                        </td>
-                    </c:forEach>
-               
-            </c:forEach> </tr>
+            <c:forEach  var="unLivre" items="${maListeLivres}">
+                <tr> 
+                    <td>
+                        ${unLivre.getTitreLivre()}
+                        <br>
+                        ${unLivre.getSousTitreLivre()}
+                    </td>
+                    <td>
+                        ${unLivre.getDateParutionLivre()}
+                    </td>
+                </tr>
+            </c:forEach> 
         </table>
     </body>
 </html>
