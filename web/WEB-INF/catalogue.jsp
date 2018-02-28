@@ -15,20 +15,34 @@
             <c:import url="${url01}" />
         </nav>
         <hr />
-        <table>
-            <c:forEach  var="unLivre" items="${maListeLivres}">
-                <tr> 
-                    <td>
-                        ${unLivre.getTitreLivre()}
-                        <br>
-                        ${unLivre.getSousTitreLivre()}
-                    </td>
-                    <td>
-                        ${unLivre.getDateParutionLivre()}
-                    </td>
-                </tr>
-            </c:forEach> 
-        </table>
+        <div style="overflow-x:auto;">
+            <table>
+                <c:forEach  var="unLivre" items="${maListeLivres}">
+                    <tr>  
+                        <td>
+                            <img src="img\${unLivre.getCouvertureLivre()}" alt=""> 
+                            ${unLivre.getCouvertureLivre()}
+                        </td>
+                        <td>
+                            ${unLivre.getTitreLivre()}
+                            <br>
+                            ${unLivre.getSousTitreLivre()}
+                        </td>
+                    </tr> 
+                    <tr> 
+                        <td>
+                            ${unLivre.getDateParutionLivre()}
+                        </td> 
+                        <td>
+                            ${unLivre.getPrixHTLivre()}
+                        </td> 
+                        <td>
+                            ${unLivre.getQuantiteStockLivre()}
+                        </td> 
+                    </tr>
+                </c:forEach> 
+            </table>
+        </div>
     </body>
 </html>
 
