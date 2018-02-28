@@ -2,29 +2,38 @@
     box-sizing: border-box;
 }
 
-.menu, .menu li {
+.menu {
     display: inline;
 }
-
+.menu2 {
+    display: inline;
+    color: red;
+    font-size: 10px;
+    text-align: center;
+}
 table {
     border: window;
-    border-style: solid;
-    
+    border-style: groove;
+    border-top-right-radius: 2%;
+    border-top-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    border-bottom-left-radius: 2%;
 }
-
-td{
-    border: red;
-    border-style: ridge;
-    background-color: orange;
-   
-        
-    
+td {
+    border: bisque;
+    border-style: outset;
+    border-top-right-radius: 10%;
 }
-
 body{
-    background-image: url("/LibrairieFusion-v1.0/image/go.jpg");
+    /*  background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); */
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-color:  appworkspace;
+    color: graytext;
+    font-family: sans-serif;
+
+}
+#autocomplete-loading {
 
 }
 

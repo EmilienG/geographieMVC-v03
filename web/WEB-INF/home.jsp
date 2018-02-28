@@ -4,21 +4,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>home</title>
+        <title>Evenement</title>
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <nav>
-            <c:url value="ControllerMain?section=menu-main" var="url01" />
+<nav>
+           <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
+            
         </nav>
-        <hr />
-        <h1>home</h1>
-
-        <ul class="menu">
-            <c:forEach var="monLivre" items="${mesLivres}">
-                <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
-                </c:forEach>
-        </ul>
-    </body>
+ <hr/>
+Page d'Acceuil :)
+  </body>
 </html>
