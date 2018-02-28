@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             <div style="toto">
-                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"/>
+                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>
                             </div>
                         </td>
                     </tr>
