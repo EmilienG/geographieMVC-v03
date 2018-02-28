@@ -1,5 +1,3 @@
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,21 +15,33 @@
         <hr />
         <div style="overflow-x:auto;">
             <table>
+                <tr>
+                    <td>
+                        Titre1
+                    </td>
+                    <td>
+                        Titre2
+                    </td>
+                    <td>
+                        Titre3
+                    </td>
+                </tr>
                 <c:forEach  var="unLivre" items="${maListeLivres}">
                     <tr> 
                         <td>
                             ${unLivre.getTitreLivre()}
                             <br>
                             ${unLivre.getSousTitreLivre()}
+                            <br>
+                            ( ${unLivre.getDateParutionLivre()})
                         </td>
                         <td>
-                            ${unLivre.getDateParutionLivre()}
+                            <div style="toto">
+                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"/>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            ${unLivre.getCouvertureLivre()}
-                        </td>
                         <td>
                             ${unLivre.getQuantiteStockLivre()}
                         </td>

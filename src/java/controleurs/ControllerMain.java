@@ -28,10 +28,10 @@ public class ControllerMain extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
 
+        request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-        
-        
+
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -50,8 +50,6 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-
-
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
@@ -59,10 +57,10 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
 //                session.setAttribute("mesEvenements", mesEvenements);
                 System.out.println("lala");
-                ArrayList<String>s = new ArrayList<>();
+                ArrayList<String> s = new ArrayList<>();
                 for (Evenement mesEvenement : mesEvenements) {
-                     s.add(mesEvenement.toString());
-                     
+                    s.add(mesEvenement.toString());
+
                     session.setAttribute("mesEvenements", s);
                 }
                 System.out.println(s);
