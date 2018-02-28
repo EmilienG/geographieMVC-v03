@@ -21,8 +21,9 @@ public class GestionLivres implements Serializable {
         ArrayList<Livres> livres = lDAO.selectAllLivre();
         return livres;
     }
-//    public Livres findLivresbysearch() throws SQLException {
-//        Livres livres = rDAO.recherche();
-//        return livres;
-//    }
+
+    public ArrayList<Livres> findLivresbysearch() throws SQLException {
+        ArrayList<Livres> livres = rDAO.recherche();
+        return livres;
+    }
 }
