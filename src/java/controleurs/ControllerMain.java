@@ -28,9 +28,11 @@ public class ControllerMain extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
 
+       
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-
+        
+        
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -59,12 +61,25 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
                 session.setAttribute("mesEvenements", mesEvenements);
                 for (Evenement mesEvenement : mesEvenements) {
-                    System.out.println(mesEvenement.getNomEvenement()+" ==> "+ mesEvenement.getDateDebutEvenement());
+                    System.out.println(mesEvenement.getNomEvenement() + " ==> " + mesEvenement.getDateDebutEvenement());
                 }
             } catch (NamingException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            }
+        }
+        if ("Recherche".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/recherche.jsp";
+                GestionLivres maGestionLivre = new GestionLivres();
+                Livres mesResultats = maGestionLivre.findLivresbysearch();
+                session.setAttribute("mesResultats", mesResultats);
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //
             }
         }
 

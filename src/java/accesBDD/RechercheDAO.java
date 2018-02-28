@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NamingException;
-import obj.Pays;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import obj.Livres;
 
 public class RechercheDAO implements Serializable{
     private MaConnexion mc;
@@ -16,7 +18,7 @@ public class RechercheDAO implements Serializable{
         mc = new MaConnexion();
     }
     
-      public Pays selectPaysById(String a2) throws SQLException {
+      public Livres recherche() throws SQLException {
         String req = "select prenomAuteur,nomAuteur,titreLivre,sousTitreLivre,nomEditeur,nomEdition, nomGenre\n" +
 " from Editeur \n" +
 " join Livre on IDEditeur=IDEditeurLivre\n" +
@@ -27,19 +29,36 @@ public class RechercheDAO implements Serializable{
 "where titreLivre like '%?%'or nomAuteur like '%?%'or prenomAuteur like '%?%'or\n" +
 "sousTitreLivre like '%?%'or nomEditeur like '%?%'or nomEdition like '%?%'or\n" +
 "nomGenre like '%?%'";
-        Pays p = null;
-        try (Connection cnt = mc.getConnection2();
+        HttpServletRequest request=null;
+        Livres l = null;
+        try (Connection cnt = mc.getConnection();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
-            stm.setString(1, a2);
+            stm.setString(1, request.getParameter("doIt"));
+            stm.setString(2, request.getParameter("doIt"));
+            stm.setString(3, request.getParameter("doIt"));
+            stm.setString(4, request.getParameter("doIt"));
+            stm.setString(5, request.getParameter("doIt"));
+            stm.setString(6, request.getParameter("doIt"));
+            stm.setString(7, request.getParameter("doIt"));
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
-                String nom = rs.getString("Pays");
-                a2 = rs.getString("A2");
-                String a3 = rs.getString("A3");
-                int number = rs.getInt("Number");
-                p = new Pays(nom, a2, a3, number);
+                l = new Livres();
+                String prenom = rs.getString("prenomAuteur");
+                l.setPrenomAuteur(prenom);
+                String nom = rs.getString("nomAuteur");
+                l.setNomAuteur(nom);
+                String titre = rs.getString("titreLivre");
+                l.setTitreLivre(titre);
+                String sousTitre = rs.getString("sousTitreLivre");
+                l.setSousTitreLivre(sousTitre);
+                String editeur = rs.getString("nomEditeur");
+                l.setNomEditeur(editeur);
+                String edition = rs.getString("nomEdition");
+                l.setNomEdition(edition);
+                String genre = rs.getString("nomGenre");
+                l.setNomGenreAuteur(editeur);
             }
         }
-        return p;
+        return l;
     }
 }
