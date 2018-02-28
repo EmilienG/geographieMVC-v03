@@ -20,41 +20,41 @@ th, td {
 }
 
 h1{
-    color: #660033;
+    color: #009933;
     text-align:center;
     background:linear-gradient (
         #C0C0C0 0%,
         #C0C0C0 45%,
-        #660033 46%,
-        #660033 54%,  
+        #009933 46%,
+        #009933 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
     background:-webkit-linear-gradient(
         #C0C0C0 0%,
         #C0C0C0 45%,
-        #660033 46%,
-        #660033 54%,  
+        #009933 46%,
+        #009933 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
     background:    -moz-linear-gradient(
         #C0C0C0 0%,
         #C0C0C0 45%,
-        #660033 46%,
-        #660033 54%,  
+        #009933 46%,
+        #009933 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
     background:     -ms-linear-gradient(
         #C0C0C0 0%,
         #C0C0C0 45%,
-        #660033 46%,
-        #660033 54%,  
+        #009933 46%,
+        #009933 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
     background:      -o-linear-gradient(
         #C0C0C0 0%,
         #C0C0C0 45%,
-        #660033 46%,
-        #660033 54%,  
+        #009933 46%,
+        #009933 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
 }
