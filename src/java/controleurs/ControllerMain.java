@@ -50,15 +50,23 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
+
+
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
-                session.setAttribute("mesEvenements", mesEvenements);
+//                session.setAttribute("mesEvenements", mesEvenements);
+                System.out.println("lala");
+                ArrayList<String>s = new ArrayList<>();
                 for (Evenement mesEvenement : mesEvenements) {
-                    System.out.println(mesEvenement.getNomEvenement() + " ==> " + mesEvenement.getDateDebutEvenement());
+                     s.add(mesEvenement.toString());
+                     
+                    session.setAttribute("mesEvenements", s);
                 }
+                System.out.println(s);
+
             } catch (NamingException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {

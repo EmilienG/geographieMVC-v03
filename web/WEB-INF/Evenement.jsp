@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,20 +9,32 @@
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
- 
-        <h1>Evenement</h1>
-           <nav>
-           <c:url value="ControllerMain?section=menu-main" var="url01" />
-            <c:import url="${url01}" />
-            
-        </nav>
- <hr/>
-         <ul class="menu">
-   
-                <c:forEach var="monEvenement" items="${mesEvenements}">
-                <li> ${monEvenement.getNomEvenement()}, ${monEvenement.getDateDebutEvenement()} </li>
-                </c:forEach>
-        </ul>
-                
-    </body>
+        <table>
+            <tr>
+
+
+                <c:forEach var="unEvenement" items="${mesEvenements}">
+
+                <br>
+
+                <td>
+
+
+
+                    ${unEvenement}
+
+                </td>
+
+                </br>
+
+            </c:forEach>
+
+        </tr>
+    </table>
+
+
+
+
+</body>
 </html>
+
