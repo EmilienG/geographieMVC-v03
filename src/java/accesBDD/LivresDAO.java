@@ -45,13 +45,10 @@ public class LivresDAO implements Serializable {
                 monLivre.setSousTitreLivre(RSSousTitreLivre);
                 RSCouverture = rs.getString("couvertureLivre");
                 monLivre.setCouvertureLivre(RSCouverture);
-                monLivre.setSousTitreLivre(RSSousTitreLivre);
                 RSPrix = rs.getFloat("prixHTLivre");
                 monLivre.setPrixHTLivre(RSPrix);
-                monLivre.setSousTitreLivre(RSSousTitreLivre);
-                RSStock = rs.getInt("quantiteStockLivre");
-                monLivre.setPrixHTLivre(RSStock);
-
+                RSQuantite = rs.getInt("quantiteStockLivre");
+                monLivre.setQuantiteStockLivre(RSQuantite);
                 mesLivres.add(monLivre);
             }
             rs.close();
