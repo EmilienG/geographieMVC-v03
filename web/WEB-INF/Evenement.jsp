@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,11 +10,12 @@
     <body>
  
         <h1>Evenement</h1>
-          <nav>
-            <c:url value="ControllerMain?section=menu-main" var="url01" />
-            <c:import url="${url01}" />//
+           <nav>
+           <c:url value="ControllerMain?section=menu-main" var="url01" />
+            <c:import url="${url01}" />
+            
         </nav>
-        <hr />
+ <hr/>
          <ul class="menu">
    
                 <c:forEach var="monEvenement" items="${mesEvenements}">

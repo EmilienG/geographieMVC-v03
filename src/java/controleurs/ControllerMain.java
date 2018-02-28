@@ -28,9 +28,11 @@ public class ControllerMain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-
+        
+        
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -88,6 +90,19 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            }
+        }
+        if ("Recherche".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/recherche.jsp";
+                GestionLivres maGestionLivre = new GestionLivres();
+                Livres mesResultats = maGestionLivre.findLivresbysearch();
+                session.setAttribute("mesResultats", mesResultats);
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                //
             }
         }
 
