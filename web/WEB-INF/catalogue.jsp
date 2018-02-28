@@ -39,7 +39,9 @@
                             ( ${unLivre.getDateParutionLivre()})
                         </td>
                         <td>
-                            ${unLivre.getResumeLivre()}
+                            <i>${unLivre.getResumeCourt()}(...)</i>
+                            <br>
+                            <a href="#">[+info]</a>
                         </td>
                         <td>
                             <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>

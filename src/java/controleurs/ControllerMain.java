@@ -44,6 +44,9 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
                 request.setAttribute("maListeLivres", mesLivres);
+                for (Livres monLivre : mesLivres) {
+                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length()/3);
+                }
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();

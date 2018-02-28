@@ -232,6 +232,13 @@ public class Livres implements Serializable{
     public void setDescriptionStatut(String descriptionStatut) {
         this.descriptionStatut = descriptionStatut;
     }
+    public String getResumeCourt() {
+        return resumeLivre.substring(0, resumeLivre.length()/3);
+    }
+
+    public void setDResumeCourt(String descriptionStatut) {
+        this.resumeLivre = resumeLivre;
+    }
 
     @Override
     public String toString() {
