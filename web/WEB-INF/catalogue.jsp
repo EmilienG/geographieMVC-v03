@@ -32,6 +32,7 @@
                             ${unLivre.getTitreLivre()}
                             <br>
                             ${unLivre.getSousTitreLivre()}
+
                             <br>
                             ( ${unLivre.getDateParutionLivre()})
                         </td>
