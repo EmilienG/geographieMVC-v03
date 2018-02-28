@@ -1,6 +1,6 @@
 package beans;
 
-import classes.Item;
+import obj.Item;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
