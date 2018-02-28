@@ -22,11 +22,16 @@
     </div>
 </table>
 <hr>
-  <form action="ControllerMain" method="post">
-        <input type="hidden" name="section" value="Recherche" />
-        <div align="center"/><input type="text" name="recherche" value=""
-        placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
-        required="required" size="50"/>
-        <a href="${url05}"><input type="submit" value="Ok" name="doIt" /></a>     
-    </form>
+<c:url value="ControllerMain?section=Recherche" var="url05" />
+<div align="center"/>
+<form action="recherche.jsp" method="post">
+    <input type="hidden" name="searchLang" value="fra" />
+    <input type="text" name="rapid-search" value=""
+           placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
+           required="required" autocomplete="off" size="50"/>
+    <a href="${url05}">
+        <input type="submit" value="Ok" name="doIt" />
+    </a>  
+</form>
+</div>
 
