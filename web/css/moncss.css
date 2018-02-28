@@ -19,10 +19,51 @@ th, td {
     border: 1px outset blanchedalmond;
 }
 
-.toto{
-
+h1{
+    color: #660033;
+    text-align:center;
+    background:linear-gradient (
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #660033 46%,
+        #660033 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:-webkit-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #660033 46%,
+        #660033 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:    -moz-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #660033 46%,
+        #660033 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:     -ms-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #660033 46%,
+        #660033 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:      -o-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #660033 46%,
+        #660033 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
 }
-tr:nth-child(even){background-color: #f2f2f2}
+h1 span{
+    background:#C0C0C0;padding:0 20px;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
 body{
     /*  background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); */
     background-repeat: no-repeat;

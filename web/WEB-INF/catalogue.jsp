@@ -9,7 +9,9 @@
     </head>
     <body>
     <center>
-        <h1>Catalogue</h1>
+        <h1>
+            <span>Catalogue</span>
+        </h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
@@ -45,10 +47,10 @@
                     </tr>
                     <tr>
                         <td>
-                            ${unLivre.getQuantiteStockLivre()}
+                            Qté : ${unLivre.getQuantiteStockLivre()}
                         </td>
                         <td>
-                            ${unLivre.getPrixHTLivre()}
+                            Prix : ${unLivre.getPrixHTLivre()} €
                         </td>
                     </tr>
                 </c:forEach> 
