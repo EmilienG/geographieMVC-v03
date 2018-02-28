@@ -60,5 +60,4 @@ public class LivresDAO implements Serializable {
         }
         return mesLivres;
     }
-
 }
