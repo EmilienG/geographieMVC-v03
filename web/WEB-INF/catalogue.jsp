@@ -17,49 +17,58 @@
             <c:import url="${url01}" />
         </nav>
         <div style="overflow-x:auto;">
-            <table>
-                <tr>
-                    <td>
-                        Colonne1
-                    </td>
-                    <td>
-                        Colonne2
-                    </td>
-                    <td>
-                        Colonne3
-                    </td>
-                </tr>
-                <c:forEach  var="unLivre" items="${maListeLivres}">
-                    <tr> 
-                        <td>  <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
-                            <br>
-                            <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
-                            <br>
-                            ${unLivre.getSousTitreLivre()}
-                            <br>
-                            <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
-                            <hr>    
-                            <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
-                            <br>
-                            <span class="resume">
-                                <i>${unLivre.getResumeCourt()}(...)</i>
-                                <br>
-                                <a href="#">[+info]</a>
-                            </span>
-                        </td>
-                    </tr>
+            <table  id="tableau">
+                <tr>  
+                <thead>
+                <th scope="col">
+                    Colonne1
+                </th>
+                <th scope="col">
+                    Colonne2
+                </th>
+                <th scope="col">
+                    Colonne3
+                </th>
+                </thead>
+                <tfoot>
                     <tr>
-                        <td>
-                            <c:if test="${unLivre.getDisponibilite()}">
-                                <span class="dispo"><b></b>Disponible</b></span>
-                                    </c:if> <c:if test="${!unLivre.getDisponibilite()}">
-                                <span class="rupture"><b>Rupture</b></span>
-                            </c:if>
-                            <br>
-                            Prix : <b>${unLivre.getPrixHTLivre()} €</b>
-                        </td>
+                        <td colspan="5">Classement Blogspot par Wikio - Mai 2010</td>
                     </tr>
-                </c:forEach> 
+                </tfoot>
+                <tbody>
+                    </tr>
+                    <c:forEach  var="unLivre" items="${maListeLivres}">
+                        <tr> 
+                            <td>  <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
+                                <br>
+                                <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
+                                <br>
+                                ${unLivre.getSousTitreLivre()}
+                                <br>
+                                <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
+                                <hr>    
+                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
+                                <br>
+                                <span class="resume">
+                                    <i>${unLivre.getResumeCourt()}(...)</i>
+                                    <br>
+                                    <a href="#">[+info]</a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <c:if test="${unLivre.getDisponibilite()}">
+                                    <span class="dispo"><b></b>Disponible</b></span>
+                                        </c:if> <c:if test="${!unLivre.getDisponibilite()}">
+                                    <span class="rupture"><b>Rupture</b></span>
+                                </c:if>
+                                <br>
+                                Prix : <b>${unLivre.getPrixHTLivre()} €</b>
+                            </td>
+                        </tr>
+                    </c:forEach> 
+                </tbody>
             </table>
         </div>
     </center>
