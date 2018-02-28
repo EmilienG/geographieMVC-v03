@@ -13,4 +13,12 @@
         <c:url value="ControllerMain?section=catalogue" var="url03" />
         <a href="${url03}">catalogue</a>
     </li>
+    <li>
+        <c:url value="ControllerMain?section=Evenement" var="url04" />
+        <a href="${url04}">Evenement</a>
+    </li>
+    
 </ul>
+<c:forEach var="monEvenement" items="${mesEvenements}">
+                <li> ${monEvenement.getNomEvenement()}, ${monEvenement.getDateDebutEvenement()} </li>
+                </c:forEach>
