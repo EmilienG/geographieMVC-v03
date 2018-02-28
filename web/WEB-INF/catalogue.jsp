@@ -4,7 +4,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>pays</title>
+        <title>Catalogue</title>
+        <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <nav>
@@ -12,10 +13,12 @@
             <c:import url="${url01}" />
         </nav>
         <hr />
-       <ul class="catalogue">
-    <c:forEach var="monLivre" items="${mesLivres}">
-        <li> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </li>
-        </c:forEach>
-</ul>
+        <table>
+            <tr>
+                <c:forEach var="monLivre" items="${mesLivres}">
+                    <td> ${monLivre.getTitreLivre()}, ${monLivre.getSousTitreLivre()} </td>
+                </c:forEach>
+            </tr>
+        </table>
     </body>
 </html>
