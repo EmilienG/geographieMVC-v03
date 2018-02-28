@@ -20,12 +20,54 @@ th, td {
     border: 1px outset blanchedalmond;
 }
 
-.toto{
-
+h1{
+    color: #009933;
+    text-align:center;
+    background:linear-gradient (
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #009933 46%,
+        #009933 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:-webkit-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #009933 46%,
+        #009933 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:    -moz-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #009933 46%,
+        #009933 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:     -ms-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #009933 46%,
+        #009933 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
+    background:      -o-linear-gradient(
+        #C0C0C0 0%,
+        #C0C0C0 45%,
+        #009933 46%,
+        #009933 54%,  
+        #C0C0C0 54%,
+        #C0C0C0 100%);
 }
-tr:nth-child(even){background-color: #f2f2f2}
+h1 span{
+    background:#C0C0C0;padding:0 20px;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+/*
 body{
-    /*  background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); */
+     background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color:  appworkspace;
@@ -33,7 +75,56 @@ body{
     font-family: sans-serif;
 
 }
-#autocomplete-loading {
-
+*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Abel', arial, serif; 
+    text-transform: uppercase;
+    background:#749383 url(../img/fond-menu.png) no-repeat top center;
 }
-
+ 
+#conteneur-menu2 {
+    height: 100%;
+    width: 100%;
+    padding-top: 1%;
+    margin: 1% auto 0% auto;
+}
+ 
+#conteneur-menu2 ul {
+    padding: 0%;
+    margin: 0%;
+    margin-left: 2%;
+    float: left;
+}
+ 
+#conteneur-menu2 ul li {
+    list-style: none;
+    padding: 0%;
+}
+ 
+#conteneur-menu2 ul li a {
+    text-decoration: none;
+    font-size: 25px;
+    padding: 4px;
+    display: block;
+    color: white;
+    background: transparent;
+    width: 230px;
+    -moz-transition: all .5s; 
+    -webkit-transition: all .5s; 
+    -o-transition: all .5s; 
+    transition: all .5s;
+    line-height: 20px;
+}
+ 
+ 
+#conteneur-menu2 ul li a:hover {
+    background: #54B6A8;
+    padding-left: 20px;
+    width: 130px;
+    -moz-transition: all .5s; 
+    -webkit-transition: all .5s; 
+    -o-transition: all .5s; 
+    transition: all .5s;
+}
