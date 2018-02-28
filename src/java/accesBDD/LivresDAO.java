@@ -31,6 +31,7 @@ public class LivresDAO implements Serializable {
         float RSPrix = 0;
         int RSQuantite = 0;
         String RSResume = null;
+        String RSISBN = null;
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
@@ -54,7 +55,8 @@ public class LivresDAO implements Serializable {
                 monLivre.setPrixHTLivre(RSPrix);
                 RSResume = rs.getString("resumeLivre");
                 monLivre.setResumeLivre(RSResume);
-//                System.out.println("slmkfmlsdkfmlsdkfmls");
+                RSISBN = rs.getString("ISBNLivre");
+                monLivre.setISBNlivre(RSISBN);
                 mesLivres.add(monLivre);
             }
             rs.close();

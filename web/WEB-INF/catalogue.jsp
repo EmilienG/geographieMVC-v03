@@ -31,8 +31,9 @@
                 </tr>
                 <c:forEach  var="unLivre" items="${maListeLivres}">
                     <tr> 
-                        <td>
-                            ${unLivre.getTitreLivre()}
+                        <td><i>ISBN:${unLivre.getISBNlivre()}</i>
+                            <br>
+                            <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
                             <br>
                             ${unLivre.getSousTitreLivre()}
                             <br>
@@ -49,7 +50,11 @@
                     </tr>
                     <tr>
                         <td>
-                            Qté : ${unLivre.getQuantiteStockLivre()}
+                            <c:if test="${unLivre.getDisponibilite()}">
+                                Disponible
+                            </c:if> <c:if test="${!unLivre.getDisponibilite()}">
+                                Rupture
+                            </c:if>
                         </td>
                         <td>
                             Prix : ${unLivre.getPrixHTLivre()} €
