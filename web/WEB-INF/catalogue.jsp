@@ -8,6 +8,8 @@
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+    <center>
+        <h1>Catalogue</h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
@@ -52,7 +54,8 @@
                 </c:forEach> 
             </table>
         </div>
-    </body>
+    </center>
+</body>
 </html>
 
 

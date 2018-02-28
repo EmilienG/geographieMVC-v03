@@ -2,14 +2,9 @@
     box-sizing: border-box;
 }
 
-.menu {
+.menu, .menu li, li a:hover, li a{
     display: inline;
-}
-.menu2 {
-    display: inline;
-    color: red;
-    font-size: 10px;
-    text-align: center;
+    text-decoration: none;
 }
 table {
     border-collapse: collapse;
