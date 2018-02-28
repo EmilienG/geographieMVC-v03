@@ -1,64 +1,28 @@
-package accesBDD;
+package traitements;
 
+import accesBDD.LivresDAO;
+import accesBDD.RechercheDAO;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.naming.NamingException;
 import obj.Livres;
 
-public class LivresDAO implements Serializable {
+public class GestionLivres implements Serializable {
 
-    private MaConnexion mc;
+    private LivresDAO lDAO;
+    private RechercheDAO rDAO;
 
-    public LivresDAO() throws NamingException {
-        mc = new MaConnexion();
+    public GestionLivres() throws NamingException {
+        lDAO = new LivresDAO();
     }
 
-    public ArrayList<Livres> selectAllLivre() throws SQLException {
-        ArrayList<Livres> mesLivres = new ArrayList<>();
-        String req = "select * from VueEmilien";
-        Connection cnt = mc.getConnection();
-        Statement stm = cnt.createStatement();
-        String RStitreLivre = null;
-        String RSSousTitreLivre = null;
-        String RSISBNLivre = null;
-        String RSDateParution = null;
-        String RSCouverture = null;
-        float RSPrix = 0;
-        int RSQuantite = 0;
-        try {
-            ResultSet rs = stm.executeQuery(req);
-            while (rs.next()) {
-        Livres monLivre = new Livres();
-                RStitreLivre = rs.getString("titreLivre");
-                monLivre.setTitreLivre(RStitreLivre);
-                RSSousTitreLivre = rs.getString("sousTitreLivre");
-                monLivre.setSousTitreLivre(RSSousTitreLivre);
-                RSISBNLivre = rs.getString("ISBNLivre");
-                monLivre.setISBNlivre(RSISBNLivre);
-                monLivre.setSousTitreLivre(RSSousTitreLivre);
-                RSDateParution = rs.getString("dateParutionLivre");
-                monLivre.setDateParutionLivre(RSDateParution);
-                monLivre.setSousTitreLivre(RSSousTitreLivre);
-                RSCouverture = rs.getString("couvertureLivre");
-                monLivre.setCouvertureLivre(RSCouverture);
-                RSPrix = rs.getFloat("prixHTLivre");
-                monLivre.setPrixHTLivre(RSPrix);
-                RSQuantite = rs.getInt("quantiteStockLivre");
-                monLivre.setQuantiteStockLivre(RSQuantite);
-
-                mesLivres.add(monLivre);
-            }
-            rs.close();
-        } finally {
-            if (cnt != null) {
-                cnt.close();
-            }
-        }
-        return mesLivres;
+    public ArrayList<Livres> findLivres() throws SQLException {
+        ArrayList<Livres> livres = lDAO.selectAllLivre();
+        return livres;
     }
-
+//    public Livres findLivresbysearch() throws SQLException {
+//        Livres livres = rDAO.recherche();
+//        return livres;
+//    }
 }

@@ -75,11 +75,11 @@ public class ControllerMain extends HttpServlet {
             try {
                 pageJSP = "/WEB-INF/recherche.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
-                Livres mesResultats = maGestionLivre.findLivresbysearch();
-                session.setAttribute("mesResultats", mesResultats);
+//                Livres mesResultats = maGestionLivre.findLivresbysearch();
+//                session.setAttribute("mesResultats", mesResultats);
             } catch (NamingException ex) {
                 ex.printStackTrace();
-            } catch (SQLException ex) {
+//            } catch (SQLException ex) {
                 ex.printStackTrace();
                 //
             }
