@@ -104,7 +104,10 @@ public class Evenement implements Serializable{
 
     @Override
     public String toString() {
-        return "Evenement{" + "IDEvenement=" + IDEvenement + ", dateDebutEvenement=" + dateDebutEvenement + ", dateFinEvenement=" + dateFinEvenement + ", nomEvenement=" + nomEvenement + ", typeEvenement=" + typeEvenement + ", descriptionEvenement=" + descriptionEvenement + ", commentaireEvenement=" + commentaireEvenement + ", IDStatutEvenement=" + IDStatutEvenement + ", dateStatutEvenement=" + dateStatutEvenement + '}';
+        return  " L'Evenement : "+ nomEvenement + " Debute le : " + dateDebutEvenement + " Et se finit le " + dateFinEvenement +
+                " type : " + typeEvenement + " description : " + descriptionEvenement +
+                " commentaire : " + commentaireEvenement;
+                // + "   " + dateStatutEvenement ;
     }
     
     

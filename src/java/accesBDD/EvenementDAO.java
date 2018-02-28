@@ -29,6 +29,12 @@ public class EvenementDAO {
         
         String RSnomEvenement = null;
         String RSdateDebutEvenement = null;
+        String RSdateFinEvenement = null;
+        String RStypeEvenement = null;
+        String RSdescriptionEvenement = null;
+        String RScommentaireEvenement = null;
+//        String RSdateStatutEvenement = null;
+        
         
         
         
@@ -40,6 +46,16 @@ public class EvenementDAO {
                 monEvenement.setNomEvenement(RSnomEvenement);
                 RSdateDebutEvenement = rs.getString("dateDebutEvenement");
                 monEvenement.setDateDebutEvenement(RSdateDebutEvenement);
+                RSdateFinEvenement = rs.getString("dateFinEvenement");
+                monEvenement.setDateFinEvenement(RSdateFinEvenement);
+                RStypeEvenement = rs.getString("typeEvenement");
+                monEvenement.setTypeEvenement(RStypeEvenement);
+                RSdescriptionEvenement = rs.getString("descriptionEvenement");
+                monEvenement.setDescriptionEvenement(RSdescriptionEvenement);
+                RScommentaireEvenement = rs.getString("commentaireEvenement");
+                monEvenement.setCommentaireEvenement(RScommentaireEvenement);
+//                RSdateStatutEvenement = rs.getString("dateStatutEvenement");
+//                monEvenement.setDateStatutEvenement(RSdateStatutEvenement);
 
                 mesEvenements.add(monEvenement);
             }
