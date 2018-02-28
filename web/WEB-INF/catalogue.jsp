@@ -35,14 +35,14 @@
                             ${unLivre.getTitreLivre()}
                             <br>
                             ${unLivre.getSousTitreLivre()}
-
                             <br>
                             ( ${unLivre.getDateParutionLivre()})
                         </td>
                         <td>
-                            <div style="toto">
-                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>
-                            </div>
+                            ${unLivre.getResumeLivre()}
+                        </td>
+                        <td>
+                            <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="25%"/>
                         </td>
                     </tr>
                     <tr>
