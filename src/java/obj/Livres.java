@@ -30,6 +30,7 @@ public class Livres implements Serializable {
     private int IDStatutLivre;
     private String descriptionStatut;
     private boolean disponiblite;
+    private String descriptionMotClef;
 
     public Livres() {
     }
@@ -245,7 +246,7 @@ public class Livres implements Serializable {
 
     public boolean getDisponibilite() {
         disponiblite = false;
-        if (quantiteStockLivre > 2) {
+        if (quantiteStockLivre > 15) {
             disponiblite = true;
         } else {
             disponiblite = false;
@@ -255,7 +256,7 @@ public class Livres implements Serializable {
 
     public void setDisponibilite(String descriptionStatut) {
         disponiblite = false;
-        if (quantiteStockLivre > 2) {
+        if (quantiteStockLivre > 15) {
             disponiblite = true;
         } else {
             disponiblite = false;
@@ -266,6 +267,22 @@ public class Livres implements Serializable {
     @Override
     public String toString() {
         return "Livres{" + "IDLivre=" + IDLivre + ", ISBNlivre=" + ISBNlivre + ", titreLivre=" + titreLivre + ", sousTitreLivre=" + sousTitreLivre + ", nomAuteur=" + nomAuteur + ", prenomAuteur=" + prenomAuteur + ", prixHTLivre=" + prixHTLivre + ", quantiteStockLivre=" + quantiteStockLivre + ", couvertureLivre=" + couvertureLivre + ", nomGenreAuteur=" + nomGenreAuteur + ", dateNaissanceAuteur=" + dateNaissanceAuteur + ", dateDecesAuteur=" + dateDecesAuteur + ", biographieAuteur=" + biographieAuteur + ", commentaireAuteur=" + commentaireAuteur + ", sexeAuteur=" + sexeAuteur + ", IDAuteur=" + IDAuteur + ", NBPageLivre=" + NBPageLivre + ", poidsLivre=" + poidsLivre + ", gabariLivre=" + gabariLivre + ", resumeLivre=" + resumeLivre + ", nomEditeur=" + nomEditeur + ", nomEdition=" + nomEdition + ", dateParutionLivre=" + dateParutionLivre + ", IDStatutLivre=" + IDStatutLivre + ", descriptionStatut=" + descriptionStatut + '}';
+    }
+
+    public boolean isDisponiblite() {
+        return disponiblite;
+    }
+
+    public void setDisponiblite(boolean disponiblite) {
+        this.disponiblite = disponiblite;
+    }
+
+    public String getDescriptionMotClef() {
+        return descriptionMotClef;
+    }
+
+    public void setDescriptionMotClef(String descriptionMotClef) {
+        this.descriptionMotClef = descriptionMotClef;
     }
 
 }

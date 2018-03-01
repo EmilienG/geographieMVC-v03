@@ -73,26 +73,26 @@ body {
     text-transform: uppercase;
     background: #012B47 url(../img/fond-menu.png) no-repeat top center;
 }
- 
+
 #conteneur-menu2 {
     height: 100%;
     width: 100%;
     padding-top: 0.5%;
     margin: 0.5% auto 0 auto;
 }
- 
+
 #conteneur-menu2 ul {
     padding: 0;
     margin: 0;
     margin-left: 2%;
     float: left;
 }
- 
+
 #conteneur-menu2 ul li {
     list-style: none;
     padding: 0;
 }
- 
+
 #conteneur-menu2 ul li a {
     text-decoration: none;
     font-size: 25px;
@@ -107,8 +107,8 @@ body {
     transition: all .5s;
     line-height: 20px;
 }
- 
- 
+
+
 #conteneur-menu2 ul li a:hover {
     background: #54B6A8;
     padding-left: 15%;
@@ -216,4 +216,8 @@ hr {
     font-size: small;
     border-style: none; 
     
+    border-bottom: 1px solid #fff; /* Ou border-top */
+}
+.motCle {
+    font-size: xx-small;
 }

@@ -32,7 +32,7 @@ public class ControllerMain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-
+        String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
@@ -47,12 +47,12 @@ public class ControllerMain extends HttpServlet {
             try {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
-                ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
+
                 request.setAttribute("maListeLivres", mesLivres);
                 for (Livres monLivre : mesLivres) {
-                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length()/3);
+                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length() / 3);
                 }
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -63,8 +63,7 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
-//                session.setAttribute("mesEvenements", mesEvenements);
-                System.out.println("lala");
+
                 ArrayList<String> s = new ArrayList<>();
                 for (Evenement mesEvenement : mesEvenements) {
                     s.add(mesEvenement.toString());
@@ -81,13 +80,18 @@ public class ControllerMain extends HttpServlet {
         }
         if ("Recherche".equals(section)) {
             try {
-                pageJSP = "/WEB-INF/recherche.jsp";
+//                pageJSP = "/WEB-INF/recherche.jsp";
+                pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
-//                Livres mesResultats = maGestionLivre.findLivresbysearch();
+
+//                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true,request.getParameter("recherche"));
 //                session.setAttribute("mesResultats", mesResultats);
+                request.setAttribute("maListeLivres", mesLivres);
+
             } catch (NamingException ex) {
                 ex.printStackTrace();
-//            } catch (SQLException ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
                 //
             }

@@ -15,14 +15,18 @@ public class GestionLivres implements Serializable {
 
     public GestionLivres() throws NamingException {
         lDAO = new LivresDAO();
+        rDAO = new RechercheDAO();
     }
 
-    public ArrayList<Livres> findLivres() throws SQLException {
-        ArrayList<Livres> livres = lDAO.selectAllLivre();
+    public ArrayList<Livres> findLivres(boolean atif, String saisie) throws SQLException {
+        ArrayList<Livres> livres = lDAO.selectAllLivre(atif, saisie);
         return livres;
     }
-//    public Livres findLivresbysearch() throws SQLException {
-//        Livres livres = rDAO.recherche();
-//        return livres;
-//    }
+
+
+    public ArrayList<Livres> findLivresbysearch(String saisie) throws SQLException {
+        System.out.println(">>>>>>" + (rDAO == null));
+        ArrayList<Livres> livres = rDAO.recherche( saisie);
+        return livres;
+    }
 }
