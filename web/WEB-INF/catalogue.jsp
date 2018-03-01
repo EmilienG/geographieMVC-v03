@@ -18,6 +18,9 @@
         </nav>
         <div style="overflow-x:auto;">
             <table  id="tableau">
+                <tr>
+                    <td colspan="5">Mon Catalogue Fusion</td>
+                </tr>
                 <thead>
                 <th scope="col">
                     Fiche de l'ouvrage
@@ -28,9 +31,6 @@
                 <th scope="col">
                     Panier
                 </th>
-                <tr>
-                    <td colspan="5">Mon Catalogue Fusion</td>
-                </tr>
                 </thead>
                 <tfoot>
                     <tr>
