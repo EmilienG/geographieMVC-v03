@@ -18,7 +18,6 @@
         </nav>
         <div style="overflow-x:auto;">
             <table  id="tableau">
-                <tr>  
                 <thead>
                 <th scope="col">
                     Fiche de l'ouvrage
@@ -29,6 +28,9 @@
                 <th scope="col">
                     Panier
                 </th>
+                <tr>
+                    <td colspan="5">Mon Catalogue Fusion</td>
+                </tr>
                 </thead>
                 <tfoot>
                     <tr>
@@ -36,7 +38,6 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    </tr>
                     <c:forEach  var="unLivre" items="${maListeLivres}">
                         <tr> 
                             <td> 
@@ -50,7 +51,7 @@
                                 </span>
                                 <hr>  
                                 <span class="couverture" >
-                                    <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>                                      
+                                    <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="150"/>                                      
                                 </span>
                                 <span class="resume">
                                     <i>${unLivre.getResumeCourt()}(...)</i>
@@ -59,8 +60,8 @@
                             </td>
                             <td>
                                 <c:if test="${unLivre.getDisponibilite()}">
-                                    <span class="dispo"><b></b>Disponible</b></span>
-                                        </c:if> <c:if test="${!unLivre.getDisponibilite()}">
+                                    <span class="dispo"><b>Disponible</b></span>
+                                </c:if> <c:if test="${!unLivre.getDisponibilite()}">
                                     <span class="rupture"><b>Rupture</b></span>
                                 </c:if>
                                 <br>
