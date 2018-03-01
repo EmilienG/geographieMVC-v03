@@ -28,7 +28,7 @@
 <hr>
     <form action="ControllerMain?section=Recherche" method="post">
         <input type="hidden" name="section" value="Recherche" />
-        <div align="center"><input type="text" name="recherche" value=""
+         <div align="center"><input type="text" name="recherche" value=""
                placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
                required="required" size="50"/>
         <a href="${url05}">
