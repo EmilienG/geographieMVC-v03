@@ -43,6 +43,7 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres();
+                
                 request.setAttribute("maListeLivres", mesLivres);
                 for (Livres monLivre : mesLivres) {
                     monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length()/3);
@@ -58,8 +59,8 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
-//                session.setAttribute("mesEvenements", mesEvenements);
-                System.out.println("lala");
+
+
                 ArrayList<String> s = new ArrayList<>();
                 for (Evenement mesEvenement : mesEvenements) {
                     s.add(mesEvenement.toString());
@@ -67,6 +68,7 @@ public class ControllerMain extends HttpServlet {
                     session.setAttribute("mesEvenements", s);
                 }
                 System.out.println(s);
+                
 
             } catch (NamingException ex) {
                 ex.printStackTrace();

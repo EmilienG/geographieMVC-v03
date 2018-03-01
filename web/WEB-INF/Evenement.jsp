@@ -9,10 +9,18 @@
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <table>
+        <center>
+        <h1>
+            <span>Evenement</span>
+        </h1>
+        <nav>
+            <c:url value="ControllerMain?section=menu-main" var="url01" />
+            <c:import url="${url01}" />
+        </nav>
+        <table  id="tableau">
             <tr>
 
-
+<br>
                 <c:forEach var="unEvenement" items="${mesEvenements}">
 
                 <br>
@@ -21,14 +29,14 @@
 
 
 
-                    ${unEvenement}
+                     ${unEvenement}
 
                 </td>
 
                 </br>
 
             </c:forEach>
-
+<br>
         </tr>
     </table>
 
