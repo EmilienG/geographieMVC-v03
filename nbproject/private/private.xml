@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/web/WEB-INF/recherche.jsp</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/accesBDD/PaysDAO.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/accesBDD/RechercheDAO.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/controleurs/ControllerMain.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/web/WEB-INF/menus/menu-main.jsp</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/traitements/GestionPays.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/traitements/GestionLivres.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/accesBDD/LivresDAO.java</file>
+            <file>file:/C:/Users/cdi215/Documents/LibrairieFusion-v-1.0/src/java/accesBDD/MaConnexion.java</file>
+        </group>
     </open-files>
 </project-private>
