@@ -19,7 +19,7 @@ public class GestionLivres implements Serializable {
     }
 
     public ArrayList<Livres> findLivres() throws SQLException {
-        ArrayList<Livres> livres = lDAO.selectAllLivre();
+        ArrayList<Livres> livres = lDAO.selectAllLivre(false, "");
         return livres;
     }
 

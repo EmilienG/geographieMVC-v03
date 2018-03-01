@@ -18,10 +18,10 @@
         </nav>
         <div style="overflow-x:auto;">
             <table  id="tableau">
-                <tr>
-                    <td colspan="5">Mon Catalogue Fusion</td>
-                </tr>
                 <thead>
+                    <tr>
+                        <td colspan="5">Mon Catalogue Fusion</td>
+                    </tr>
                 <th scope="col">
                     Fiche de l'ouvrage
                 </th>
@@ -32,11 +32,6 @@
                     Panier
                 </th>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">Catalogue Librairie Fusion</td>
-                    </tr>
-                </tfoot>
                 <tbody>
                     <c:forEach  var="unLivre" items="${maListeLivres}">
                         <tr> 
@@ -75,6 +70,11 @@
                         </tr>
                     </c:forEach> 
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Catalogue Librairie Fusion</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </center>
