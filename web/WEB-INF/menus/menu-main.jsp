@@ -20,6 +20,11 @@
                         <c:url value="ControllerMain?section=Evenement" var="url04" />
                         <a href="${url04}"> Evenement</a>
                     </li>
+                  
+            <li> 
+                <c:url value="ControllerMain?section=order" var="url05" />
+                <a href="${url05}"> Mes commandes</a>
+            </li>
                 </ul>
             </div>
         </td>
