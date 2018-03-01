@@ -65,23 +65,13 @@ h1 span{
 tr:nth-child(even){
     background-color: #f2f2f2;
 }
-/*
-body{
-     background-image: url("/LibrairieFusion-v1.0/image/book-background-39.jpg"); 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color:  appworkspace;
-    color: graytext;
-    font-family: sans-serif;
 
-}
-*/
 body {
     margin: 0;
     padding: 0;
     font-family:'Abel', arial, serif; 
     text-transform: uppercase;
-    background:#749383 url(../img/fond-menu.png) no-repeat top center;
+    background: #012B47 url(../img/fond-menu.png) no-repeat top center;
 }
 
 #conteneur-menu2 {
@@ -200,7 +190,32 @@ body {
     background-image: url('/LibrairieFusion-v1.0/img/font.png');
 }
 hr {
-    border: none;
+  border: none;
+  border-bottom: 1px solid #fff; /* Ou border-top */
+}
+
+.tabOrder, .tabOrder td{
+    width: 1000px;
+    height: auto;
+    margin-left: 20px;
+    border-radius: 10px;
+    border-style: none;   
+}
+
+.button img {
+    width: 40px;
+    height: 40px;
+    color: #669;
+}
+
+.tabOrder th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: 'Arial';
+    font-size: small;
+    border-style: none; 
+    
     border-bottom: 1px solid #fff; /* Ou border-top */
 }
 .motCle {
