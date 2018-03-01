@@ -25,7 +25,6 @@
         </td>
     </tr>
 </table>
-<hr>
     <form action="ControllerMain?section=Recherche" method="post">
         <input type="hidden" name="section" value="Recherche" />
          <div align="center"><input type="text" name="recherche" value=""

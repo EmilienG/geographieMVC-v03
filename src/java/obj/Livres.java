@@ -246,7 +246,7 @@ public class Livres implements Serializable {
 
     public boolean getDisponibilite() {
         disponiblite = false;
-        if (quantiteStockLivre > 2) {
+        if (quantiteStockLivre > 15) {
             disponiblite = true;
         } else {
             disponiblite = false;
@@ -256,7 +256,7 @@ public class Livres implements Serializable {
 
     public void setDisponibilite(String descriptionStatut) {
         disponiblite = false;
-        if (quantiteStockLivre > 2) {
+        if (quantiteStockLivre > 15) {
             disponiblite = true;
         } else {
             disponiblite = false;

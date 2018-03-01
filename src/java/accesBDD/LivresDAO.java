@@ -17,9 +17,14 @@ public class LivresDAO implements Serializable {
         mc = new MaConnexion();
     }
 
-    public ArrayList<Livres> selectAllLivre() throws SQLException {
+    public ArrayList<Livres> selectAllLivre(boolean atif, String saisie) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
         String req = "select * from VueEmilien";
+        String req2 = null;
+        if (atif) {
+            req2 = "select * from VueEmilien ATIF" + saisie;
+
+        }
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         String RStitreLivre = null;
@@ -30,12 +35,11 @@ public class LivresDAO implements Serializable {
         float RSPrix = 0;
         int RSQuantite = 0;
         String RSResume = null;
-        String RSISBN = null;
         String RSMotCle = null;
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
-        Livres monLivre = new Livres();
+                Livres monLivre = new Livres();
                 RStitreLivre = rs.getString("titreLivre");
                 monLivre.setTitreLivre(RStitreLivre);
                 RSSousTitreLivre = rs.getString("sousTitreLivre");
@@ -57,7 +61,7 @@ public class LivresDAO implements Serializable {
                 monLivre.setResumeLivre(RSResume);
                 RSMotCle = rs.getString("descriptionMotClef");
                 monLivre.setDescriptionMotClef(RSMotCle);
-                
+
                 mesLivres.add(monLivre);
             }
             rs.close();
