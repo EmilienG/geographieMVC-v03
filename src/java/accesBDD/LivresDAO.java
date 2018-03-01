@@ -2,6 +2,7 @@ package accesBDD;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,14 +20,28 @@ public class LivresDAO implements Serializable {
 
     public ArrayList<Livres> selectAllLivre(boolean atif, String saisie) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
+        Connection cnt = mc.getConnection();
+        Statement stm = cnt.createStatement();
+        PreparedStatement pstm = null;
         String req = "select * from VueEmilien";
         String req2 = null;
         if (atif) {
-            req2 = "select * from VueEmilien ATIF" + saisie;
-
+            req2 = "select * from VueEmilien where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
+                    + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
+                    + " nomGenreAuteur like ? ";
+            System.out.println(req2);
+            pstm = cnt.prepareStatement(req2);
+            if (saisie != null) {
+                System.out.println(saisie);
+                pstm.setString(1, "%" + saisie + "%");
+                pstm.setString(2, "%" + saisie + "%");
+                pstm.setString(3, "%" + saisie + "%");
+                pstm.setString(4, "%" + saisie + "%");
+                pstm.setString(5, "%" + saisie + "%");
+                pstm.setString(6, "%" + saisie + "%");
+                pstm.setString(7, "%" + saisie + "%");
+            }
         }
-        Connection cnt = mc.getConnection();
-        Statement stm = cnt.createStatement();
         String RStitreLivre = null;
         String RSSousTitreLivre = null;
         String RSISBNLivre = null;
@@ -36,8 +51,14 @@ public class LivresDAO implements Serializable {
         int RSQuantite = 0;
         String RSResume = null;
         String RSMotCle = null;
+
         try {
-            ResultSet rs = stm.executeQuery(req);
+            ResultSet rs = null;
+            if(atif){
+            rs = pstm.executeQuery();
+            }else { 
+                rs = stm.executeQuery(req);
+            }
             while (rs.next()) {
                 Livres monLivre = new Livres();
                 RStitreLivre = rs.getString("titreLivre");
