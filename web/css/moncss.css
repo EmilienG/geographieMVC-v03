@@ -199,3 +199,7 @@ body {
 .couverture{
     background-image: url('/LibrairieFusion-v1.0/img/font.png');
 }
+hr {
+  border: none;
+  border-bottom: 1px solid #fff; /* Ou border-top */
+}
