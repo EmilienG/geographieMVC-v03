@@ -18,7 +18,6 @@ public class LivresDAO implements Serializable {
     }
 
     public ArrayList<Livres> selectAllLivre() throws SQLException {
-//        System.out.println("mlklmkmlkmlml");
         ArrayList<Livres> mesLivres = new ArrayList<>();
         String req = "select * from VueEmilien";
         Connection cnt = mc.getConnection();
@@ -32,6 +31,7 @@ public class LivresDAO implements Serializable {
         int RSQuantite = 0;
         String RSResume = null;
         String RSISBN = null;
+        String RSMotCle = null;
         try {
             ResultSet rs = stm.executeQuery(req);
             while (rs.next()) {
@@ -55,8 +55,9 @@ public class LivresDAO implements Serializable {
                 monLivre.setPrixHTLivre(RSPrix);
                 RSResume = rs.getString("resumeLivre");
                 monLivre.setResumeLivre(RSResume);
-                RSISBN = rs.getString("ISBNLivre");
-                monLivre.setISBNlivre(RSISBN);
+                RSMotCle = rs.getString("descriptionMotClef");
+                monLivre.setDescriptionMotClef(RSMotCle);
+                
                 mesLivres.add(monLivre);
             }
             rs.close();

@@ -47,7 +47,6 @@ public class ControllerMain extends HttpServlet {
                 for (Livres monLivre : mesLivres) {
                     monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length()/3);
                 }
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
