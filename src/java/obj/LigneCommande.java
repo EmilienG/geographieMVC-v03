@@ -18,18 +18,16 @@ public class LigneCommande implements Serializable {
     private Date dateStatutLigneCommande;   
 
     public LigneCommande() {
+        
     }
 
-    public LigneCommande(String IDLigneCommande, String IDCommandeLigneCommande, String IDLivreLigneCommande, int quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande, String IDStatutLigneCommande, Date dateStatutLigneCommande) {
+    public LigneCommande(String IDLigneCommande, String IDLivreLigneCommande, int quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande) {
         this.IDLigneCommande = IDLigneCommande;
-        this.IDCommandeLigneCommande = IDCommandeLigneCommande;
         this.IDLivreLigneCommande = IDLivreLigneCommande;
         this.quantiteLigneCommande = quantiteLigneCommande;
         this.TVALigneCommande = TVALigneCommande;
         this.prixHTLivreLigneCommande = prixHTLivreLigneCommande;
         this.valeurPromoLigneCommande = valeurPromoLigneCommande;
-        this.IDStatutLigneCommande = IDStatutLigneCommande;
-        this.dateStatutLigneCommande = dateStatutLigneCommande;
     }
 
     public String getIDLigneCommande() {
@@ -105,11 +103,7 @@ public class LigneCommande implements Serializable {
     }
     
     
-
-    @Override
-    public String toString() {
-        return "LigneCommande : " + "IDLigneCommande=" + IDLigneCommande + ", IDCommandeLigneCommande=" + IDCommandeLigneCommande + ", IDLivreLigneCommande=" + IDLivreLigneCommande + ", quantiteLigneCommande=" + quantiteLigneCommande + ", TVALigneCommande=" + TVALigneCommande + ", prixHTLivreLigneCommande=" + prixHTLivreLigneCommande + ", valeurPromoLigneCommande=" + valeurPromoLigneCommande + ", IDStatutLigneCommande=" + IDStatutLigneCommande + ", dateStatutLigneCommande=" + dateStatutLigneCommande;
+    
     }
+
     
-    
-}

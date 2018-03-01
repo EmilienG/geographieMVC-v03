@@ -27,42 +27,17 @@ public class Commande implements Serializable {
     private Date dateExpeditionCommande;
     private String IDStatutReglementCommande;
     private Date dateStatutCommande;
+    private String descriptionStatut;
 
     public Commande() {
     }
 
-    public Commande(String IDCommande, String IDAdresseFacturationCommande, String IDAdresseLivraisonCommande, String IDCompteCommande, String IDLivreurCommande, String IDOrganismePaiementCommande, Date dateCommande, String adresseIPCommande, String commentaireCommande, String IDStatutCommande, float tarifLivraisonCommande, String modeLivraisonCommande, String IDLivraisonCommande, String IDStatutLivraisonCommande, float montantCommande, String modeReglementCommande, String numTransactionReglementCommande, Date dateExpeditionCommande, String IDStatutReglementCommande, Date dateStatutCommande) {
+    public Commande(String IDCommande, Date dateCommande, float montantCommande, String descriptionStatut) {
         this.IDCommande = IDCommande;
-        this.IDAdresseFacturationCommande = IDAdresseFacturationCommande;
-        this.IDAdresseLivraisonCommande = IDAdresseLivraisonCommande;
-        this.IDCompteCommande = IDCompteCommande;
-        this.IDLivreurCommande = IDLivreurCommande;
-        this.IDOrganismePaiementCommande = IDOrganismePaiementCommande;
         this.dateCommande = dateCommande;
-        this.adresseIPCommande = adresseIPCommande;
-        this.commentaireCommande = commentaireCommande;
-        this.IDStatutCommande = IDStatutCommande;
-        this.tarifLivraisonCommande = tarifLivraisonCommande;
-        this.modeLivraisonCommande = modeLivraisonCommande;
-        this.IDLivraisonCommande = IDLivraisonCommande;
-        this.IDStatutLivraisonCommande = IDStatutLivraisonCommande;
         this.montantCommande = montantCommande;
-        this.modeReglementCommande = modeReglementCommande;
-        this.numTransactionReglementCommande = numTransactionReglementCommande;
-        this.dateExpeditionCommande = dateExpeditionCommande;
-        this.IDStatutReglementCommande = IDStatutReglementCommande;
-        this.dateStatutCommande = dateStatutCommande;
+        this.descriptionStatut = descriptionStatut;
     }
-
-    public Commande(String IDCommande, String IDCompteCommande, Date dateCommande, String IDStatutCommande, float montantCommande) {
-        this.IDCommande = IDCommande;
-        this.IDCompteCommande = IDCompteCommande;
-        this.dateCommande = dateCommande;
-        this.IDStatutCommande = IDStatutCommande;
-        this.montantCommande = montantCommande;
-    }
-    
-    
 
     public String getIDCommande() {
         return IDCommande;
@@ -224,10 +199,23 @@ public class Commande implements Serializable {
         this.dateStatutCommande = dateStatutCommande;
     }
 
-    @Override
-    public String toString() {
-        return "Vos Commandes : \n" + "N° Commande" + IDCommande + ", IDAdresseFacturationCommande=" + IDAdresseFacturationCommande + ", IDAdresseLivraisonCommande=" + IDAdresseLivraisonCommande + ", IDCompteCommande=" + IDCompteCommande + ", IDLivreurCommande=" + IDLivreurCommande + ", IDOrganismePaiementCommande=" + IDOrganismePaiementCommande + " Date d'achat : " + dateCommande + " Commentaires : " + commentaireCommande + ", IDStatutCommande=" + IDStatutCommande + "Frais de livraison : " + tarifLivraisonCommande + ", modeLivraisonCommande=" + modeLivraisonCommande + ", IDLivraisonCommande=" + IDLivraisonCommande + ", IDStatutLivraisonCommande=" + IDStatutLivraisonCommande + ", montantCommande=" + montantCommande + ", modeReglementCommande=" + modeReglementCommande + ", numTransactionReglementCommande=" + numTransactionReglementCommande + ", dateExpeditionCommande=" + dateExpeditionCommande + ", IDStatutReglementCommande=" + IDStatutReglementCommande + ", dateStatutCommande=" + dateStatutCommande;
+    public String getDescriptionStatut() {
+        return descriptionStatut;
     }
+
+    public void setDescriptionStatut(String descriptionStatut) {
+        this.descriptionStatut = descriptionStatut;
+    }
+
+    
+    
+    
+    
+
+    
+
+    
+
     
    
     

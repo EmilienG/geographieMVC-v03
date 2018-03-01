@@ -30,7 +30,8 @@ public class CommandeDAO implements Serializable {
             + "ON com.IDAdresseFacturationCommande = ad2.IDAdresse "
             + "JOIN Statut sta "
             + "ON com.IDStatutCommande = sta.IDStatut "
-            + "WHERE IDCompteCommande ";
+            + "WHERE IDCompteCommande = '1' " ;
+        System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         
@@ -39,14 +40,13 @@ public class CommandeDAO implements Serializable {
             ResultSet rs = stm.executeQuery(req);
 
                  
-            while (rs.next()) {
-                String numCompte =rs.getString("IDCompteCommande");
+            while (rs.next()) {              
                 String numCommande = rs.getString("IDCommande");
                 Date dateCommande = rs.getDate("dateCommande");
-                String statutCommande = rs.getString("IDStatutCommande");
                 Float montantCommande = rs.getFloat("montantCommande");
+                String statutCommande = rs.getString("descriptionStatut");
                         
-                Commande c = new Commande(numCompte, numCommande, dateCommande, statutCommande, montantCommande);               
+                Commande c = new Commande(numCommande, dateCommande, montantCommande, statutCommande);               
                 com.add(c);
             }
             rs.close();

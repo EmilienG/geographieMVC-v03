@@ -52,7 +52,6 @@ public class LivresDAO implements Serializable {
                 monLivre.setPrixHTLivre(RSPrix);
                 RSQuantite = rs.getInt("quantiteStockLivre");
                 monLivre.setQuantiteStockLivre(RSQuantite);
-                monLivre.setPrixHTLivre(RSPrix);
                 RSResume = rs.getString("resumeLivre");
                 monLivre.setResumeLivre(RSResume);
                 RSISBN = rs.getString("ISBNLivre");
@@ -67,4 +66,7 @@ public class LivresDAO implements Serializable {
         }
         return mesLivres;
     }
+    
+    
+    
 }

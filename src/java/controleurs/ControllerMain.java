@@ -1,5 +1,6 @@
 package controleurs;
 
+import accesBDD.LigneCommandeDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,10 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import obj.Commande;
 import obj.Evenement;
+import obj.LigneCommande;
 import obj.Livres;
 import obj.Pays;
+import traitements.GestionCommandes;
 import traitements.GestionEvenement;
+import traitements.GestionLigneCommandes;
 import traitements.GestionLivres;
 import traitements.GestionPays;
 
@@ -87,14 +92,43 @@ public class ControllerMain extends HttpServlet {
                 //
             }
         }
+        
+//=====================COMMANDES================================================        
+        if ("order".equals(section)) {
+            System.out.println("hello");
+            try {
+                pageJSP = "/WEB-INF/order.jsp";
+                GestionCommandes gestionC = new GestionCommandes();
+                List<Commande> com = gestionC.findOrder();
+                request.setAttribute("gestionC", com);
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
+        if ("orderLine".equals(section)) {
+            System.out.println("hello");
+            try {
+                pageJSP = "/WEB-INF/orderLine.jsp";
+                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
+                for(LigneCommande ldc : lcom){
+                    System.out.println(ldc.getIDLigneCommande());
+                }
+                request.setAttribute("gestionLC", lcom);
+                
+
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
 
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
             } catch (NamingException ex) {
                 ex.printStackTrace();
-
-                //to do
             }
         }
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
