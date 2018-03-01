@@ -87,8 +87,8 @@ body {
 #conteneur-menu2 {
     height: 100%;
     width: 100%;
-    padding-top: 1%;
-    margin: 1% auto 0 auto;
+    padding-top: 0.5%;
+    margin: 0.5% auto 0 auto;
 }
  
 #conteneur-menu2 ul {
@@ -158,22 +158,23 @@ body {
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
-    margin: 1% 0;
+    margin: 0.5% 0;
     width: 100%;
     text-align: left;
     border-collapse: collapse;
 }
 #tableau th {
-    font-size: 13px;
+    font-size: large;
     font-weight: normal;
-    padding: 1%;
+    padding: 0.5%;
     background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
     border-top: 1px solid #d3ddff;
     border-bottom: 1px solid #fff;
     color: #039;
+    text-align: center;
 }
 #tableau td {
-    padding: 1%;
+    padding: 0.5%;
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
@@ -194,4 +195,7 @@ body {
 }
 .titre{
     margin-left: 20%;
+}
+.couverture{
+    background-image: url('/LibrairieFusion-v1.0/img/font.png');
 }

@@ -48,8 +48,10 @@
                                 <span class="titre" >
                                     <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
                                 </span>
-                                <hr>    
-                                <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
+                                <hr>  
+                                <span class="couverture" >
+                                    <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>                                      
+                                </span>
                                 <span class="resume">
                                     <i>${unLivre.getResumeCourt()}(...)</i>
                                     <a href="#">[+info]</a>
