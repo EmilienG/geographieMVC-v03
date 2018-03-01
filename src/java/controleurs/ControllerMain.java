@@ -75,11 +75,14 @@ public class ControllerMain extends HttpServlet {
         }
         if ("Recherche".equals(section)) {
             try {
-                pageJSP = "/WEB-INF/recherche.jsp";
+//                pageJSP = "/WEB-INF/recherche.jsp";
+                pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
 
-                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
-                session.setAttribute("mesResultats", mesResultats);
+//                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true,request.getParameter("recherche"));
+//                session.setAttribute("mesResultats", mesResultats);
+                request.setAttribute("maListeLivres", mesLivres);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();

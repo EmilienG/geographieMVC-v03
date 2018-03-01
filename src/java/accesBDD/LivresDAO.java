@@ -22,13 +22,15 @@ public class LivresDAO implements Serializable {
         ArrayList<Livres> mesLivres = new ArrayList<>();
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
+        PreparedStatement pstm = null;
         String req = "select * from VueEmilien";
         String req2 = null;
         if (atif) {
             req2 = "select * from VueEmilien where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
                     + " nomGenreAuteur like ? ";
-            PreparedStatement pstm = cnt.prepareStatement(req2);
+            System.out.println(req2);
+            pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
@@ -51,7 +53,12 @@ public class LivresDAO implements Serializable {
         String RSMotCle = null;
 
         try {
-            ResultSet rs = stm.executeQuery(req);
+            ResultSet rs = null;
+            if(atif){
+            rs = pstm.executeQuery();
+            }else { 
+                rs = stm.executeQuery(req);
+            }
             while (rs.next()) {
                 Livres monLivre = new Livres();
                 RStitreLivre = rs.getString("titreLivre");
