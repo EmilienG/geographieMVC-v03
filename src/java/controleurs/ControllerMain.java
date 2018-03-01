@@ -31,6 +31,11 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
+        ArrayList<String> compteur = new ArrayList<>();
+        compteur.add("1");
+        compteur.add("2");
+        compteur.add("3");
+        request.setAttribute("compteur", compteur);
 
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
@@ -80,7 +85,7 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
 
 //                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
-                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true,request.getParameter("recherche"));
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true, request.getParameter("recherche"));
 //                session.setAttribute("mesResultats", mesResultats);
                 request.setAttribute("maListeLivres", mesLivres);
 
