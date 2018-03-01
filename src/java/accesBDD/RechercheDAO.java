@@ -21,17 +21,20 @@ public class RechercheDAO implements Serializable {
 
     public ArrayList<Livres> recherche(String saisie) throws SQLException {
         ArrayList<Livres> mesResultats = new ArrayList<>();
-        String req = "select prenomAuteur,nomAuteur,titreLivre,sousTitreLivre,nomEditeur,nomEdition, nomGenreAuteur"
-                + " from Editeur "
-                + " join Livre on IDEditeur=IDEditeurLivre"
-                + "  join Ecriture on  IDLivre=IDLivreEcriture"
-                + "  join Auteur on IDAuteur=IDAuteurEcriture "
-                + "  join Documentation on IDAuteur = IDAuteurDocumentation"
-                + "  join GenreAuteur on IDGenreAuteur=IDGenreAuteurDocumentation"
+//        String req2 = "select prenomAuteur,nomAuteur,titreLivre,sousTitreLivre,nomEditeur,nomEdition, nomGenreAuteur"
+//                + " from Editeur "
+//                + " join Livre on IDEditeur=IDEditeurLivre"
+//                + "  join Ecriture on  IDLivre=IDLivreEcriture"
+//                + "  join Auteur on IDAuteur=IDAuteurEcriture "
+//                + "  join Documentation on IDAuteur = IDAuteurDocumentation"
+//                + "  join GenreAuteur on IDGenreAuteur=IDGenreAuteurDocumentation"
+//                + " where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
+//                + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
+//                + " nomGenreAuteur like ?";
+        String req = "select * from VueEmilien"
                 + " where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                 + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
                 + " nomGenreAuteur like ?";
-
         Livres maRecherche = null;
         Connection cnt = mc.getConnection();
         try {
@@ -41,13 +44,13 @@ public class RechercheDAO implements Serializable {
             if (saisie != null) {
 
                 System.out.println(saisie);
-                stm.setString(1, "%"+ saisie+ "%");
-                stm.setString(2, "%"+ saisie+ "%");
-                stm.setString(3, "%"+ saisie+ "%");
-                stm.setString(4, "%"+ saisie+ "%");
-                stm.setString(5, "%"+ saisie+ "%");
-                stm.setString(6, "%"+ saisie+ "%");
-                stm.setString(7, "%"+ saisie+ "%");
+                stm.setString(1, "%" + saisie + "%");
+                stm.setString(2, "%" + saisie + "%");
+                stm.setString(3, "%" + saisie + "%");
+                stm.setString(4, "%" + saisie + "%");
+                stm.setString(5, "%" + saisie + "%");
+                stm.setString(6, "%" + saisie + "%");
+                stm.setString(7, "%" + saisie + "%");
 
             }
             ResultSet rs = stm.executeQuery();
@@ -60,6 +63,8 @@ public class RechercheDAO implements Serializable {
                 maRecherche.setNomAuteur(nom);
                 String titre = rs.getString("titreLivre");
                 maRecherche.setTitreLivre(titre);
+                String couverture = rs.getString("couvertureLivre");
+                maRecherche.setCouvertureLivre(couverture);
                 String sousTitre = rs.getString("sousTitreLivre");
                 maRecherche.setSousTitreLivre(sousTitre);
                 String editeur = rs.getString("nomEditeur");
