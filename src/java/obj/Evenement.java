@@ -14,11 +14,17 @@ public class Evenement implements Serializable{
     String commentaireEvenement;
     int IDStatutEvenement;
     String dateStatutEvenement;
+    String titreLivre;
+    String ISBNLivre ;
 
     public Evenement() {
     }
 
-    public Evenement(int IDEvenement, String dateDebutEvenement, String dateFinEvenement, String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement, int IDStatutEvenement, String dateStatutEvenement) {
+   
+
+    
+
+    public Evenement(int IDEvenement, String dateDebutEvenement, String dateFinEvenement, String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement, int IDStatutEvenement, String dateStatutEvenement, String titreLivre, String ISBNLivre) {
         this.IDEvenement = IDEvenement;
         this.dateDebutEvenement = dateDebutEvenement;
         this.dateFinEvenement = dateFinEvenement;
@@ -28,7 +34,10 @@ public class Evenement implements Serializable{
         this.commentaireEvenement = commentaireEvenement;
         this.IDStatutEvenement = IDStatutEvenement;
         this.dateStatutEvenement = dateStatutEvenement;
+        this.titreLivre = titreLivre;
+        this.ISBNLivre = ISBNLivre;
     }
+    
 
     public int getIDEvenement() {
         return IDEvenement;
@@ -102,13 +111,32 @@ public class Evenement implements Serializable{
         this.dateStatutEvenement = dateStatutEvenement;
     }
 
+    public String getTitreLivre() {
+        return titreLivre;
+    }
+
+    public void setTitreLivre(String titreLivre) {
+        this.titreLivre = titreLivre;
+    }
+
+    public String getISBNLivre() {
+        return ISBNLivre;
+    }
+
+    public void setISBNLivre(String ISBNLivre) {
+        this.ISBNLivre = ISBNLivre;
+    }
+    
+
     @Override
     public String toString() {
         return  " L'Evenement : "+ nomEvenement + " Debute le : " + dateDebutEvenement + " Et se finit le " + dateFinEvenement +
                 " type : " + typeEvenement + " description : " + descriptionEvenement +
-                " commentaire : " + commentaireEvenement;
-                // + "   " + dateStatutEvenement ;
+                " commentaire : " + commentaireEvenement
+                 + "   " + dateStatutEvenement + " Le livre concerné est : " + titreLivre + " ISBN numéro : " + ISBNLivre; 
     }
+
+    
     
     
             

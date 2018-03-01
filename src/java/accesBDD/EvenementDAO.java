@@ -22,7 +22,13 @@ public class EvenementDAO {
  public ArrayList<Evenement> selectAllEvenement() throws SQLException {
         ArrayList<Evenement> mesEvenements = new ArrayList<>();
         
-        String req = "select * from Evenement";
+        String req = "select \n"
+                + "nomEvenement,dateDebutEvenement,dateFinEvenement,typeEvenement,\n"
+                + "descriptionEvenement,commentaireEvenement,,dateStatutEvenement, ,ISBNLivre,titreLivre\n"
+                + "from Evenement \n"
+                + " join presentation on IDEvenement = IDEvenementPresentation\n"
+                + " join livre on IDLivre = IDLivrePresentation\n"
+                + " WHERE IDStatutEvenement != 3";
         
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
@@ -34,6 +40,9 @@ public class EvenementDAO {
         String RSdescriptionEvenement = null;
         String RScommentaireEvenement = null;
 //        String RSdateStatutEvenement = null;
+        String RSISBNLivre = null;
+        String RStitreLivre = null;
+        
         
         
         
@@ -56,6 +65,10 @@ public class EvenementDAO {
                 monEvenement.setCommentaireEvenement(RScommentaireEvenement);
 //                RSdateStatutEvenement = rs.getString("dateStatutEvenement");
 //                monEvenement.setDateStatutEvenement(RSdateStatutEvenement);
+                RSISBNLivre = rs.getString("ISBNLivre");
+                monEvenement.setISBNLivre(RSISBNLivre);
+                RStitreLivre = rs.getString("titreLivre");
+                monEvenement.setTitreLivre(RStitreLivre);
 
                 mesEvenements.add(monEvenement);
             }
