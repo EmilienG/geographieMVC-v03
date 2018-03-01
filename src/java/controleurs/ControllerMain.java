@@ -59,13 +59,20 @@ public class ControllerMain extends HttpServlet {
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
 
-                ArrayList<String> s = new ArrayList<>();
-                for (Evenement mesEvenement : mesEvenements) {
-                    s.add(mesEvenement.toString());
+//                ArrayList<Evenement> s = new ArrayList<>();
+//                for (Evenement mesEvenement : mesEvenements) {
+//                    s.add(mesEvenement.getISBNLivre(),
+//                          mesEvenement.getNomEvenement(),
+//                          mesEvenement.getDateDebutEvenement(),
+//                          mesEvenement.getDateFinEvenement(),
+//                          mesEvenement.getDescriptionEvenement(),
+//                          mesEvenement.getTypeEvenement(),
+//                          mesEvenement.getTitreLivre(),
+//                          mesEvenement.getCommentaireEvenement());
 
-                    session.setAttribute("mesEvenements", s);
-                }
-                System.out.println(s);
+                    request.setAttribute("mesEvenements", mesEvenements);
+                
+   
 
             } catch (NamingException ex) {
                 ex.printStackTrace();
