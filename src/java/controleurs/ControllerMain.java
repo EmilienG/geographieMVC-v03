@@ -67,7 +67,29 @@ public class ControllerMain extends HttpServlet {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
-                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement();
+                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(false, saisie);
+
+                ArrayList<String> s = new ArrayList<>();
+                for (Evenement mesEvenement : mesEvenements) {
+                    s.add(mesEvenement.toString());
+
+                    session.setAttribute("mesEvenements", s);
+                }
+              
+        
+                System.out.println(s);
+
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+          if("RechercheEvenement".equals(section)){
+             try {
+            pageJSP = "/WEB-INF/Evenement.jsp";
+                GestionEvenement maGestionEvenement = new GestionEvenement();
+                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
 
                 ArrayList<String> s = new ArrayList<>();
                 for (Evenement mesEvenement : mesEvenements) {

@@ -9,7 +9,7 @@
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <center>
+    <center>
         <h1>
             <span>Evenement</span>
         </h1>
@@ -17,18 +17,27 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
+        <form action="ControllerMain?section=RechercheEvenement" method="post">
+        <input type="hidden" name="section" value="RechercheEvenement" />
+         <div align="center"><input type="text" name="rechercheEvenement" value=""
+               placeholder="Trouvez un Evenement" 
+               required="required" size="50"/>
+        <a href="${url06}">
+            <input type="submit" value="Ok" name="doItEv" />
+        </a>  
+    </form>
         <table  id="tableau">
             <tr>
-<br>
-                <c:forEach var="unEvenement" items="${mesEvenements}">
+            <br>
+            <c:forEach var="unEvenement" items="${mesEvenements}">
                 <br>
                 <td>
-                     ${unEvenement}
+                    ${unEvenement}
                 </td>
                 </br>
             </c:forEach>
-<br>
-        </tr>
-    </table>
-</body>
+            <br>
+            </tr>
+        </table>
+    </body>
 </html>
