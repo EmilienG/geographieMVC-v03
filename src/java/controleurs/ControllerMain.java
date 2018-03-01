@@ -20,7 +20,6 @@ import obj.Livres;
 import obj.Pays;
 import traitements.GestionCommandes;
 import traitements.GestionEvenement;
-import traitements.GestionLigneCommandes;
 import traitements.GestionLivres;
 import traitements.GestionPays;
 
@@ -36,12 +35,6 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-        ArrayList<String> compteur = new ArrayList<>();
-        compteur.add("1");
-        compteur.add("2");
-        compteur.add("3");
-        request.setAttribute("compteur", compteur);
-
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -53,7 +46,13 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
-
+                //===================
+                ArrayList<String> nbLivre = new ArrayList<>();
+                String test = "SELECT titreLivre FROM ( "
+                        + "  SELECT titreLivre, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                        + " ) a WHERE a.row > " + 0 + " and a.row <= " + 2;
+                request.setAttribute("nbLivre", nbLivre);
+//=========================
                 request.setAttribute("maListeLivres", mesLivres);
                 for (Livres monLivre : mesLivres) {
                     monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length() / 3);
@@ -101,7 +100,7 @@ public class ControllerMain extends HttpServlet {
                 //
             }
         }
-        
+
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
             System.out.println("hello");
@@ -115,18 +114,16 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-
         if ("orderLine".equals(section)) {
             System.out.println("hello");
             try {
                 pageJSP = "/WEB-INF/orderLine.jsp";
                 LigneCommandeDAO gestionLC = new LigneCommandeDAO();
                 List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for(LigneCommande ldc : lcom){
+                for (LigneCommande ldc : lcom) {
                     System.out.println(ldc.getIDLigneCommande());
                 }
                 request.setAttribute("gestionLC", lcom);
-                
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
