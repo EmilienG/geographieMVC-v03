@@ -34,41 +34,45 @@
                 </thead>
                 <tbody>
                     <c:forEach  var="unLivre" items="${maListeLivres}">
-                        <tr> 
-                            <td> 
-                                <span class="isbn"><i>ISBN:${unLivre.ISBNlivre}</i></span>
-                                <span class="titre" >
-                                    <a href="#"><b>${unLivre.titreLivre}</b></a>
-                                            ${unLivre.sousTitreLivre}
-                                </span>
-                                <span class="titre" >
-                                    <span class="parution">(Parution : ${unLivre.dateParutionLivre})</span>
-                                </span>
-                                <hr>  
-                                <span class="couverture" >
-                                    <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>                                      
-                                </span>
-                                <span class="resume">
-                                    <i>${unLivre.resumeCourt}(...)</i>
-                                    <a href="#">[+info]</a>
-                                </span>
-                                <br>
-                                <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
-                            </td>
-                            <td>
-                                <c:if test="${unLivre.disponibilite}">
-                                    <span class="dispo"><b>Disponible</b></span>
-                                </c:if> <c:if test="${!unLivre.disponibilite}">
-                                    <span class="rupture"><b>Rupture</b></span>
-                                </c:if>
-                                <br>
-                                Prix : <b>${unLivre.prixHTLivre} €</b>
-                            </td>
-                            <td>
-                                Ajouter au panier
-                            </td>
-                        </tr>
-                    </c:forEach> 
+                        <c:forEach  var="num" items="${compteur}">
+                            ${num}
+                        </c:forEach> 
+                    <br>
+                    <tr> 
+                        <td> 
+                            <span class="isbn"><i>ISBN:${unLivre.ISBNlivre}</i></span>
+                            <span class="titre" >
+                                <a href="#"><b>${unLivre.titreLivre}</b></a>
+                                        ${unLivre.sousTitreLivre}
+                            </span>
+                            <span class="titre" >
+                                <span class="parution">(Parution : ${unLivre.dateParutionLivre})</span>
+                            </span>
+                            <hr>  
+                            <span class="couverture" >
+                                <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>                                      
+                            </span>
+                            <span class="resume">
+                                <i>${unLivre.resumeCourt}(...)</i>
+                                <a href="#">[+info]</a>
+                            </span>
+                            <br>
+                            <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
+                        </td>
+                        <td>
+                            <c:if test="${unLivre.disponibilite}">
+                                <span class="dispo"><b>Disponible</b></span>
+                            </c:if> <c:if test="${!unLivre.disponibilite}">
+                                <span class="rupture"><b>Rupture</b></span>
+                            </c:if>
+                            <br>
+                            Prix : <b>${unLivre.prixHTLivre} €</b>
+                        </td>
+                        <td>
+                            Ajouter au panier
+                        </td>
+                    </tr>
+                </c:forEach> 
                 </tbody>
                 <tfoot>
                     <tr>
