@@ -15,7 +15,28 @@
         </nav>
         <hr/>
                 <c:forEach var="maRecherche" items="${mesResultats}">     
-                    ${maRecherche}
+                    
+                    <td> 
+                                
+                                <span class="titre" >
+                                    <a href="#"><b>${maRecherche.titreLivre}</b></a>
+                                            ${maRecherche.sousTitreLivre}
+                                </span>
+                                <span class="titre" >
+                                    <span class="parution">${maRecherche.prenomAuteur}</span>
+                                </span>
+                                <hr>  
+                                <span class="couverture" >
+                               <img src="${path}${maRecherche.couvertureLivre}" alt="${maRecherche.couvertureLivre}"  width="150"/>                                      
+                                </span>
+                                <span class="Auteur">
+                                    <i>${maRecherche.prenomAuteur}</i>
+                                    <i>${maRecherche.nomAuteur}</i>
+                                    <a href="#">[+info]</a>
+                                </span>
+                                <br>
+                                <span class="motCle">Mots Clé : ${maRecherche.descriptionMotClef}</span>
+                            </td>
                 </c:forEach>
               
      

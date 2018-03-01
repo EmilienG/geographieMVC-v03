@@ -19,8 +19,6 @@
 
                 <td>
 
-
-
                     ${unEvenement}
 
                 </td>
