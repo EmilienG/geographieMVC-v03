@@ -57,7 +57,6 @@
                                     <a href="#">[+info]</a>
                                 </span>
                             </td>
-
                             <td>
                                 <c:if test="${unLivre.getDisponibilite()}">
                                     <span class="dispo"><b></b>Disponible</b></span>
