@@ -41,16 +41,17 @@
                         <tr> 
                             <td> 
                                 <span class="isbn"><i>ISBN:${unLivre.getISBNlivre()}</i></span>
-                                <span class="titre" <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
-                                    ${unLivre.getSousTitreLivre()}</span>
-                                <br>
-                                <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
+                                <span class="titre" >
+                                    <a href="#"><b>${unLivre.getTitreLivre()}</b></a>
+                                            ${unLivre.getSousTitreLivre()}
+                                </span>
+                                <span class="titre" >
+                                    <span class="parution">(Parution : ${unLivre.getDateParutionLivre()})</span>
+                                </span>
                                 <hr>    
                                 <img src="${path}${unLivre.getCouvertureLivre()}" alt="${unLivre.getCouvertureLivre()}"  width="15%"/>
-                                <br>
                                 <span class="resume">
                                     <i>${unLivre.getResumeCourt()}(...)</i>
-                                    <br>
                                     <a href="#">[+info]</a>
                                 </span>
                             </td>

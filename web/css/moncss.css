@@ -10,13 +10,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 2px groove bisque;
+    border: 1px groove bisque;
 
 }
 
 th, td {
     text-align: left;
-    padding: 8px;
+    padding: 2%;
     border: 1px outset blanchedalmond;
 }
 
@@ -88,19 +88,19 @@ body {
     height: 100%;
     width: 100%;
     padding-top: 1%;
-    margin: 1% auto 0% auto;
+    margin: 1% auto 0 auto;
 }
  
 #conteneur-menu2 ul {
-    padding: 0%;
-    margin: 0%;
+    padding: 0;
+    margin: 0;
     margin-left: 2%;
     float: left;
 }
  
 #conteneur-menu2 ul li {
     list-style: none;
-    padding: 0%;
+    padding: 0;
 }
  
 #conteneur-menu2 ul li a {
@@ -121,7 +121,7 @@ body {
  
 #conteneur-menu2 ul li a:hover {
     background: #54B6A8;
-    padding-left: 20px;
+    padding-left: 15%;
     width: 130px;
     -moz-transition: all .5s; 
     -webkit-transition: all .5s; 
@@ -142,6 +142,7 @@ body {
     color: royalblue;
     font-size: x-small;
     font-style: oblique;
+    padding-left: 2%;
 }
 .parution{
     color: midnightblue;
@@ -157,7 +158,7 @@ body {
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
-    margin: 10px 0;
+    margin: 1% 0;
     width: 100%;
     text-align: left;
     border-collapse: collapse;
@@ -165,14 +166,14 @@ body {
 #tableau th {
     font-size: 13px;
     font-weight: normal;
-    padding: 8px;
+    padding: 1%;
     background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
-    border-top: 2px solid #d3ddff;
+    border-top: 1px solid #d3ddff;
     border-bottom: 1px solid #fff;
     color: #039;
 }
 #tableau td {
-    padding: 8px;
+    padding: 1%;
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
