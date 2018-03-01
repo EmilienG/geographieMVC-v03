@@ -19,30 +19,16 @@
         </nav>
         <table  id="tableau">
             <tr>
-
 <br>
                 <c:forEach var="unEvenement" items="${mesEvenements}">
-
                 <br>
-
                 <td>
-
-
-
                      ${unEvenement}
-
                 </td>
-
                 </br>
-
             </c:forEach>
 <br>
         </tr>
     </table>
-
-
-
-
 </body>
 </html>
-

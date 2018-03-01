@@ -48,7 +48,6 @@ public class ControllerMain extends HttpServlet {
                 for (Livres monLivre : mesLivres) {
                     monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length()/3);
                 }
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -80,11 +79,13 @@ public class ControllerMain extends HttpServlet {
             try {
                 pageJSP = "/WEB-INF/recherche.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
-//                Livres mesResultats = maGestionLivre.findLivresbysearch();
-//                session.setAttribute("mesResultats", mesResultats);
+
+                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
+                session.setAttribute("mesResultats", mesResultats);
+
             } catch (NamingException ex) {
                 ex.printStackTrace();
-//            } catch (SQLException ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
                 //
             }
