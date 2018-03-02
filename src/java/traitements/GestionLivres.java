@@ -25,7 +25,7 @@ public class GestionLivres implements Serializable {
 
 
     public ArrayList<Livres> findLivresbysearch(String saisie) throws SQLException {
-        System.out.println(">>>>>>" + (rDAO == null));
+//        System.out.println(">>>>>>" + (rDAO == null));
         ArrayList<Livres> livres = rDAO.recherche(saisie);
         return livres;
     }

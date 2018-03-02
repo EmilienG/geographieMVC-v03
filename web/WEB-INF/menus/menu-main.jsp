@@ -10,34 +10,37 @@
                         <a href="${url01}">Accueil</a>
                     <li>
                         <c:url value="ControllerMain?section=afficher-pays" var="url02" />
-                        <a href="${url02}"> Pays </a>
+                        <a href="${url02}">Pays </a>
                     </li>
                     <li>
                         <c:url value="ControllerMain?section=catalogue" var="url03" />
-                        <a href="${url03}"> Catalogue </a>
+                        <a href="${url03}">Catalogue </a>
                     </li>
                     <li> 
                         <c:url value="ControllerMain?section=Evenement" var="url04" />
-                        <a href="${url04}"> Evenement</a>
+                        <a href="${url04}">Evenement</a>
                     </li>
-                  
-            <li> 
-                <c:url value="ControllerMain?section=order" var="url05" />
-                <a href="${url05}"> Mes commandes</a>
-            </li>
+                    <li> 
+                        <c:url value="ControllerMain?section=order" var="url05" />
+                        <a href="${url05}">Mes commandes</a>
+                    </li>
+                    <li> 
+                        <c:url value="ControllerMain?section=catalogue2" var="url06" />
+                        <a href="${url06}">Catalogue2</a>
+                    </li>
                 </ul>
             </div>
         </td>
     </tr>
 </table>
-    <form action="ControllerMain?section=Recherche" method="post">
-        <input type="hidden" name="section" value="Recherche" />
-         <div align="center"><input type="text" name="recherche" value=""
-               placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
-               required="required" size="50"/>
+<form action="ControllerMain?section=Recherche" method="post">
+    <input type="hidden" name="section" value="Recherche" />
+    <div align="center"><input type="text" name="recherche" value=""
+                               placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
+                               required="required" size="50"/>
         <a href="${url05}">
             <input type="submit" value="Ok" name="doIt" />
         </a>  
-    </form>
+</form>
 </div>
 

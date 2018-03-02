@@ -46,6 +46,21 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
+                request.setAttribute("maListeLivres", mesLivres);
+                String test = "SELECT titreLivre FROM ( "
+                        + "  SELECT titreLivre, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                        + " ) a WHERE a.row > " + 0 + " and a.row <= " + 2;
+
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        //*******************************************************
+        if ("catalogue2".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/catalogue2.jsp";
+                GestionLivres maGestionLivre = new GestionLivres();
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
                 //===================
                 ArrayList<String> nbLivre = new ArrayList<>();
                 String test = "SELECT titreLivre FROM ( "
@@ -61,6 +76,7 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
+        //*******************************************************
 
         if ("Evenement".equals(section)) {
             try {
