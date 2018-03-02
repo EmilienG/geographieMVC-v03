@@ -20,6 +20,11 @@
                         <c:url value="ControllerMain?section=Evenement" var="url04" />
                         <a href="${url04}"> Evenement</a>
                     </li>
+                  
+            <li> 
+                <c:url value="ControllerMain?section=order" var="url05" />
+                <a href="${url05}"> Mes commandes</a>
+            </li>
                 </ul>
             </div>
         </td>
@@ -27,6 +32,7 @@
 </table>
     <form action="ControllerMain?section=Recherche" method="post">
         <input type="hidden" name="section" value="Recherche" />
+        <input type="hidden" name="section" value="RechercheEvenement" />
          <div align="center"><input type="text" name="recherche" value=""
                placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
                required="required" size="50"/>

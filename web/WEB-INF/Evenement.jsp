@@ -18,6 +18,16 @@
             <c:import url="${url01}" />
         </nav>
 
+  <form action="ControllerMain?section=RechercheEvenement" method="post">
+        <input type="hidden" name="section" value="RechercheEvenement" />
+         <div align="center"><input type="text" name="rechercheEvenement" value=""
+               placeholder="Trouvez un Evenement" 
+               required="required" size="50"/>
+        <a href="${url06}">
+            <input type="submit" value="Ok" name="doItEv" />
+        </a>  
+    </form>
+
         <table  id="tableau">
             <thead>
                 <tr>
@@ -56,5 +66,5 @@
     <footer>
  Merci de votre visite à bientot
     </footer>
-</body>
+      </body>
 </html>
