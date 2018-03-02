@@ -47,10 +47,6 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
                 request.setAttribute("maListeLivres", mesLivres);
-                String test = "SELECT titreLivre FROM ( "
-                        + "  SELECT titreLivre, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                        + " ) a WHERE a.row > " + 0 + " and a.row <= " + 2;
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -60,18 +56,8 @@ public class ControllerMain extends HttpServlet {
             try {
                 pageJSP = "/WEB-INF/catalogue2.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
-                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
-                //===================
-                ArrayList<String> nbLivre = new ArrayList<>();
-                String test = "SELECT titreLivre FROM ( "
-                        + "  SELECT titreLivre, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                        + " ) a WHERE a.row > " + 0 + " and a.row <= " + 2;
-                request.setAttribute("nbLivre", nbLivre);
-//=========================
+                ArrayList<Livres> mesLivres = maGestionLivre.findLivres2(3, 5);
                 request.setAttribute("maListeLivres", mesLivres);
-                for (Livres monLivre : mesLivres) {
-                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length() / 3);
-                }
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
