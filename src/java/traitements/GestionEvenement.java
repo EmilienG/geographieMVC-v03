@@ -18,8 +18,8 @@ public class GestionEvenement implements Serializable {
        EDAO = new EvenementDAO();
    }
     
-   public ArrayList<Evenement>findEvenement() throws SQLException {
-       ArrayList<Evenement>Evenement = EDAO.selectAllEvenement();
+   public ArrayList<Evenement>findEvenement(boolean atif, String saisie) throws SQLException {
+       ArrayList<Evenement>Evenement = EDAO.selectAllEvenement(atif, saisie);
        return Evenement;
        
    }
