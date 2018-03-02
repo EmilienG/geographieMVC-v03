@@ -17,7 +17,8 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        <form action="ControllerMain?section=RechercheEvenement" method="post">
+
+  <form action="ControllerMain?section=RechercheEvenement" method="post">
         <input type="hidden" name="section" value="RechercheEvenement" />
          <div align="center"><input type="text" name="rechercheEvenement" value=""
                placeholder="Trouvez un Evenement" 
@@ -26,18 +27,44 @@
             <input type="submit" value="Ok" name="doItEv" />
         </a>  
     </form>
+
         <table  id="tableau">
-            <tr>
-            <br>
-            <c:forEach var="unEvenement" items="${mesEvenements}">
-                <br>
-                <td>
-                    ${unEvenement}
-                </td>
-                </br>
+            <thead>
+                <tr>
+                    <td colspan="5">Mon Catalogue Fusion</td>
+                </tr>
+            <th scope="col">
+                Nos Evenements
+            </th>
+
+            </thead>
+            <tbody>
+
+                <c:forEach var="unEvenement" items="${mesEvenements}">
+
+                <th>
+                <tr> <td> ${unEvenement.nomEvenement} </td>  </tr>
+                <tr> <td> ${unEvenement.dateDebutEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.dateFinEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.typeEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.descriptionEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.commentaireEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.titreLivre} </td> </tr>
+                <tr> <td> ${unEvenement.ISBNLivre} </td> </tr>
+                <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
+                </th>
             </c:forEach>
-            <br>
-            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">Librairie Fusion Since 2018</td>
+                </tr>
+            </tfoot>
+
         </table>
-    </body>
+    </center>
+    <footer>
+ Merci de votre visite à bientot
+    </footer>
+      </body>
 </html>
