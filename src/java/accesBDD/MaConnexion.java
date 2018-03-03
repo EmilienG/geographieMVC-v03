@@ -17,7 +17,7 @@ public class MaConnexion implements Serializable{
 //        System.out.println(">>>>MaConnexion");
         InitialContext context = new InitialContext();
         ds = (DataSource) context.lookup("jdbc/librairie");
-        ds1 = (DataSource) context.lookup("jdbc/maBase");
+//        ds1 = (DataSource) context.lookup("jdbc/maBase");
 
     }
     
