@@ -55,22 +55,21 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Livres> mesLivres2 = maGestionLivre.findLivres2(3, 5);
                 ArrayList<Livres> mesLivres3 = maGestionLivre.findLivres2(6, 8);
                 ArrayList<Livres> mesLivres4 = maGestionLivre.findLivres2(8, 10);
-                request.setAttribute("maListeLivres1", mesLivres1);
-                request.setAttribute("maListeLivres2", mesLivres2);
-                request.setAttribute("maListeLivres3", mesLivres3);
-                request.setAttribute("maListeLivres4", mesLivres4);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivres2(11, 12);
                 ArrayList<ArrayList<Livres>> bigList1 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> bigList2 = new ArrayList<>();
-                ArrayList< ArrayList<ArrayList<Livres>>> gigaBigList = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> bigList3 = new ArrayList<>();
+                ArrayList< ArrayList<ArrayList<Livres>>> listDeListDeList = new ArrayList<>();
                 bigList1.add(mesLivres1);
                 bigList1.add(mesLivres2);
                 bigList2.add(mesLivres3);
                 bigList2.add(mesLivres4);
-                gigaBigList.add(bigList1);
-                gigaBigList.add(bigList2);
-                request.setAttribute("gigaBigList", gigaBigList);
-        //*******************************************************
-
+                bigList3.add(mesLivres5);
+                listDeListDeList.add(bigList1);
+                listDeListDeList.add(bigList2);
+                listDeListDeList.add(bigList3);
+                request.setAttribute("listDeListDeList", listDeListDeList);
+                //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -87,8 +86,7 @@ public class ControllerMain extends HttpServlet {
 
                     session.setAttribute("mesEvenements", s);
                 }
-              
-        
+
                 System.out.println(s);
 
             } catch (NamingException ex) {
@@ -97,9 +95,9 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-          if("RechercheEvenement".equals(section)){
-             try {
-            pageJSP = "/WEB-INF/Evenement.jsp";
+        if ("RechercheEvenement".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
 
@@ -113,10 +111,7 @@ public class ControllerMain extends HttpServlet {
 //                          mesEvenement.getTypeEvenement(),
 //                          mesEvenement.getTitreLivre(),
 //                          mesEvenement.getCommentaireEvenement());
-
-                    request.setAttribute("mesEvenements", mesEvenements);
-                
-   
+                request.setAttribute("mesEvenements", mesEvenements);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();

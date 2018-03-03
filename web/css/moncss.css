@@ -141,6 +141,7 @@ body {
     font-style: italic;
 }
 .isbn{
+  margin-top: 1px;
     color: darkblue;
     font-size: x-small;
     font-style: italic;
@@ -149,7 +150,7 @@ body {
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;
-    margin: 0.5% 0;
+    margin: 0.1%;
     width: 100%;
     text-align: left;
     border-collapse: collapse;
@@ -157,19 +158,21 @@ body {
 #tableau th {
     font-size: large;
     font-weight: normal;
-    padding: 0.5%;
+    padding: 0.2%;
     background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
     border-top: 1px solid #d3ddff;
     border-bottom: 1px solid #fff;
     color: #039;
     text-align: center;
+    margin: auto;
 }
 #tableau td {
-    padding: 0.5%;
+    padding: 0.2%;
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
     background: #e8edff url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
+    text-align: center;
 }
 #tableau tfoot tr td {
     background: #e8edff;
@@ -185,14 +188,14 @@ body {
     text-decoration:underline;
 }
 .titre{
-    margin-left: 5%;
+  /*  margin-left: 5%;*/
 }
 .couverture{
     background-image: url('/LibrairieFusion-v1.0/img/font.png');
 }
 hr {
-  border: none;
-  border-bottom: 1px solid #fff; /* Ou border-top */
+    border: none;
+    border-bottom: 1px solid #fff; /* Ou border-top */
 }
 
 .tabOrder, .tabOrder td{
@@ -216,7 +219,7 @@ hr {
     font-family: 'Arial';
     font-size: small;
     border-style: none; 
-    
+
     border-bottom: 1px solid #fff; /* Ou border-top */
 }
 .motCle {
