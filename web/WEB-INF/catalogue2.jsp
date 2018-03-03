@@ -20,17 +20,8 @@
             <table  id="tableau">
                 <thead>
                     <tr>
-                        <td colspan="5">Mon Catalogue Fusion</td>
+                        <td colspan="8">Mon Catalogue Fusion</td>
                     </tr>
-                <th scope="col">
-                    Fiche de l'ouvrage
-                </th>
-                <th scope="col">
-                    Details
-                </th>
-                <th scope="col">
-                    Panier
-                </th>
                 </thead>
                 <tbody>
                     <c:forEach  var="uneBigListe" items="${gigaBigList}">
@@ -75,7 +66,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">Catalogue Librairie Fusion</td>
+                        <td colspan="8">Catalogue Librairie Fusion</td>
                     </tr>
                 </tfoot>
             </table>
