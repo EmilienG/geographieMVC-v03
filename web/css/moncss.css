@@ -160,15 +160,15 @@ body {
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: medium;
-    margin: 3%;
-    width: 85%;
+    margin: 2%;
+    width: 87%;
     text-align: center;
     border-collapse: collapse;
 }
 #tableau th {
     font-size: large;
     font-weight: normal;
-    padding: 0.2%;
+    padding: 0.1%;
     background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
     border-top: 1px solid #d3ddff;
     border-bottom: 1px solid #fff;
@@ -177,7 +177,7 @@ body {
     margin: auto;
 }
 #tableau td {
-    padding: 0.2%;
+    padding: 0.1%;
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
@@ -190,7 +190,7 @@ body {
     color: #99c;
     text-align:center;
 }
-#tableau tbody tr:hover td {
+#tableau tbody  td:hover {
     background: #d0dafd url('/LibrairieFusion-v1.0/img/gradhover.png') repeat-x;
     color: #339;
 }
