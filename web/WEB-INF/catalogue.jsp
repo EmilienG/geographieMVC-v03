@@ -20,63 +20,53 @@
             <table  id="tableau">
                 <thead>
                     <tr>
-                        <td colspan="5">Mon Catalogue Fusion</td>
+                        <td colspan="8">Mon Catalogue Fusion</td>
                     </tr>
-                <th scope="col">
-                    Fiche de l'ouvrage
-                </th>
-                <th scope="col">
-                    Details
-                </th>
-                <th scope="col">
-                    Panier
-                </th>
                 </thead>
                 <tbody>
-                    <c:forEach  var="unLivre" items="${maListeLivres}">
-                        <c:forEach  var="num" items="${compteur}">
-                            ${num}
-                        </c:forEach> 
-                    <br>
-                    <tr> 
-                        <td> 
-                            <span class="isbn"><i>ISBN:${unLivre.ISBNlivre}</i></span>
-                            <span class="titre" >
-                                <a href="#"><b>${unLivre.titreLivre}</b></a>
-                                        ${unLivre.sousTitreLivre}
-                            </span>
-                            <span class="titre" >
-                                <span class="parution">(Parution : ${unLivre.dateParutionLivre})</span>
-                            </span>
-                            <hr>  
-                            <span class="couverture" >
-                                <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>                                      
-                            </span>
-                            <span class="resume">
-                                <i>${unLivre.resumeCourt}(...)</i>
-                                <a href="#">[+info]</a>
-                            </span>
-                            <br>
-                            <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
-                        </td>
-                        <td>
-                            <c:if test="${unLivre.disponibilite}">
-                                <span class="dispo"><b>Disponible</b></span>
-                            </c:if> <c:if test="${!unLivre.disponibilite}">
-                                <span class="rupture"><b>Rupture</b></span>
-                            </c:if>
-                            <br>
-                            Prix : <b>${unLivre.prixHTLivre} €</b>
-                        </td>
-                        <td>
-                            Ajouter au panier
-                        </td>
-                    </tr>
-                </c:forEach> 
+                    <c:forEach  var="uneBigListe" items="${gigaBigList}">
+                        <tr>
+                            <c:forEach  var="uneListe" items="${uneBigListe}">
+                                <c:forEach  var="unLivre" items="${uneListe}">
+                                    <td> 
+                                        <span class="isbn"><i>ISBN:${unLivre.ISBNlivre}</i></span>
+                                        <span class="titre" >
+                                            <a href="#"><b>${unLivre.titreLivre}</b></a>
+                                                    ${unLivre.sousTitreLivre}
+                                        </span>
+                                        <span class="titre" >
+                                            <span class="parution">(Parution : ${unLivre.dateParutionLivre})</span>
+                                        </span>
+                                        <hr>  
+                                        <span class="couverture" >
+                                            <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>                                      
+                                        </span>
+                                        <br>
+                                        <span class="resume">
+                                            <i>${unLivre.resumeCourt}(...)</i>
+                                            <a href="#">[+info]</a>
+                                        </span>
+                                        <br>
+                                        <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
+                                        <c:if test="${unLivre.disponibilite}">
+                                            <span class="dispo"><b>Disponible</b></span>
+                                        </c:if> <c:if test="${!unLivre.disponibilite}">
+                                            <span class="rupture"><b>Rupture</b></span>
+                                        </c:if>
+                                        <br>
+                                        Prix : <b>${unLivre.prixHTLivre} €</b>
+                                    </td>
+                                    <td>
+                                        Ajouter au panier
+                                    </td>
+                                </c:forEach> 
+                            </c:forEach> 
+                        </tr>
+                    </c:forEach>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">Catalogue Librairie Fusion</td>
+                        <td colspan="8">Catalogue Librairie Fusion</td>
                     </tr>
                 </tfoot>
             </table>

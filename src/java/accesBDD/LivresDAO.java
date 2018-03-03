@@ -51,12 +51,11 @@ public class LivresDAO implements Serializable {
         int RSQuantite = 0;
         String RSResume = null;
         String RSMotCle = null;
-
         try {
             ResultSet rs = null;
-            if(atif){
-            rs = pstm.executeQuery();
-            }else { 
+            if (atif) {
+                rs = pstm.executeQuery();
+            } else {
                 rs = stm.executeQuery(req);
             }
             while (rs.next()) {
@@ -92,5 +91,39 @@ public class LivresDAO implements Serializable {
         }
         return mesLivres;
     }
-}
 
+    public ArrayList<Livres> selectLivrePagin(int debut, int pas) throws SQLException {
+        ArrayList<Livres> mesLivres = new ArrayList<>();
+        Connection cnt = mc.getConnection();
+        Statement stm = cnt.createStatement();
+        String req = "SELECT * FROM ( "
+                + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
+        try  {
+            ResultSet rs = null;
+            rs = stm.executeQuery(req);
+            while (rs.next()) {
+                Livres monLivre = new Livres();
+                monLivre.setTitreLivre(rs.getString("titreLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setISBNlivre(rs.getString("ISBNLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setDateParutionLivre(rs.getString("dateParutionLivre"));
+                monLivre.setCouvertureLivre(rs.getString("couvertureLivre"));
+                monLivre.setPrixHTLivre(rs.getFloat("prixHTLivre"));
+                monLivre.setQuantiteStockLivre(rs.getInt("quantiteStockLivre"));
+                monLivre.setResumeLivre(rs.getString("resumeLivre"));
+                monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
+
+                mesLivres.add(monLivre);
+            }
+            rs.close();
+        } finally {
+            if (cnt != null) {
+                cnt.close();
+            }
+        }
+        return mesLivres;
+    }
+
+}

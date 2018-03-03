@@ -2,6 +2,7 @@ package controleurs;
 
 import accesBDD.LigneCommandeDAO;
 import java.io.IOException;
+import static java.lang.Math.round;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,6 @@ import obj.Livres;
 import obj.Pays;
 import traitements.GestionCommandes;
 import traitements.GestionEvenement;
-import traitements.GestionLigneCommandes;
 import traitements.GestionLivres;
 import traitements.GestionPays;
 
@@ -36,12 +36,6 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
-        ArrayList<String> compteur = new ArrayList<>();
-        compteur.add("1");
-        compteur.add("2");
-        compteur.add("3");
-        request.setAttribute("compteur", compteur);
-
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -53,16 +47,34 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
-
                 request.setAttribute("maListeLivres", mesLivres);
-                for (Livres monLivre : mesLivres) {
-                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length() / 3);
-                }
+                //*******************************************************
+                int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
+                request.setAttribute("sizeMesLivres", sizeMesLivres);
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivres2(0, 2);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivres2(3, 5);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivres2(6, 8);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivres2(8, 10);
+                request.setAttribute("maListeLivres1", mesLivres1);
+                request.setAttribute("maListeLivres2", mesLivres2);
+                request.setAttribute("maListeLivres3", mesLivres3);
+                request.setAttribute("maListeLivres4", mesLivres4);
+                ArrayList<ArrayList<Livres>> bigList1 = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> bigList2 = new ArrayList<>();
+                ArrayList< ArrayList<ArrayList<Livres>>> gigaBigList = new ArrayList<>();
+                bigList1.add(mesLivres1);
+                bigList1.add(mesLivres2);
+                bigList2.add(mesLivres3);
+                bigList2.add(mesLivres4);
+                gigaBigList.add(bigList1);
+                gigaBigList.add(bigList2);
+                request.setAttribute("gigaBigList", gigaBigList);
+        //*******************************************************
+
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
         }
-
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
@@ -130,7 +142,7 @@ public class ControllerMain extends HttpServlet {
                 //
             }
         }
-        
+
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
             System.out.println("hello");
@@ -144,18 +156,16 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-
         if ("orderLine".equals(section)) {
             System.out.println("hello");
             try {
                 pageJSP = "/WEB-INF/orderLine.jsp";
                 LigneCommandeDAO gestionLC = new LigneCommandeDAO();
                 List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for(LigneCommande ldc : lcom){
+                for (LigneCommande ldc : lcom) {
                     System.out.println(ldc.getIDLigneCommande());
                 }
                 request.setAttribute("gestionLC", lcom);
-                
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();

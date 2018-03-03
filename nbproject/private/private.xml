@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/src/java/accesBDD/LivresDAO.java</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/src/java/traitements/GestionLivres.java</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/src/java/controleurs/ControllerMain.java</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/web/WEB-INF/Evenement.jsp</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/web/WEB-INF/catalogue.jsp</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/web/WEB-INF/recherche.jsp</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/src/java/accesBDD/RechercheDAO.java</file>
-            <file>file:/C:/Users/cdi215/Documents/GITHUB/LibrairieFusion-v1.0/src/java/obj/Livres.java</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/src/java/accesBDD/LivresDAO.java</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/web/WEB-INF/menus/menu-main.jsp</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/src/java/traitements/GestionLivres.java</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/web/WEB-INF/catalogue2.jsp</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/web/css/moncss.css</file>
+            <file>file:/C:/Users/Emilien/Documents/LibrairieFusion-v1.0/src/java/controleurs/ControllerMain.java</file>
         </group>
     </open-files>
 </project-private>
