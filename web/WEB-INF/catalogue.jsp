@@ -5,35 +5,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Catalogue</title>
-        <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <center>
-        <h1>
-            <span>Catalogue</span>
-        </h1>
-        <nav>
-            <c:url value="ControllerMain?section=menu-main" var="url01" />
-            <c:import url="${url01}" />
-        </nav>
+        <h1><span>Catalogue</span></h1>
+        <c:url value="ControllerMain?section=menu-main" var="url01" />
+        <c:import url="${url01}" />
         <div style="overflow-x:auto;">
             <table  id="tableau">
                 <thead>
                     <tr>
-                        <td colspan="8">Mon Catalogue Fusion</td>
+                        <td colspan="12">Mon Catalogue Fusion</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach  var="uneBigListe" items="${gigaBigList}">
+                    <c:forEach  var="uneListeDeListe" items="${listDeListDeList}">
                         <tr>
-                            <c:forEach  var="uneListe" items="${uneBigListe}">
-                                <c:forEach  var="unLivre" items="${uneListe}">
+                            <c:forEach  var="uneListeDeLivre" items="${uneListeDeListe}">
+                                <c:forEach  var="unLivre" items="${uneListeDeLivre}">
                                     <td> 
                                         <span class="isbn"><i>ISBN:${unLivre.ISBNlivre}</i></span>
+                                        <hr>
                                         <span class="titre" >
-                                            <a href="#"><b>${unLivre.titreLivre}</b></a>
-                                                    ${unLivre.sousTitreLivre}
+                                            <a href="#"><b>${unLivre.titreLivre}</b><br>${unLivre.sousTitreLivre}</a>
                                         </span>
+                                        <hr>
                                         <span class="titre" >
                                             <span class="parution">(Parution : ${unLivre.dateParutionLivre})</span>
                                         </span>
@@ -41,23 +37,26 @@
                                         <span class="couverture" >
                                             <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>                                      
                                         </span>
-                                        <br>
+                                        <hr>
                                         <span class="resume">
                                             <i>${unLivre.resumeCourt}(...)</i>
                                             <a href="#">[+info]</a>
                                         </span>
-                                        <br>
-                                        <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
-                                        <c:if test="${unLivre.disponibilite}">
-                                            <span class="dispo"><b>Disponible</b></span>
-                                        </c:if> <c:if test="${!unLivre.disponibilite}">
-                                            <span class="rupture"><b>Rupture</b></span>
-                                        </c:if>
-                                        <br>
-                                        Prix : <b>${unLivre.prixHTLivre} €</b>
                                     </td>
                                     <td>
-                                        Ajouter au panier
+                                        <span class="motCle">Mots Clé : ${unLivre.descriptionMotClef}</span>
+                                        <hr>
+                                        Prix : <b>${unLivre.prixHTLivre} €</b>
+                                        <hr>
+                                        <c:if test="${unLivre.disponibilite}">
+                                            <span class="dispo"><b>Disponible</b></span>
+                                        </c:if> 
+                                        <c:if test="${!unLivre.disponibilite}">
+                                            <span class="rupture"><b>Rupture</b></span>
+                                        </c:if>
+                                    </td>
+                                    <td>
+                                        Add panier
                                     </td>
                                 </c:forEach> 
                             </c:forEach> 
@@ -66,11 +65,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="8">Catalogue Librairie Fusion</td>
+                        <td colspan="12">Catalogue Librairie Fusion</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
+        <a href="#">page 1</a>| <a href="#">page 2</a>| <a href="#">page 3</a>|  <a href="#">...</a>
     </center>
 </body>
 </html>

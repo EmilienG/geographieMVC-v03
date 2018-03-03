@@ -51,26 +51,27 @@ public class ControllerMain extends HttpServlet {
                 //*******************************************************
                 int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
                 request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivres2(0, 2);
-                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivres2(3, 5);
-                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivres2(6, 8);
-                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivres2(8, 10);
-                request.setAttribute("maListeLivres1", mesLivres1);
-                request.setAttribute("maListeLivres2", mesLivres2);
-                request.setAttribute("maListeLivres3", mesLivres3);
-                request.setAttribute("maListeLivres4", mesLivres4);
-                ArrayList<ArrayList<Livres>> bigList1 = new ArrayList<>();
-                ArrayList<ArrayList<Livres>> bigList2 = new ArrayList<>();
-                ArrayList< ArrayList<ArrayList<Livres>>> gigaBigList = new ArrayList<>();
-                bigList1.add(mesLivres1);
-                bigList1.add(mesLivres2);
-                bigList2.add(mesLivres3);
-                bigList2.add(mesLivres4);
-                gigaBigList.add(bigList1);
-                gigaBigList.add(bigList2);
-                request.setAttribute("gigaBigList", gigaBigList);
-        //*******************************************************
-
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(10, 11);
+                ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
+                ArrayList< ArrayList<ArrayList<Livres>>> listDeListDeList = new ArrayList<>();
+                page1.add(mesLivres1);
+                page1.add(mesLivres2);
+                page2.add(mesLivres3);
+                page2.add(mesLivres4);
+                page3.add(mesLivres5);
+                page3.add(mesLivres6);
+                listDeListDeList.add(page1);
+                listDeListDeList.add(page2);
+                listDeListDeList.add(page3);
+                request.setAttribute("listDeListDeList", listDeListDeList);
+                //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -87,8 +88,7 @@ public class ControllerMain extends HttpServlet {
 
                     session.setAttribute("mesEvenements", s);
                 }
-              
-        
+
                 System.out.println(s);
 
             } catch (NamingException ex) {
@@ -97,9 +97,9 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-          if("RechercheEvenement".equals(section)){
-             try {
-            pageJSP = "/WEB-INF/Evenement.jsp";
+        if ("RechercheEvenement".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
 
@@ -113,10 +113,7 @@ public class ControllerMain extends HttpServlet {
 //                          mesEvenement.getTypeEvenement(),
 //                          mesEvenement.getTitreLivre(),
 //                          mesEvenement.getCommentaireEvenement());
-
-                    request.setAttribute("mesEvenements", mesEvenements);
-                
-   
+                request.setAttribute("mesEvenements", mesEvenements);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();

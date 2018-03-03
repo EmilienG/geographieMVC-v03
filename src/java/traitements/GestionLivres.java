@@ -18,7 +18,7 @@ public class GestionLivres implements Serializable {
         rDAO = new RechercheDAO();
     }
 
-    public ArrayList<Livres> findLivres2(int debut, int pas) throws SQLException {
+    public ArrayList<Livres> findLivresPagin(int debut, int pas) throws SQLException {
         ArrayList<Livres> livres = lDAO.selectLivrePagin(debut, pas);
         return livres;
     }
