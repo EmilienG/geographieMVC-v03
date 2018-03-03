@@ -99,7 +99,6 @@ public class LivresDAO implements Serializable {
         String req = "SELECT * FROM ( "
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
                 + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
-        System.out.println(req);
         try  {
             ResultSet rs = null;
             rs = stm.executeQuery(req);

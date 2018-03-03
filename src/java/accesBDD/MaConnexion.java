@@ -14,7 +14,7 @@ public class MaConnexion implements Serializable{
 
 
     public MaConnexion() throws NamingException {
-        System.out.println(">>>>MaConnexion");
+//        System.out.println(">>>>MaConnexion");
         InitialContext context = new InitialContext();
         ds = (DataSource) context.lookup("jdbc/librairie");
         ds1 = (DataSource) context.lookup("jdbc/maBase");
