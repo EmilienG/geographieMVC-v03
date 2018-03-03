@@ -48,25 +48,13 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
                 request.setAttribute("maListeLivres", mesLivres);
-            } catch (NamingException | SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-        //*******************************************************
-        if ("catalogue2".equals(section)) {
-            try {
-                pageJSP = "/WEB-INF/catalogue2.jsp";
-                GestionLivres maGestionLivre = new GestionLivres();
-                int debut = 0;
-                int pas = 2;
+                //*******************************************************
                 int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
                 request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres = maGestionLivre.findLivres2(debut, pas);
                 ArrayList<Livres> mesLivres1 = maGestionLivre.findLivres2(0, 2);
                 ArrayList<Livres> mesLivres2 = maGestionLivre.findLivres2(3, 5);
                 ArrayList<Livres> mesLivres3 = maGestionLivre.findLivres2(6, 8);
                 ArrayList<Livres> mesLivres4 = maGestionLivre.findLivres2(8, 10);
-                request.setAttribute("maListeLivres", mesLivres);
                 request.setAttribute("maListeLivres1", mesLivres1);
                 request.setAttribute("maListeLivres2", mesLivres2);
                 request.setAttribute("maListeLivres3", mesLivres3);
@@ -80,15 +68,13 @@ public class ControllerMain extends HttpServlet {
                 bigList2.add(mesLivres4);
                 gigaBigList.add(bigList1);
                 gigaBigList.add(bigList2);
-                request.setAttribute("bigList1", bigList1);
-                request.setAttribute("bigList2", bigList2);
                 request.setAttribute("gigaBigList", gigaBigList);
+        //*******************************************************
+
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
         }
-        //*******************************************************
-
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";

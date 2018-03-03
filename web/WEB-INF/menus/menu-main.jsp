@@ -23,11 +23,7 @@
                     </li>
                     <li> 
                         <c:url value="ControllerMain?section=order" var="url05" />
-                        <a href="${url05}">Mes commandes</a>
-                    </li>
-                    <li> 
-                        <c:url value="ControllerMain?section=catalogue2" var="url06" />
-                        <a href="${url06}">Catalogue2</a>
+                        <a href="${url05}">Commandes</a>
                     </li>
                 </ul>
             </div>
