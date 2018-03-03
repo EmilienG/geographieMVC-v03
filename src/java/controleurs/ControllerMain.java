@@ -72,6 +72,8 @@ public class ControllerMain extends HttpServlet {
                 listDeListDeList.add(page3);
                 request.setAttribute("listDeListDeList", listDeListDeList);
                 //*******************************************************
+                
+                //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
