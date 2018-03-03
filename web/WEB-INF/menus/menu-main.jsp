@@ -27,7 +27,8 @@
                     <input type="hidden" name="section" value="Recherche" />
                     <input type="text" name="recherche" value="" 
                            placeholder="Trouvez un livre, un auteur, un éditeur, un genre" required="required" size="50"/>
-                    <a href="${url05}"><input type="submit" value="Ok" name="doIt" /></a>
+                   <!-- <a href="${url06}"><input type="submit" value="Ok" name="doIt" /></a> -->
+                    <span class="bouton4"><input type="submit" value="Ok" name="doIt" /></span>
 
                 </form>
             </div>
@@ -41,7 +42,14 @@
                         <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte</a>
                     </li>
                     <li>
-                        <c:url value="ControllerMain?section=logOut" var="url08" /><a href="${url08}">Log-Out</a>
+                        <c:url value="ControllerMain?section=logIn" var="url08" /><a href="${url08}">Log-In</a>
+                    </li>
+                    <li>
+                        <c:url value="ControllerMain?section=logOut" var="url09" /><a href="${url09}">Log-Out</a>
+                    </li>
+                    </li>
+                    <li>
+                        <c:url value="ControllerMain?section=inscription" var="url10" /><a href="${url10}">S'inscrire</a>
                     </li>
                 </ul>
             </div>

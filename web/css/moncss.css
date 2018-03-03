@@ -58,14 +58,14 @@ h1{
         #3296b7 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
-        padding: 2%;
+    padding: 2%;
     margin: 2%;
     width: 85%;
 }
 h1 span{
     background:#C0C0C0;
     padding:0px;
-    
+
 }
 tr:nth-child(even){
     background-color: #f2f2f2;
@@ -237,4 +237,19 @@ hr {
 }
 .pages{
     color: wheat;
+}
+button {
+    width:110px;
+    cursor:pointer;
+    text-transform:capitalize;
+}
+
+input[type=submit] {
+    width:10%;
+    height:10%;
+    background:#fafafa;
+    box-shadow:2px 2px 8px #aaa;
+    font:bold 13px Arial;
+    border-radius:50%;
+    color:#555;
 }
