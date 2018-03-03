@@ -16,7 +16,7 @@ table {
 
 th, td {
     text-align: left;
-    padding: 2%;
+    padding: 1%;
     border: 1px outset blanchedalmond;
 }
 
@@ -24,47 +24,47 @@ h1{
     color: #3296b7;
     text-align:center;
     background:linear-gradient (
-        #C0C0C0 0%,
-        #C0C0C0 45%,
+        #dbd5ff 0%,
+        #dbd5ff 45%,
         #3296b7 46%,
         #3296b7 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:-webkit-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
+        #dbd5ff 0%,
+        #dbd5ff 45%,
         #3296b7 46%,
         #3296b7 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:    -moz-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
+        #dbd5ff 0%,
+        #dbd5ff 45%,
         #3296b7 46%,
         #3296b7 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:     -ms-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
+        #dbd5ff 0%,
+        #dbd5ff 45%,
         #3296b7 46%,
         #3296b7 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:      -o-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
+        #dbd5ff 0%,
+        #dbd5ff 45%,
         #3296b7 46%,
         #3296b7 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
-    padding: 2%;
-    margin: 2%;
-    width: 85%;
+        #dbd5ff 54%,
+        #dbd5ff 100%);
+    padding: 1%;
+    margin: 1%;
+    width: 90%;
 }
 h1 span{
-    background:#C0C0C0;
-    padding:0px;
+    background:#dbd5ff;
+    padding:0%;
 
 }
 tr:nth-child(even){
@@ -81,7 +81,7 @@ body {
 
 #conteneur-menu2 {
     height: 100%;
-    width: 100%;
+    width: 80%;
     padding-top: 0.5%;
     margin: 0.5% auto 0 auto;
 }
@@ -96,7 +96,8 @@ body {
 #test {
     padding: 2%;
     margin: 2%;
-    width: 85%;
+    width: 75%;
+     border-radius: 5px 10px 0 5px;
 }
 
 #conteneur-menu2 ul li {
@@ -106,7 +107,7 @@ body {
 
 #conteneur-menu2 ul li a {
     text-decoration: none;
-    font-size: 25px;
+    font-size: larger;
     padding: 4px;
     display: block;
     color: white;
@@ -122,8 +123,8 @@ body {
 
 #conteneur-menu2 ul li a:hover {
     background: #54B6A8;
-    padding-left: 15%;
-    width: 130px;
+    padding-left: 25%;
+    width: 75%;
     -moz-transition: all .7s; 
     -webkit-transition: all .7s; 
     -o-transition: all .7s; 
@@ -160,8 +161,8 @@ body {
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: medium;
-    margin: 2%;
-    width: 87%;
+    margin: 1%;
+    width: 90%;
     text-align: center;
     border-collapse: collapse;
 }
@@ -237,11 +238,6 @@ hr {
 }
 .pages{
     color: wheat;
-}
-button {
-    width:110px;
-    cursor:pointer;
-    text-transform:capitalize;
 }
 
 input[type=submit] {
