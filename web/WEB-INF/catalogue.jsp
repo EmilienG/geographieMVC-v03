@@ -9,9 +9,7 @@
     </head>
     <body>
     <center>
-        <h1>
-            <span>Catalogue</span>
-        </h1>
+        <h1><span>Catalogue</span></h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
