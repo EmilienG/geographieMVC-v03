@@ -70,6 +70,7 @@
                 </tfoot>
             </table>
         </div>
+        <a href="#">page 1</a>| <a href="#">page 2</a>| <a href="#">page 3</a>|  <a href="#">...</a>
     </center>
 </body>
 </html>

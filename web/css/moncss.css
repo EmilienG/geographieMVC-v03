@@ -58,10 +58,14 @@ h1{
         #3296b7 54%,  
         #C0C0C0 54%,
         #C0C0C0 100%);
+        padding: 2%;
+    margin: 2%;
+    width: 85%;
 }
 h1 span{
     background:#C0C0C0;
     padding:0px;
+    
 }
 tr:nth-child(even){
     background-color: #f2f2f2;
@@ -89,6 +93,12 @@ body {
     float: left;
 }
 
+#test {
+    padding: 2%;
+    margin: 2%;
+    width: 85%;
+}
+
 #conteneur-menu2 ul li {
     list-style: none;
     padding: 0;
@@ -102,11 +112,11 @@ body {
     color: white;
     background: transparent;
     width: 230px;
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
-    line-height: 20px;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
+    line-height: 25px;
 }
 
 
@@ -114,13 +124,13 @@ body {
     background: #54B6A8;
     padding-left: 15%;
     width: 130px;
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
 }
 .dispo{
-    color: #3296b7;
+    color: green;
     font-size: medium;
     font-style: oblique;
 }
@@ -141,7 +151,7 @@ body {
     font-style: italic;
 }
 .isbn{
-  margin-top: 1px;
+    margin-top: 1px;
     color: darkblue;
     font-size: x-small;
     font-style: italic;
@@ -149,10 +159,10 @@ body {
 }
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 12px;
-    margin: 0.1%;
-    width: 100%;
-    text-align: left;
+    font-size: medium;
+    margin: 3%;
+    width: 85%;
+    text-align: center;
     border-collapse: collapse;
 }
 #tableau th {
@@ -188,7 +198,7 @@ body {
     text-decoration:underline;
 }
 .titre{
-  /*  margin-left: 5%;*/
+    /*  margin-left: 5%;*/
 }
 .couverture{
     background-image: url('/LibrairieFusion-v1.0/img/font.png');
