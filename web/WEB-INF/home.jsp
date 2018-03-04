@@ -8,11 +8,13 @@
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+    <center>
+        <h1><span>Page d'Acceuil !</span></h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        <h1><span>Page d'Acceuil !</span></h1>
         Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
-    </body>
+    </center>
+</body>
 </html>

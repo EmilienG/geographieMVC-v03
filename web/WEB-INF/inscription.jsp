@@ -9,11 +9,11 @@
     </head>
     <body>
     <center>
+        <h1><span>Page d'inscription !</span></h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        <h1><span>Page d'inscription !</span></h1>
         <div id="registration">
             <h2>Creer un compte</h2>
             <form id="RegisterUserForm" action="" method="post">
@@ -28,7 +28,9 @@
                     <br>
                     <input id="acceptTerms" type="checkbox" name="acceptTerms" />
                     <label for="acceptTerms"> J'accepte <a>les Termes et Conditions<br></a> comme quoi je donne <a>tout à Librairie.Fusion</a> </label>
-                    <button id="registerNew" type="submit">Enregistrer</button></fieldset>
+                    <br>
+                    <input type="submit" value="ok"/>
+                </fieldset>
             </form></div>
     </center>
 </body>
