@@ -49,14 +49,19 @@
                                         Prix : <b>${unLivre.prixHTLivre} €</b>
                                         <hr>
                                         <c:if test="${unLivre.disponibilite}">
-                                            <span class="dispo"><b>Disponible</b></span>
+                                            <span class="dispo">
+                                                <b>Disponible</b>
+                                            </span>
+                                            <hr>
+                                            <span class="button">
+                                                <a href="ControllerMain?section=orderLine">
+                                                    <img src="/LibrairieFusion-v1.0/img/detailOrder.jpg"/>
+                                                </a>
+                                            </span>
                                         </c:if> 
                                         <c:if test="${!unLivre.disponibilite}">
                                             <span class="rupture"><b>Rupture</b></span>
                                         </c:if>
-                                    </td>
-                                    <td>
-                                        Add panier
                                     </td>
                                 </c:forEach> 
                             </c:forEach> 
@@ -70,7 +75,7 @@
                 </tfoot>
             </table>
         </div>
-        <a href="#">page 1</a>| <a href="#">page 2</a>| <a href="#">page 3</a>|  <a href="#">...</a>
+        <a href="#">Précédente</a> |<a href="#">page 1</a>| <a href="#">page 2</a>| <a href="#">page 3</a>|  <a href="#">...</a>| <a href="#">Suivante</a>
     </center>
 </body>
 </html>

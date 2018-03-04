@@ -42,6 +42,9 @@ public class ControllerMain extends HttpServlet {
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
+        if ("inscription".equals(section)) {
+            pageJSP = "/WEB-INF/inscription.jsp";
+        }
         if ("catalogue".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/catalogue.jsp";
@@ -71,6 +74,8 @@ public class ControllerMain extends HttpServlet {
                 listDeListDeList.add(page2);
                 listDeListDeList.add(page3);
                 request.setAttribute("listDeListDeList", listDeListDeList);
+                //*******************************************************
+                
                 //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
