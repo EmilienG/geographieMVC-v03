@@ -1,3 +1,9 @@
+<%-- 
+    Document   : jspNewCompte
+    Created on : 4 mars 2018, 18:09:34
+    Author     : badri
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:if test="section=login">
+</c:if><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
 <table>
@@ -8,6 +10,8 @@
                 <ul>
                     <li>  <c:url value="ControllerMain?section=home" var="url01" />
                         <a href="${url01}">Accueil</a>
+                        <div align="right"><c:url value="ControllerMain?section=login" var="url07" />
+                        <a href="${url07}"> MonCompte </a></div>
                     <li>
                         <c:url value="ControllerMain?section=afficher-pays" var="url02" />
                         <a href="${url02}"> Pays </a>
@@ -36,9 +40,12 @@
          <div align="center"><input type="text" name="recherche" value=""
                placeholder="Trouvez un livre, un auteur, un éditeur, un genre" 
                required="required" size="50"/>
-        <a href="${url05}">
+        <a href="${url06}">
             <input type="submit" value="Ok" name="doIt" />
         </a>  
     </form>
-</div>
+                </div>  <c:if test="section=login" var="def">
+                     <jsp:include page="/ControllerMain?section=login" flush="true"/>
+                </c:if>
+           
 
