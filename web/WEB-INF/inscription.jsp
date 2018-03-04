@@ -15,6 +15,9 @@
         </nav>
         <h1><span>Page d'inscription !</span></h1>
         Ici formulaire pour s'inscrire
+        <form >
+            
+        </form>
     </center>
 </body>
 </html>
