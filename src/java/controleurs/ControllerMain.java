@@ -2,6 +2,7 @@ package controleurs;
 
 import accesBDD.LigneCommandeDAO;
 import java.io.IOException;
+import static java.lang.Math.round;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,36 +49,58 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
+
         ArrayList<String> compteur = new ArrayList<>();
         compteur.add("1");
         compteur.add("2");
         compteur.add("3");
         request.setAttribute("compteur", compteur);
-        
-        
-        
-        
+
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
+        if ("inscription".equals(section)) {
+            pageJSP = "/WEB-INF/inscription.jsp";
+        }
         if ("catalogue".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
-
                 request.setAttribute("maListeLivres", mesLivres);
-                for (Livres monLivre : mesLivres) {
-                    monLivre.getResumeLivre().substring(0, monLivre.getResumeLivre().length() / 3);
-                }
+                //*******************************************************
+                int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
+                request.setAttribute("sizeMesLivres", sizeMesLivres);
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(10, 11);
+                ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
+                ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
+                ArrayList< ArrayList<ArrayList<Livres>>> listDeListDeList = new ArrayList<>();
+                page1.add(mesLivres1);
+                page1.add(mesLivres2);
+                page2.add(mesLivres3);
+                page2.add(mesLivres4);
+                page3.add(mesLivres5);
+                page3.add(mesLivres6);
+                listDeListDeList.add(page1);
+                listDeListDeList.add(page2);
+                listDeListDeList.add(page3);
+                request.setAttribute("listDeListDeList", listDeListDeList);
+                //*******************************************************
+                
+                //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
         }
-
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
@@ -90,8 +113,7 @@ public class ControllerMain extends HttpServlet {
 
                     session.setAttribute("mesEvenements", s);
                 }
-              
-        
+
                 System.out.println(s);
 
             } catch (NamingException ex) {
@@ -100,19 +122,23 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-          if("RechercheEvenement".equals(section)){
-             try {
-            pageJSP = "/WEB-INF/Evenement.jsp";
+        if ("RechercheEvenement".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
 
-                ArrayList<String> s = new ArrayList<>();
-                for (Evenement mesEvenement : mesEvenements) {
-                    s.add(mesEvenement.toString());
-
-                    session.setAttribute("mesEvenements", s);
-                }
-                System.out.println(s);
+//                ArrayList<Evenement> s = new ArrayList<>();
+//                for (Evenement mesEvenement : mesEvenements) {
+//                    s.add(mesEvenement.getISBNLivre(),
+//                          mesEvenement.getNomEvenement(),
+//                          mesEvenement.getDateDebutEvenement(),
+//                          mesEvenement.getDateFinEvenement(),
+//                          mesEvenement.getDescriptionEvenement(),
+//                          mesEvenement.getTypeEvenement(),
+//                          mesEvenement.getTitreLivre(),
+//                          mesEvenement.getCommentaireEvenement());
+                request.setAttribute("mesEvenements", mesEvenements);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();
@@ -138,7 +164,7 @@ public class ControllerMain extends HttpServlet {
                 //
             }
         }
-        
+
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
             System.out.println("hello");
@@ -152,18 +178,16 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-
         if ("orderLine".equals(section)) {
             System.out.println("hello");
             try {
                 pageJSP = "/WEB-INF/orderLine.jsp";
                 LigneCommandeDAO gestionLC = new LigneCommandeDAO();
                 List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for(LigneCommande ldc : lcom){
+                for (LigneCommande ldc : lcom) {
                     System.out.println(ldc.getIDLigneCommande());
                 }
                 request.setAttribute("gestionLC", lcom);
-                
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();

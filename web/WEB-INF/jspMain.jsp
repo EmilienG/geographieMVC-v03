@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP main</title>
+        <title>Librairie Fusion (de la mort qui tue !!!)</title>
     </head>
     <body>
         <jsp:include page="/ControllerMain?section=menu-main" flush="true"/>

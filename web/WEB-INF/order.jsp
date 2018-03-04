@@ -40,7 +40,7 @@
                             ${oneOrder.getMontantCommande()}
                         </td>
                         
-                        <td><a href="ControllerMain?section=orderLine"><span class="button"><img src="/LibrairieFusion-v1.0/image/detailOrder.jpg"/></a></span></td>
+                        <td><a href="ControllerMain?section=orderLine"><span class="button"><img src="/LibrairieFusion-v1.0/img/detailOrder.jpg"/></a></span></td>
                     </tr>
                     </c:forEach>
                 </tbody>

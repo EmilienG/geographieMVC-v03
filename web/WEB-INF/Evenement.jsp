@@ -19,19 +19,46 @@
         </nav>
 
         <table  id="tableau">
-            <tr>
+            <thead>
+                <tr>
+                    <td colspan="5">Mon Catalogue Fusion</td>
+                </tr>
+            <th scope="col">
+                Nos Evenements
+            </th>
+
+            </thead>
+            <tbody>
+
                 <c:forEach var="unEvenement" items="${mesEvenements}">
 
-                    <td>
-                        ${unEvenement}
-                    </td>
+                <th>
+                <tr> <td> ${unEvenement.nomEvenement} </td>  </tr>
+                <tr> <td> ${unEvenement.dateDebutEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.dateFinEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.typeEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.descriptionEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.commentaireEvenement} </td> </tr>
+                <tr> <td> ${unEvenement.titreLivre} </td> </tr>
+                <tr> <td> ${unEvenement.ISBNLivre} </td> </tr>
+                <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
+                </th>
+            </c:forEach>
+            </tbody>
+          
+            <tfoot>
+                <tr>
+                    <td colspan="5">Librairie Fusion Since 2018</td>
+                </tr>
+            </tfoot>
 
-                </c:forEach>
-
-
-            </tr>
         </table>
-        <form action="ControllerMain?section=RechercheEvenement" method="post">
+    </center>
+  
+    <footer>
+ Merci de votre visite à bientot
+    </footer>
+    <form action="ControllerMain?section=RechercheEvenement" method="post">
             <input type="hidden" name="section" value="RechercheEvenement" />
             <div align="right"><input type="text" name="rechercheEvenement" value=""
                                       placeholder="Trouvez un Evenement" 
@@ -40,6 +67,6 @@
                     <input type="submit" value="Ok" name="doItEv" />
                 </a>  
         </form>
+      </body>
 
-    </body>
 </html>

@@ -16,69 +16,79 @@ table {
 
 th, td {
     text-align: left;
-    padding: 2%;
+    padding: 1%;
     border: 1px outset blanchedalmond;
 }
 
 h1{
-    color: #009933;
+    color: #3296b7;
     text-align:center;
     background:linear-gradient (
-        #C0C0C0 0%,
-        #C0C0C0 45%,
-        #009933 46%,
-        #009933 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 0%,
+        #dbd5ff 45%,
+        #3296b7 46%,
+        #3296b7 54%,  
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:-webkit-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
-        #009933 46%,
-        #009933 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 0%,
+        #dbd5ff 45%,
+        #3296b7 46%,
+        #3296b7 54%,  
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:    -moz-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
-        #009933 46%,
-        #009933 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 0%,
+        #dbd5ff 45%,
+        #3296b7 46%,
+        #3296b7 54%,  
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:     -ms-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
-        #009933 46%,
-        #009933 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 0%,
+        #dbd5ff 45%,
+        #3296b7 46%,
+        #3296b7 54%,  
+        #dbd5ff 54%,
+        #dbd5ff 100%);
     background:      -o-linear-gradient(
-        #C0C0C0 0%,
-        #C0C0C0 45%,
-        #009933 46%,
-        #009933 54%,  
-        #C0C0C0 54%,
-        #C0C0C0 100%);
+        #dbd5ff 0%,
+        #dbd5ff 45%,
+        #3296b7 46%,
+        #3296b7 54%,  
+        #dbd5ff 54%,
+        #dbd5ff 100%);
+    padding: 1%;
+    margin: 1%;
+    width: 90%;
 }
 h1 span{
-    background:#C0C0C0;padding:0 20px;
+    background:#dbd5ff;
+    padding:0%;
+
 }
 tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
 body {
+    font-family:'Abel', arial, serif; 
+    font-size:medium;
+    background: #4a93c6;
     margin: 0;
     padding: 0;
-    font-family:'Abel', arial, serif; 
-    text-transform: uppercase;
-    background: #012B47 url(../img/fond-menu.png) no-repeat top center;
+    color: #656565;
+    text-shadow:0 0px, 1px 1px #d6a6ff;
+   /* background: #4a93c6 url(../img/fond-menu.png) no-repeat top center;*/
 }
 
 #conteneur-menu2 {
+    font-size: x-large;
     height: 100%;
-    width: 100%;
+    width: 80%;
     padding-top: 0.5%;
     margin: 0.5% auto 0 auto;
+    text-shadow:0 0px, 3px 4px #4f3663;
 }
 
 #conteneur-menu2 ul {
@@ -88,6 +98,13 @@ body {
     float: left;
 }
 
+#test {
+    padding: 2%;
+    margin: 2%;
+    width: 75%;
+    border-radius: 5px 10px 0 5px;
+}
+
 #conteneur-menu2 ul li {
     list-style: none;
     padding: 0;
@@ -95,31 +112,31 @@ body {
 
 #conteneur-menu2 ul li a {
     text-decoration: none;
-    font-size: 25px;
+    font-size: larger;
     padding: 4px;
     display: block;
-    color: white;
+    color: #cbc9e5;
     background: transparent;
     width: 230px;
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
-    line-height: 20px;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
+    line-height: 25px;
 }
 
 
 #conteneur-menu2 ul li a:hover {
     background: #54B6A8;
-    padding-left: 15%;
-    width: 130px;
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    -o-transition: all .5s; 
-    transition: all .5s;
+    padding-left: 25%;
+    width: 75%;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
 }
 .dispo{
-    color: #009933;
+    color: green;
     font-size: medium;
     font-style: oblique;
 }
@@ -140,6 +157,7 @@ body {
     font-style: italic;
 }
 .isbn{
+    margin-top: 1px;
     color: darkblue;
     font-size: x-small;
     font-style: italic;
@@ -147,28 +165,30 @@ body {
 }
 #tableau {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 12px;
-    margin: 0.5% 0;
-    width: 100%;
-    text-align: left;
+    font-size: medium;
+    margin: 1%;
+    width: 90%;
+    text-align: center;
     border-collapse: collapse;
 }
 #tableau th {
     font-size: large;
     font-weight: normal;
-    padding: 0.5%;
+    padding: 0.1%;
     background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead.png') repeat-x;
     border-top: 1px solid #d3ddff;
     border-bottom: 1px solid #fff;
     color: #039;
     text-align: center;
+    margin: auto;
 }
 #tableau td {
-    padding: 0.5%;
+    padding: 0.1%;
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
     background: #e8edff url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
+    text-align: center;
 }
 #tableau tfoot tr td {
     background: #e8edff;
@@ -176,7 +196,7 @@ body {
     color: #99c;
     text-align:center;
 }
-#tableau tbody tr:hover td {
+#tableau tbody  td:hover {
     background: #d0dafd url('/LibrairieFusion-v1.0/img/gradhover.png') repeat-x;
     color: #339;
 }
@@ -184,14 +204,14 @@ body {
     text-decoration:underline;
 }
 .titre{
-    margin-left: 18%;
+    /*  margin-left: 5%;*/
 }
 .couverture{
     background-image: url('/LibrairieFusion-v1.0/img/font.png');
 }
 hr {
-  border: none;
-  border-bottom: 1px solid #fff; /* Ou border-top */
+    border: none;
+    border-bottom: 1px solid #fff; /* Ou border-top */
 }
 
 .tabOrder, .tabOrder td{
@@ -215,9 +235,42 @@ hr {
     font-family: 'Arial';
     font-size: small;
     border-style: none; 
-    
+
     border-bottom: 1px solid #fff; /* Ou border-top */
 }
 .motCle {
     font-size: xx-small;
 }
+.pages{
+    color: wheat;
+}
+
+input[type=submit] {
+    width:10%;
+    height:10%;
+    background:#fafafa;
+    box-shadow:2px 2px 8px #aaa;
+    font:bold 13px Arial;
+    border-radius:50%;
+    color:#555;
+}
+
+#registration {
+    color: #fff;
+    background: #4a93c6;
+ 
+     -moz-border-radius: 10px;
+     -webkit-border-radius: 10px;
+     border-radius: 10px;
+     margin: 10px;
+     width: 430px;
+     }
+ 
+ #registration a {
+      color: #8c910b;
+      text-shadow: 0px -1px 0px #000;
+      }
+ 
+#registration fieldset {
+      padding: 20px;
+      }
