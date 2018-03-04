@@ -72,18 +72,23 @@ tr:nth-child(even){
 }
 
 body {
+    font-family:'Abel', arial, serif; 
+    font-size:medium;
+    background: #4a93c6;
     margin: 0;
     padding: 0;
-    font-family:'Abel', arial, serif; 
-    text-transform: uppercase;
-    background: #4a93c6 url(../img/fond-menu.png) no-repeat top center;
+    color: #656565;
+    text-shadow:0 0px, 1px 1px #d6a6ff;
+   /* background: #4a93c6 url(../img/fond-menu.png) no-repeat top center;*/
 }
 
 #conteneur-menu2 {
+    font-size: x-large;
     height: 100%;
     width: 80%;
     padding-top: 0.5%;
     margin: 0.5% auto 0 auto;
+    text-shadow:0 0px, 3px 4px #4f3663;
 }
 
 #conteneur-menu2 ul {
@@ -97,7 +102,7 @@ body {
     padding: 2%;
     margin: 2%;
     width: 75%;
-     border-radius: 5px 10px 0 5px;
+    border-radius: 5px 10px 0 5px;
 }
 
 #conteneur-menu2 ul li {
@@ -110,7 +115,7 @@ body {
     font-size: larger;
     padding: 4px;
     display: block;
-    color: white;
+    color: #a6a6ff;
     background: transparent;
     width: 230px;
     -moz-transition: all .7s; 
