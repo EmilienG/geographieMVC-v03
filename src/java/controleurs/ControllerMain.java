@@ -43,7 +43,7 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/home.jsp";
         }
         if ("inscription".equals(section)) {
-            pageJSP = "/WEB-INF/inscription2.jsp";
+            pageJSP = "/WEB-INF/inscription.jsp";
         }
         if ("catalogue".equals(section)) {
             try {
