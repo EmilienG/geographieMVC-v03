@@ -22,22 +22,23 @@ public class EvenementDAO {
     public ArrayList<Evenement> selectAllEvenement(boolean atif, String saisie) throws SQLException {
         ArrayList<Evenement> mesEvenements = new ArrayList<>();
 
-        String req = "select nomEvenement,dateDebutEvenement,dateFinEvenement,typeEvenement,descriptionEvenement,commentaireEvenement,dateStatutEvenement,ISBNLivre,titreLivre\n"
-                + " from Evenement\n"
-                + " join presentation on IDEvenement = IDEvenementPresentation\n"
-                + " join livre on IDLivre = IDLivrePresentation\n"
+        String req = "select nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
+                + " from Evenement"
+                + " join presentation on IDEvenement = IDEvenementPresentation"
+                + " join livre on IDLivre = IDLivrePresentation"
                 + " WHERE IDStatutEvenement != 3";
+        System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         PreparedStatement pstm = null;
         String req2 = null;
         if (atif) {
-            req2 = "select nomEvenement,dateDebutEvenement,dateFinEvenement,typeEvenement,descriptionEvenement,commentaireEvenement,dateStatutEvenement,ISBNLivre,titreLivre\n"
-                    + " from Evenement\n"
-                    + " join presentation on IDEvenement = IDEvenementPresentation\n"
-                    + " join livre on IDLivre = IDLivrePresentation\n"
-                    + " WHERE IDStatutEvenement != 3and nomEvenement like ? or typeEvenement like ?\n"
-                    + "or descriptionEvenement like ? or commentaireEvenement like ?\n"
+            req2 = "select nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
+                    + " from Evenement"
+                    + " join presentation on IDEvenement = IDEvenementPresentation"
+                    + " join livre on IDLivre = IDLivrePresentation"
+                    + " WHERE IDStatutEvenement != 3 and nomEvenement like ? or typeEvenement like ?"
+                    + "or descriptionEvenement like ? or commentaireEvenement like ?"
                     + "or ISBNLivre like ? or titreLivre like ?";
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
@@ -65,9 +66,9 @@ public class EvenementDAO {
         try {
 //            ResultSet rs = stm.executeQuery(req);
             ResultSet rs = null;
-            if(atif){
-            rs = pstm.executeQuery();
-            }else { 
+            if (atif) {
+                rs = pstm.executeQuery();
+            } else {
                 rs = stm.executeQuery(req);
             }
             while (rs.next()) {

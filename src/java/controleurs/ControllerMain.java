@@ -108,11 +108,11 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(false, saisie);
 
                 ArrayList<String> s = new ArrayList<>();
-                for (Evenement mesEvenement : mesEvenements) {
-                    s.add(mesEvenement.toString());
-
-                    session.setAttribute("mesEvenements", s);
-                }
+//                for (Evenement mesEvenement : mesEvenements) {
+//                    s.add(mesEvenement.toString());
+//
+                    session.setAttribute("mesEvenements", mesEvenements);
+//                }
 
                 System.out.println(s);
 
