@@ -18,16 +18,6 @@
             <c:import url="${url01}" />
         </nav>
 
-  <form action="ControllerMain?section=RechercheEvenement" method="post">
-        <input type="hidden" name="section" value="RechercheEvenement" />
-         <div align="center"><input type="text" name="rechercheEvenement" value=""
-               placeholder="Trouvez un Evenement" 
-               required="required" size="50"/>
-        <a href="${url06}">
-            <input type="submit" value="Ok" name="doItEv" />
-        </a>  
-    </form>
-
         <table  id="tableau">
             <thead>
                 <tr>
@@ -55,6 +45,7 @@
                 </th>
             </c:forEach>
             </tbody>
+          
             <tfoot>
                 <tr>
                     <td colspan="5">Librairie Fusion Since 2018</td>
@@ -63,8 +54,19 @@
 
         </table>
     </center>
+  
     <footer>
  Merci de votre visite à bientot
     </footer>
+    <form action="ControllerMain?section=RechercheEvenement" method="post">
+            <input type="hidden" name="section" value="RechercheEvenement" />
+            <div align="right"><input type="text" name="rechercheEvenement" value=""
+                                      placeholder="Trouvez un Evenement" 
+                                      required="required" size="20"/>
+                <a href="${url06}">
+                    <input type="submit" value="Ok" name="doItEv" />
+                </a>  
+        </form>
       </body>
+
 </html>

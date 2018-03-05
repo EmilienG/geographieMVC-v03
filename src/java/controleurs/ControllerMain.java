@@ -10,6 +10,7 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +23,23 @@ import obj.Pays;
 import traitements.GestionCommandes;
 import traitements.GestionEvenement;
 import traitements.GestionLivres;
+import traitements.GestionLogin;
 import traitements.GestionPays;
 
 @WebServlet(name = "ControllerMain", urlPatterns = {"/ControllerMain"})
 public class ControllerMain extends HttpServlet {
-
+    
+    private Cookie getCookie(Cookie[] cookies, String name) {
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals(name)) {
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,6 +49,13 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/jspMain.jsp";
         String section = request.getParameter("section");
+
+        ArrayList<String> compteur = new ArrayList<>();
+        compteur.add("1");
+        compteur.add("2");
+        compteur.add("3");
+        request.setAttribute("compteur", compteur);
+
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -173,7 +193,81 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
+        /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
+         
+        
+        if (getServletContext().getAttribute("GestionLogin") == null) {
+            try {
+                getServletContext().setAttribute("GestionLogin", new GestionLogin());
+            } catch (NamingException ex) {
+                ex.printStackTrace();
 
+            }
+        }
+        GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
+		Cookie c = getCookie(request.getCookies(), "login");
+                if (c != null) {
+                    pageJSP = "/WEB-INF/jspWelcome.jsp";
+                    request.setAttribute("welcome", c.getValue());
+                }
+                if (request.getParameter("deconnect") != null) {
+                    System.out.println("deconnection");
+                    pageJSP = "/WEB-INF/jspLogin.jsp";
+//                    request.setAttribute("login", c.getValue());
+                    Cookie cc = new Cookie("login", "");
+                    cc.setMaxAge(0);
+                    response.addCookie(cc);
+                }
+                c = getCookie(request.getCookies(), "try");
+                if (c != null) {
+                    if (c.getValue().length() >= 3) {
+                        pageJSP = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalError", "Trop de tentatives !!!!!");
+                    }
+                }
+		
+		if ("login".equals(section)) {
+            pageJSP = "/WEB-INF/jspLogin.jsp";
+            if (request.getParameter("doIt") != null ) {         
+                if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
+                    System.out.println("conexion reussi");
+                    pageJSP = "/WEB-INF/jspWelcome.jsp";
+                    String login = request.getParameter("login");
+                    request.setAttribute("welcome", login);
+                     c = new Cookie("login", login);
+                    c.setMaxAge(60);
+                    c.setPath("/");
+                    response.addCookie(c);
+                    Cookie c2 = new Cookie("try", "");
+                    c2.setMaxAge(0);
+                    response.addCookie(c2);
+                    
+                } else {
+                    pageJSP = "/WEB-INF/jspLogin.jsp";
+                    request.setAttribute("login", request.getParameter("login"));
+                    request.setAttribute("msg", "Erreur login/Mot de passe !!!");
+                     c = getCookie(request.getCookies(), "try");
+                    if (c == null) {
+                        c = new Cookie("try", "*");
+                        System.out.println("nouveau cookie essai"+ c );
+                    } else {
+                        System.out.println("cookie existant"+ c);
+                        c.setValue(c.getValue() + "*");
+                    }
+                    c.setMaxAge(90);
+                    System.out.println(c.getValue());
+                    response.addCookie(c);
+                    
+                    if (c.getValue().length() >= 3) {
+                        pageJSP = "/WEB-INF/jspFatalError.jsp";
+                        request.setAttribute("fatalError", "Trop de tentatives !!!");
+                    }
+                }
+                
+                
+                
+            }
+        }/////////////////////////////////
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
