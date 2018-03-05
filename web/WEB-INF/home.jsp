@@ -14,7 +14,18 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
+        <c:if test="${logOn}">
+            Welcome ${welcome}!<br>
+        </c:if>
         Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
+        <c:if test="${logOn}">
+            <br>
+            <a href='ControllerMain?section=deconnecter'>Déconnexion</a>
+        </c:if>
+        <c:if test="!${logOn}">
+            <br>
+            Se co
+        </c:if>
     </center>
 </body>
 </html>

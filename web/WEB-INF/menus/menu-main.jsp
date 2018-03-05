@@ -47,12 +47,16 @@
                     <li>
                         <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte</a>
                     </li>
-                    <li>
-                        <c:url value="ControllerMain?section=login" var="url08" /><a href="${url08}">Log-In</a>
-                    </li>
-                    <li>
-                        <c:url value="ControllerMain?section=logOut" var="url09" /><a href="${url09}">Log-Out</a>
-                    </li>
+                    <c:if test="${!logOn}">
+                        <li>
+                            <c:url value="ControllerMain?section=login" var="url08" /><a href="${url08}">Log-In</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${logOn}">
+                        <li>
+                            <c:url value="ControllerMain?section=logOut" var="url09" /><a href="${url09}">Log-Out</a>
+                        </li>
+                    </c:if>
                     <li>
                         <c:url value="ControllerMain?section=inscription" var="url10" /><a href="${url10}">S'inscrire</a>
                     </li>
