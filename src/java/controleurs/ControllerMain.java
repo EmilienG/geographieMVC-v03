@@ -52,7 +52,6 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
