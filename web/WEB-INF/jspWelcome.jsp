@@ -5,11 +5,11 @@
     <head>
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Log : ok</title>
     </head>
     <body>
         <h1><span>Welcome ${welcome}!</span></h1>
-  
-        <a href='ControllerMain?deconnect'>Déconnexion</a>
+        <a href='ControllerMain?section=deconnecter'>Déconnexion</a>
+    Ta mémé la wissam
     </body>
 </html>
