@@ -74,12 +74,12 @@ tr:nth-child(even){
 body {
     font-family:'Abel', arial, serif; 
     font-size:medium;
-    background: #4a93c6;
+    background: #acef;
     margin: 0;
     padding: 0;
     color: #656565;
     text-shadow:0 0px, 1px 1px #d6a6ff;
-   /* background: #4a93c6 url(../img/fond-menu.png) no-repeat top center;*/
+   /* background: #de4666 url(../img/fond-menu.png) no-repeat top center;*/
 }
 
 #conteneur-menu2 {
@@ -257,7 +257,7 @@ input[type=submit] {
 
 #registration {
     color: #fff;
-    background: #4a93c6;
+    background: #de4666;
  
      -moz-border-radius: 10px;
      -webkit-border-radius: 10px;

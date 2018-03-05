@@ -40,13 +40,18 @@
         </td>
         <td>
             <div id="conteneur-menu2">
-                <ul>
+                <ul> 
+                    <li>
+                        <h3>Logué ${logOn}</h3> 
+                    </li>
                     <li>
                         <c:url value="ControllerMain?section=panier" var="url06" /><a href="${url06}">Panier</a>
                     </li>
-                    <li>
-                        <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte</a>
-                    </li>
+                    <c:if test="${logOn}">
+                        <li>
+                            <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte</a>
+                        </li>
+                    </c:if>
                     <c:if test="${!logOn}">
                         <li>
                             <c:url value="ControllerMain?section=login" var="url08" /><a href="${url08}">Log-In</a>
@@ -54,12 +59,14 @@
                     </c:if>
                     <c:if test="${logOn}">
                         <li>
-                            <c:url value="ControllerMain?section=logOut" var="url09" /><a href="${url09}">Log-Out</a>
+                            <c:url value="ControllerMain?section=deconnecter" var="url09" /><a href="${url09}">Log-Out</a>
                         </li>
                     </c:if>
-                    <li>
-                        <c:url value="ControllerMain?section=inscription" var="url10" /><a href="${url10}">S'inscrire</a>
-                    </li>
+                    <c:if test="${!logOn}">
+                        <li>
+                            <c:url value="ControllerMain?section=inscription" var="url10" /><a href="${url10}">S'inscrire</a>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </td>

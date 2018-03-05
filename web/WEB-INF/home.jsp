@@ -5,7 +5,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Acceuil Fusion !</title>
-        <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <center>
@@ -19,12 +18,12 @@
         </c:if>
         Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
         <c:if test="${logOn}">
-            <br>
-            <a href='ControllerMain?section=deconnecter'>Déconnexion</a>
+             <br>
+            Vous êtes connecté
         </c:if>
         <c:if test="!${logOn}">
             <br>
-            Se co
+           Vous êtes déconnecté
         </c:if>
     </center>
 </body>
