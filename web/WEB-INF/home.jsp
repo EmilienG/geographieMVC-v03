@@ -18,13 +18,15 @@
         </c:if>
         Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
         <c:if test="${logOn}">
-             <br>
+            <br>
             Vous êtes connecté
         </c:if>
         <c:if test="!${logOn}">
             <br>
-           Vous êtes déconnecté
+            Vous êtes déconnecté
         </c:if>
+        <c:url value="ControllerMain?section=footer" var="url02" />
+        <c:import url="${url02}" />
     </center>
 </body>
 </html>

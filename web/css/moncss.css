@@ -257,7 +257,7 @@ input[type=submit] {
 
 #registration {
     color: #fff;
-    background: #de4666;
+    background: #6f39ce;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -280,4 +280,8 @@ h3{
     letter-spacing: 2px;
     font-size: small;
     text-transform: uppercase;
+}
+
+#copyright{
+    font-size: smaller;
 }
