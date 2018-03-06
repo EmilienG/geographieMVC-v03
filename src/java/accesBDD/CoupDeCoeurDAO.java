@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import obj.CoupDeCoeur;
 
@@ -25,7 +26,7 @@ public class CoupDeCoeurDAO {
         String req = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                 + " from CoupDeCoeur"
                 + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
-                + "join livre on IDLivre = IDLivreMiseEnAvant"
+                + " join livre on IDLivre = IDLivreMiseEnAvant"
                 + " WHERE IDStatutCoupDeCoeur!= 3";
         System.out.println(req);
         Connection cnt = mc.getConnection();
@@ -36,9 +37,9 @@ public class CoupDeCoeurDAO {
             req2 = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                     + " from CoupDeCoeur"
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
-                    + "join livre on IDLivre = IDLivreMiseEnAvant"
+                    + " join livre on IDLivre = IDLivreMiseEnAvant"
                     + " WHERE IDStatutCoupDeCoeur!= 3 and nomCoupDeCoeur like ? or descriptionCoupDeCoeur like ?"
-                    + "or ISBNLivre like ? or titreLivre like ?";
+                    + " or ISBNLivre like ? or titreLivre like ?";
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
@@ -64,7 +65,15 @@ public class CoupDeCoeurDAO {
             } else {
                 rs = stm.executeQuery(req);
             }
+            
+            CoupDeCoeur lastCoupDeCoeur = null;
+            
             while (rs.next()) {
+                
+                int id = rs.getInt("IDCoupDeCoeur");
+                
+                if (lastCoupDeCoeur == null ||(id != lastCoupDeCoeur.getIDCoupDeCoeur()) ){
+                    
                 CoupDeCoeur monCoupDeCoeur = new CoupDeCoeur();
 
                 nomCoupDeCoeur = rs.getString("nomCoupDeCoeur");
@@ -81,8 +90,13 @@ public class CoupDeCoeurDAO {
 
                 mesCoupDeCoeurs.add(monCoupDeCoeur);
 
-//                RSdateStatutEvenement = rs.getString("dateStatutEvenement");
-//                monEvenement.setDateStatutEvenement(RSdateStatutEvenement);
+
+                }  if (nomCoupDeCoeur != null) {
+                    
+                    List<String> titreLivre = lastCoupDeCoeur.getCategories();
+                    titreLivre.add(nomCoupDeCoeur); 
+                }
+                
             }
             rs.close();
         } finally {

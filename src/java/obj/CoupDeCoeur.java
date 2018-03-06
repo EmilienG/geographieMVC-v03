@@ -1,6 +1,8 @@
 
 package obj;
 
+import java.util.List;
+
 
 public class CoupDeCoeur {
     private int IDCoupDeCoeur;
@@ -11,9 +13,13 @@ public class CoupDeCoeur {
     private String dateStatutCoupDeCoeur;
     private String titreLivre;
     private String ISBNLivre;
+    private List<String> categories;
 
-    public CoupDeCoeur() {
+    public CoupDeCoeur(List<String> categories) {
+        this.categories = categories;
     }
+
+  
 
     public CoupDeCoeur(int IDCoupDeCoeur, int IDCompteCoupDeCoeur, String nomCoupDeCoeur, String descriptionCoupDeCoeur, int IDStatutCoupDeCoeur, String dateStatutCoupDeCoeur, String titreLivre, String ISBNLivre) {
         this.IDCoupDeCoeur = IDCoupDeCoeur;
@@ -89,6 +95,15 @@ public class CoupDeCoeur {
     public void setISBNLivre(String ISBNLivre) {
         this.ISBNLivre = ISBNLivre;
     }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+    
 
     @Override
     public String toString() {
