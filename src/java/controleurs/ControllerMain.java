@@ -278,17 +278,26 @@ public class ControllerMain extends HttpServlet {
         }
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
-        //Par defaut pas logué
-        if (getCookie(request.getCookies(), "login") == null) {
-            session.setAttribute("logOn", false);
-        }
-
+//        //Par defaut pas logué
+//        if (getCookie(request.getCookies(), "login") == null) {
+//            session.setAttribute("logOn", false);
+//        }
         if (getServletContext().getAttribute("GestionLogin") == null) {
             try {
                 getServletContext().setAttribute("GestionLogin", new GestionLogin());
             } catch (NamingException ex) {
                 ex.printStackTrace();
             }
+        }
+        if ("deconnecter".equals(section)) {
+            pageJSP = "/WEB-INF/home.jsp";
+//            pageJSP = "/WEB-INF/menus/menu-main.jsp";
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
+            session.setAttribute("logOn", false);
+            Cookie cc = new Cookie("login", "");
+            cc.setMaxAge(0);
+            response.addCookie(cc);
+
         }
         GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
         Cookie c = getCookie(request.getCookies(), "login");
@@ -297,7 +306,7 @@ public class ControllerMain extends HttpServlet {
 //            pageJSP = "/WEB-INF/home.jsp";
 //            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
             request.setAttribute("welcome", c.getValue());
-            session.setAttribute("logOn", true);
+//            session.setAttribute("logOn", true);
         }
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
@@ -306,16 +315,7 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/menus/footer.jsp";
         }
 
-        if ("deconnecter".equals(section)) {
-            pageJSP = "/WEB-INF/home.jsp";
-//            pageJSP = "/WEB-INF/menus/menu-main.jsp";
-//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
-            Cookie cc = new Cookie("login", "");
-            cc.setMaxAge(0);
-            session.setAttribute("logOn", false);
-            response.addCookie(cc);
-
-        }
+        
 
         c = getCookie(request.getCookies(), "try");
         if (c != null) {
