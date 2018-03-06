@@ -19,6 +19,16 @@ public class LigneCommande extends Commande implements Serializable {
 
     }
 
+    public LigneCommande(String IDLivreLigneCommande, int quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande) {
+        this.IDLivreLigneCommande = IDLivreLigneCommande;
+        this.quantiteLigneCommande = quantiteLigneCommande;
+        this.TVALigneCommande = TVALigneCommande;
+        this.prixHTLivreLigneCommande = prixHTLivreLigneCommande;
+        this.valeurPromoLigneCommande = valeurPromoLigneCommande;
+    }
+
+    
+    
     public String getIDLigneCommande() {
         return IDLigneCommande;
     }

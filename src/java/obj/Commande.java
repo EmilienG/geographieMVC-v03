@@ -30,6 +30,13 @@ public class Commande implements Serializable {
     public Commande() {
     }
 
+    public Commande(String IDCommande, Date dateCommande, float montantCommande, String descriptionStatut) {
+        this.IDCommande = IDCommande;
+        this.dateCommande = dateCommande;
+        this.montantCommande = montantCommande;
+        this.descriptionStatut = descriptionStatut;
+    }
+
     public String getIDCommande() {
         return IDCommande;
     }

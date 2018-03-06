@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,18 +25,19 @@
                     <th>Voir détails de la commande</th>
                 </thead>
                 <tbody>
+                    
                     <c:forEach items="${gestionC}" var="oneOrder" >
                     <tr>
-                        <td>
+                        <td> 
                             ${oneOrder.getIDCommande()}
                         </td>                   
-                        <td>
+                        <td> 
                             ${oneOrder.getDateCommande()}
                         </td>                 
-                        <td>
+                        <td> 
                             ${oneOrder.getDescriptionStatut()}
                         </td>                  
-                        <td>
+                        <td> 
                             ${oneOrder.getMontantCommande()}
                         </td>
                         
