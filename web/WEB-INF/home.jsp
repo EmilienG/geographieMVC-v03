@@ -14,9 +14,10 @@
             <c:import url="${url01}" />
         </nav>
         <c:if test="${logOn}">
-            Welcome ${welcome}!<br>
+            Welcome ${welcome} !<br>
         </c:if>
         Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
+        <br>
         <c:if test="${logOn}">
             <br>
             Vous êtes connecté

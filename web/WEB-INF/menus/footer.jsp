@@ -1,7 +1,6 @@
 <table id="footer">
     <tr>
         <td>
-            <hr>
             <a href="#">Contact</a> |
             <a href="#">FAQ</a> |
             <a href="#">Mentions légales et cookies</a> |
