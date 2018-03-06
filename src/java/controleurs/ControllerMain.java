@@ -52,6 +52,7 @@ public class ControllerMain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(10000);
         String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/home.jsp";
@@ -345,7 +346,7 @@ public class ControllerMain extends HttpServlet {
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
                     c = new Cookie("login", login);
-//                    c.setMaxAge(120);
+                    c.setMaxAge(10000);
                     c.setPath(File.separator);
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");
@@ -407,16 +408,11 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-
-        if (getServletContext().getAttribute("gestionPays") == null) {
-            try {
-                getServletContext().setAttribute("gestionPays", new GestionPays());
-            } catch (NamingException ex) {
-                ex.printStackTrace();
-            }
+        String lol = "<span id=\"cgu\"><a href=\"ControllerMain?section=hidden\">*</a></span>";
+        session.setAttribute("lol", lol);
+        if ("hidden".equals(section)) {
+            pageJSP = "/WEB-INF/hidden.jsp";
         }
-        GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
-
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 

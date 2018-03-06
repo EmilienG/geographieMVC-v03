@@ -13,18 +13,10 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        <c:if test="${logOn}">
-            Welcome ${welcome}!<br>
-        </c:if>
-        Bienvenue dans notre super librairie en ligne,<br>dépenssez autant que vous voulez !
-        <c:if test="${logOn}">
-            <br>
-            Vous êtes connecté
-        </c:if>
-        <c:if test="!${logOn}">
-            <br>
-            Vous êtes déconnecté
-        </c:if>
+        Bienvenue dans notre super librairie en ligne,
+        <br>dépenssez autant que vous voulez !<br>${lol}
+        <br>
+        <img src="/LibrairieFusion-v1.0/img/lib.png"/>
         <c:url value="ControllerMain?section=footer" var="url02" />
         <c:import url="${url02}" />
     </center>
