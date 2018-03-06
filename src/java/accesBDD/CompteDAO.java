@@ -14,19 +14,20 @@ public class CompteDAO {
         mc = new MaConnexion();
     }
 
-    public Client ajoutClient(String nom, String prenom, String mdp, String email) throws SQLException {
+    public Client ajoutClient(String nom, String prenom,String pseudo, String mdp, String email) throws SQLException {
         String req = "insert into Compte(IDPermissionCompte, nomCompte,prenomCompte,pseudoCompte,"
                 + "MdPCompte,emailCompte,telephoneCompte,dateCreationCompte,"
-                + "IDStatutCompte)Values(3,?,?,'',?,?,'',GETDATE(),3)";
+                + "IDStatutCompte)Values(3,?,?,?,?,?,'',GETDATE(),3)";
 
         Client c = null;
-        try (Connection cnt = mc.getConnection2();
+        try (Connection cnt = mc.getConnection();
                 PreparedStatement pstm = cnt.prepareStatement(req);) {
 
             pstm.setString(1, nom);
             pstm.setString(2, prenom);
-            pstm.setString(3, mdp);
-            pstm.setString(4, email);
+            pstm.setString(3, pseudo);
+            pstm.setString(4, mdp);
+            pstm.setString(5, email);
 
             pstm.executeUpdate();
         }

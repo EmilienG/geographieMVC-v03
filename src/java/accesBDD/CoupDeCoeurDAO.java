@@ -38,7 +38,7 @@ public class CoupDeCoeurDAO {
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                     + " join livre on IDLivre = IDLivreMiseEnAvant"
                     + " WHERE IDStatutCoupDeCoeur!= 3 and nomCoupDeCoeur like ? or descriptionCoupDeCoeur like ?"
-                    + "or ISBNLivre like ? or titreLivre like ?";
+                    + " or ISBNLivre like ? or titreLivre like ?";
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);

@@ -31,7 +31,7 @@
             <tbody>
                 
                 <c:forEach var="unCoupDeCoeur" items="${mesCoupDeCoeurs}">
-                <hr>
+                
                     <tr>
                       
                         <td> ${unCoupDeCoeur.nomCoupDeCoeur} </td>  
@@ -45,7 +45,7 @@
                 <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
                    
                 </tr>
-                </hr>
+                
               
             </c:forEach>
 
