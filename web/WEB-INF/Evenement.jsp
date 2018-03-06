@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <c:forEach var="unEvenement" items="${mesEvenements}">
-                <hr>
+                
                     <tr>
                       
                         <td> ${unEvenement.nomEvenement} </td>  
@@ -52,7 +52,7 @@
                 <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
                    
                 </tr>
-                </hr>
+                
               
             </c:forEach>
 
