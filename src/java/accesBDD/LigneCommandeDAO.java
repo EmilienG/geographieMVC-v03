@@ -19,13 +19,13 @@ public class LigneCommandeDAO implements Serializable {
     }
 
     public List<LigneCommande> selectAllOrderLineByOrder() throws SQLException {
-        String req = "SELECT IDLigneCommande, ISBNLivre, titreLivre, quantiteLigneCommande, TVALigneCommande, prixHTLivreLigneCommande, valeurPromoLigneCommande "
+        String req = "SELECT IDLivreLigneCommande, quantiteLigneCommande, TVALigneCommande, prixHTLivreLigneCommande, valeurPromoLigneCommande "
                 + "FROM LigneCommande lc "
                 + "JOIN Livre lv "
                 + "ON lc.IDLivreLigneCommande = lv.IDLivre "
                 + "JOIN TVA t "
                 + "ON lv.IDTVALivre = t.IDTVA "
-                + "WHERE IDCommandeLigneCommande = '2' and IDStatut!=3";
+                + "WHERE IDCommandeLigneCommande = '1' and IDStatut!=3";
         System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
@@ -37,16 +37,17 @@ public class LigneCommandeDAO implements Serializable {
             ResultSet rs = stm.executeQuery(req);
 
             while (rs.next()) {
-                LigneCommande lc = new LigneCommande();
+                
                 String numLigneC = rs.getString("IDLigneCommande");
 //                lc.get(req);
-                String ISBNLivre = rs.getString("ISBNLivre");
+                String IDLivre = rs.getString("IDLivreLigneCommande");
                 String titreLivre = rs.getString("titreLivre");
                 Integer qty = rs.getInt("quantiteLigneCommande");
                 Float tva = rs.getFloat("TVALigneCommande");
                 Float prixHT = rs.getFloat("prixHTLivreLigneCommande");
                 Float promo = rs.getFloat("valeurPromoLigneCommande");
 
+                LigneCommande lc = new LigneCommande(IDLivre, qty, tva, prixHT, promo);
                 lcom.add(lc);
             }
             rs.close();

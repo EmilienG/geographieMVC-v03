@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import obj.Client;
 import obj.Commande;
 import obj.Evenement;
 import obj.LigneCommande;
@@ -192,13 +193,13 @@ public class ControllerMain extends HttpServlet {
         }
         if ("Recherche".equals(section)) {
             try {
-////                pageJSP = "/WEB-INF/recherche.jsp";
+//               pageJSP = "/WEB-INF/recherche.jsp";
 //                pageJSP = "/WEB-INF/catalogue.jsp";
 //                GestionLivres maGestionLivre = new GestionLivres();
 //
-////                ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
+//               ArrayList<Livres> mesResultats = maGestionLivre.findLivresbysearch(request.getParameter("recherche"));
 //                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true, request.getParameter("recherche"));
-////                session.setAttribute("mesResultats", mesResultats);
+//               session.setAttribute("mesResultats", mesResultats);
 //                request.setAttribute("maListeLivres", mesLivres);
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
@@ -235,35 +236,7 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-//=====================COMMANDES================================================        
-        if ("order".equals(section)) {
-//            System.out.println("hello");
 
-            try {
-                pageJSP = "/WEB-INF/order.jsp";
-                GestionCommandes gestionC = new GestionCommandes();
-                List<Commande> com = gestionC.findOrder();
-                request.setAttribute("gestionC", com);
-            } catch (NamingException | SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        if ("orderLine".equals(section)) {
-            System.out.println("hello");
-            try {
-                pageJSP = "/WEB-INF/orderLine.jsp";
-                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
-                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for (LigneCommande ldc : lcom) {
-                    System.out.println(ldc.getIDLigneCommande());
-                }
-                request.setAttribute("gestionLC", lcom);
-
-            } catch (NamingException | SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
         //Par defaut pas logué
@@ -348,7 +321,40 @@ public class ControllerMain extends HttpServlet {
                 }
             }
         }
-/////////////////////////////////
+//=====================COMMANDES================================================        
+        if ("order".equals(section)) {
+//            System.out.println("hello");
+
+            try {
+                if(session.getAttribute("logOn")!= null){
+                    Client cl = new Client();
+                pageJSP = "/WEB-INF/order.jsp";
+                GestionCommandes gestionC = new GestionCommandes();
+                List<Commande> com = gestionC.findOrder(cl.getId());
+//                List<Commande> com = gestionC.findOrder(cl);
+                request.setAttribute("gestionC", com);
+                }
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if ("orderLine".equals(section)) {
+            System.out.println("hello");
+            try {
+                pageJSP = "/WEB-INF/orderLine.jsp";
+                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
+                for (LigneCommande ldc : lcom) {
+                    System.out.println(ldc.getIDLigneCommande());
+                }
+                request.setAttribute("gestionLC", lcom);
+
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
