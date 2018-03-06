@@ -88,12 +88,16 @@ public class ControllerMain extends HttpServlet {
                 //*******************************************************
                 int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
                 request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(false, saisie,0, 1);
-                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(false, saisie,2, 3);
-                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(false, saisie,4, 5);
-                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(false, saisie,6, 7);
-                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(false, saisie,8, 9);
-                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(false, saisie,10, 11);
+
+              
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(false, saisie, 0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(false, saisie, 2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(false, saisie, 4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(false, saisie, 6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(false, saisie, 8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(false, saisie, 10, 11);
+
+              
                 ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
@@ -127,13 +131,16 @@ public class ControllerMain extends HttpServlet {
             System.out.println("je suis dans la section inscription");
             if (request.getParameter("ok") != null) {
                 System.out.println("jai appuyer sur ok");
-                if (bCompte.check(request.getParameter("name"), request.getParameter("prenom"),request.getParameter("password"),request.getParameter("email"))) {
+
+              
+                if (bCompte.check(request.getParameter("name"), request.getParameter("prenom"), request.getParameter("password"), request.getParameter("email"))) {
                     System.out.println("tout les champs son remplis");
                     pageJSP = "/WEB-INF/home.jsp";
-                String nom = request.getParameter("name");
+                    String nom = request.getParameter("name");
                     request.setAttribute("welcome", nom);
 //                GestionCompte maGestionCompte = new GestionCompte();
-               
+
+                  
                 } else {
                     System.out.println("champs manquant");
                     pageJSP = "/WEB-INF/inscription.jsp";
@@ -146,7 +153,11 @@ public class ControllerMain extends HttpServlet {
 //
 //                session.setAttribute("mesEvenements", mesEvenements);
 //                }
-        }}}
+
+                }
+            }
+        }
+
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
@@ -207,12 +218,14 @@ public class ControllerMain extends HttpServlet {
                 //*******************************************************
 //                int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
 //                request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),0, 1);
-                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),2, 3);
-                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),4, 5);
-                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),6, 7);
-                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),8, 9);
-                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),10, 11);
+
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 10, 11);
+
                 ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
