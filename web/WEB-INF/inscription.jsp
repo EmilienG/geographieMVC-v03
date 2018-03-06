@@ -18,13 +18,13 @@
             <h2>Creer un compte</h2>
             <form id="RegisterUserForm" action="ControllerMain?section=Inscription" method="post">
                 <fieldset>
-                    <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="" />
+                    <label for="name">Nom</label> <input class="text" id="name" type="text" name="name2" value="" />
                     <br>
-                    <label for="tel">Prenom</label> <input class="text" id="tel" type="text" name="prenom" value="" />
+                    <label for="tel">Prenom</label> <input class="text" id="tel" type="text" name="prenom2" value="" />
                     <br>
-                    <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="" />
+                    <label for="email">Email</label> <input class="text" id="email" type="email" name="email2" value="" />
                     <br>
-                    <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password" />
+                    <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password2" />
                     <br>
                     <input id="acceptTerms" type="checkbox" name="acceptTerms" />
                     <label for="acceptTerms"> J'accepte <a>les Termes et Conditions<br></a> comme quoi je donne <a>tout à Librairie.Fusion</a> </label>
