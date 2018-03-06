@@ -16,11 +16,11 @@
         </nav>
         <div id="registration">
             <h2>Creer un compte</h2>
-            <form id="RegisterUserForm" action="" method="post">
+            <form id="RegisterUserForm" action="ControllerMain?section=Inscription" method="post">
                 <fieldset>
                     <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="" />
                     <br>
-                    <label for="tel">Prenom</label> <input class="text" id="tel" type="tel" name="tel" value="" />
+                    <label for="tel">Prenom</label> <input class="text" id="tel" type="text" name="prenom" value="" />
                     <br>
                     <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="" />
                     <br>
@@ -30,6 +30,8 @@
                     <label for="acceptTerms"> J'accepte <a>les Termes et Conditions<br></a> comme quoi je donne <a>tout à Librairie.Fusion</a> </label>
                     <br>
                     <input type="submit" value="ok"/>
+                    <br>
+                    <font color='red'>${msg}</font>  
                 </fieldset>
             </form>
         </div>
