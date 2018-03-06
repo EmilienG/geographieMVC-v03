@@ -263,7 +263,7 @@ input[type=submit] {
     border-radius: 10px;
     margin: 10px;
     width: 430px;
-    
+
     text-align: right;
 }
 
@@ -284,4 +284,13 @@ h3{
 
 #copyright{
     font-size: smaller;
+}
+#footer{
+    alignment-adjust: middle;
+    text-align: center;
+}
+
+#footer  td {
+    text-align: center;
+    alignment-adjust: middle;
 }

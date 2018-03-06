@@ -29,11 +29,11 @@
 
             </thead>
             <tbody>
-                
+
                 <c:forEach var="unCoupDeCoeur" items="${mesCoupDeCoeurs}">
-                
+
                     <tr>
-                      
+
                         <td> ${unCoupDeCoeur.nomCoupDeCoeur} </td>  
 
                         <td> ${unCoupDeCoeur.descriptionCoupDeCoeur} </td>
@@ -41,12 +41,12 @@
                         <td> ${unCoupDeCoeur.titreLivre} </td>
 
                         <td> ${unCoupDeCoeur.ISBNLivre} </td> 
-           
+
                 <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
-                   
+
                 </tr>
-                
-              
+
+
             </c:forEach>
 
             </tbody>
@@ -62,7 +62,7 @@
 
     <footer>
         <center>
-        Merci de votre visite à bientot
+            Merci de votre visite à bientot
         </center>
     </footer>
     <form action="ControllerMain?section=RechercheEvenement" method="post">
@@ -74,6 +74,8 @@
                 <input type="submit" value="Ok" name="doItEv" />
             </a>  
     </form>
+    <c:url value="ControllerMain?section=footer" var="url02" />
+    <c:import url="${url02}" />
 </body>
 
 </html>

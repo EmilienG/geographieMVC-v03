@@ -22,7 +22,7 @@
                     <br>
                     <label for="prenom">Prenom</label> <input class="text" id="prenom" type="text" name="prenom2" value="" />
                     <br>
-                     <label for="pseudo">pseudo</label> <input class="text" id="pseudo" type="text" name="pseudo2" value="" />
+                    <label for="pseudo">pseudo</label> <input class="text" id="pseudo" type="text" name="pseudo2" value="" />
                     <br>
                     <label for="email">Email</label> <input class="text" id="email" type="email" name="email2" value="" />
                     <br>
@@ -38,5 +38,7 @@
             </form>
         </div>
     </center>
+    <c:url value="ControllerMain?section=footer" var="url02" />
+    <c:import url="${url02}" />
 </body>
 </html>
