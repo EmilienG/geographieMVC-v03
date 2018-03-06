@@ -52,6 +52,7 @@ public class ControllerMain extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(10000);
         String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/home.jsp";
@@ -345,7 +346,7 @@ public class ControllerMain extends HttpServlet {
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
                     c = new Cookie("login", login);
-//                    c.setMaxAge(120);
+                    c.setMaxAge(10000);
                     c.setPath(File.separator);
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");
