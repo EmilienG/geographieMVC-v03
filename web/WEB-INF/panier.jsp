@@ -4,14 +4,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Acceuil Fusion !</title>
+        <title>Panier</title>
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
-        <meta http-equiv="refresh" content="10" url="ControllerMain.jsp">
     </head>
     <body>
     <center>
-        <h1><span> Tricheur, voleur !!!</span></h1>
-        <font color='red'>${fatalError}</font>  
+        <h1><span>Hello Panier !</span></h1>
+        <nav>
+            <c:url value="ControllerMain?section=menu-main" var="url01" />
+            <c:import url="${url01}" />
+        </nav>
+        Ici le panier
+        <hr>
+        Mon IDLivre : ${IDLivre}
     </center>
 </body>
 </html>

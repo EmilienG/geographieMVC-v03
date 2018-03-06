@@ -54,8 +54,8 @@
                                             </span>
                                             <hr>
                                             <span class="button">
-                                                <a href="ControllerMain?section=orderLine">
-                                                    <img src="/LibrairieFusion-v1.0/img/detailOrder.jpg"/>
+                                                <a href="ControllerMain?section=panier&IDLivre=${unLivre.IDLivre}">
+                                                    <img src="img/detailOrder.jpg"/>
                                                 </a>
                                             </span>
                                         </c:if> 

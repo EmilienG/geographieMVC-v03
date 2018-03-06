@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Livres implements Serializable {
 
-    private int IDLivre;
+    private String IDLivre;
     private String ISBNlivre;
     private String titreLivre;
     private String sousTitreLivre;
@@ -35,11 +35,11 @@ public class Livres implements Serializable {
     public Livres() {
     }
 
-    public int getIDLivre() {
+    public String getIDLivre() {
         return IDLivre;
     }
 
-    public void setIDLivre(int IDLivre) {
+    public void setIDLivre(String IDLivre) {
         this.IDLivre = IDLivre;
     }
 

@@ -1,6 +1,7 @@
 package controleurs;
 
 import accesBDD.LigneCommandeDAO;
+import java.io.File;
 import java.io.IOException;
 import static java.lang.Math.round;
 import java.sql.SQLException;
@@ -49,8 +50,9 @@ public class ControllerMain extends HttpServlet {
 
         String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
-        String pageJSP = "/WEB-INF/jspMain.jsp";
+        String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
+        String log = request.getParameter("log");
 
         ArrayList<String> compteur = new ArrayList<>();
         compteur.add("1");
@@ -58,14 +60,25 @@ public class ControllerMain extends HttpServlet {
         compteur.add("3");
         request.setAttribute("compteur", compteur);
 
-        if ("menu-main".equals(section)) {
-            pageJSP = "/WEB-INF/menus/menu-main.jsp";
-        }
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
+        //-------------------------------------------
+        //Si on clic sur ajouter panier :
+        if (request.getParameter("IDLivre") != null) {
+            //On recupere le param (caché) IDLivre
+            String IDLivre = request.getParameter("IDLivre");
+            session.setAttribute("IDLivre", IDLivre);
+        }
+        if ("panier".equals(section)) {
+            pageJSP = "/WEB-INF/panier.jsp";
+        }
+        //-------------------------------------------
         if ("inscription".equals(section)) {
             pageJSP = "/WEB-INF/inscription.jsp";
+        }
+        if ("compte".equals(section)) {
+            pageJSP = "/WEB-INF/compte.jsp";
         }
         if ("catalogue".equals(section)) {
             try {
@@ -110,11 +123,11 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(false, saisie);
 
                 ArrayList<String> s = new ArrayList<>();
-                for (Evenement mesEvenement : mesEvenements) {
-                    s.add(mesEvenement.toString());
-
-                    session.setAttribute("mesEvenements", s);
-                }
+//                for (Evenement mesEvenement : mesEvenements) {
+//                    s.add(mesEvenement.toString());
+//
+                session.setAttribute("mesEvenements", mesEvenements);
+//                }
 
                 System.out.println(s);
 
@@ -169,7 +182,7 @@ public class ControllerMain extends HttpServlet {
 
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
-            System.out.println("hello order");
+
             try {
                 pageJSP = "/WEB-INF/order.jsp";
                 GestionCommandes gestionC = new GestionCommandes();
@@ -195,19 +208,23 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
+
+
+/////////////////////////////////LOGIN//////////////////////////////////////////////////////////
+        //Par defaut pas logué
+//            session.setAttribute("logOn", false);
 
         if (getServletContext().getAttribute("GestionLogin") == null) {
             try {
                 getServletContext().setAttribute("GestionLogin", new GestionLogin());
             } catch (NamingException ex) {
                 ex.printStackTrace();
-
             }
         }
         GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
         Cookie c = getCookie(request.getCookies(), "login");
         if (c != null) {
+
             pageJSP = "/WEB-INF/jspWelcome.jsp";
             request.setAttribute("welcome", c.getValue());
         }
@@ -219,6 +236,33 @@ public class ControllerMain extends HttpServlet {
             cc.setMaxAge(0);
             response.addCookie(cc);
         }
+
+            pageJSP = "/WEB-INF/home.jsp";
+            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
+            request.setAttribute("welcome", c.getValue());
+        }
+        if ("menu-main".equals(section)) {
+            pageJSP = "/WEB-INF/menus/menu-main.jsp";
+        }
+
+        if ("deconnecter".equals(section)) {
+            pageJSP = "/WEB-INF/home.jsp";
+//            pageJSP = "/WEB-INF/menus/menu-main.jsp";
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
+            Cookie cc = new Cookie("login", "");
+            cc.setMaxAge(0);
+            session.setAttribute("logOn", false);
+            response.addCookie(cc);
+        }
+//        if (request.getParameter("deconnecter") != null) {
+//            System.out.println("deconnection");
+//            pageJSP = "/WEB-INF/home.jsp";
+//                    request.setAttribute("login", c.getValue());
+//            Cookie cc = new Cookie("login", "");
+//            cc.setMaxAge(0);
+//            response.addCookie(cc);
+//        }
+
         c = getCookie(request.getCookies(), "try");
         if (c != null) {
             if (c.getValue().length() >= 3) {
@@ -231,13 +275,19 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
-                    System.out.println("conexion reussi");
-                    pageJSP = "/WEB-INF/jspWelcome.jsp";
+//                    System.out.println("conexion reussie");
+                    pageJSP = "/WEB-INF/home.jsp";
                     String login = request.getParameter("login");
                     request.setAttribute("welcome", login);
                     c = new Cookie("login", login);
+
                     c.setMaxAge(60);
                     c.setPath("/");
+
+                    c.setMaxAge(120);
+                    c.setPath(File.separator);
+                    session.setAttribute("logOn", true);
+
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");
                     c2.setMaxAge(0);
@@ -255,7 +305,7 @@ public class ControllerMain extends HttpServlet {
                         System.out.println("cookie existant" + c);
                         c.setValue(c.getValue() + "*");
                     }
-                    c.setMaxAge(90);
+                    c.setMaxAge(9);
                     System.out.println(c.getValue());
                     response.addCookie(c);
 
@@ -265,10 +315,15 @@ public class ControllerMain extends HttpServlet {
                     }
                 }
 
+
             }
         }
 
-////////////////////////////////////////////////////////////////////////////////
+
+            }
+        }
+/////////////////////////////////
+
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
@@ -291,9 +346,16 @@ public class ControllerMain extends HttpServlet {
                 // to do
             }
         }
-
+        System.out.println("==========");
+        System.out.println("Section1 = " + section);
+        System.out.println("1 :" + pageJSP);
         pageJSP = response.encodeURL(pageJSP);
+        System.out.println("2 :" + pageJSP);
+
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
+
+        System.out.println("3 :" + pageJSP);
+        System.out.println("Section2 = " + section);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

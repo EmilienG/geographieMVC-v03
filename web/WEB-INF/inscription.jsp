@@ -31,7 +31,8 @@
                     <br>
                     <input type="submit" value="ok"/>
                 </fieldset>
-            </form></div>
+            </form>
+        </div>
     </center>
 </body>
 </html>

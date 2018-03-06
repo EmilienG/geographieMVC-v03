@@ -23,9 +23,11 @@ public class LivresDAO implements Serializable {
         String req = "SELECT * FROM ( "
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
                 + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
+//        System.out.println(req);
         try (Connection cnt = mc.getConnection(); Statement stm = cnt.createStatement(); ResultSet rs = stm.executeQuery(req);) {
             while (rs.next()) {
                 Livres monLivre = new Livres();
+                monLivre.setIDLivre(rs.getString("IDLivre"));
                 monLivre.setTitreLivre(rs.getString("titreLivre"));
                 monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
                 monLivre.setISBNlivre(rs.getString("ISBNLivre"));
