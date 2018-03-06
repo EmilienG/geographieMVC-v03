@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import static java.lang.Math.round;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +57,10 @@ public class ControllerMain extends HttpServlet {
         String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
 
+        Date maDate = new Date();
+        String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
+        session.setAttribute("nextYear", nextYear);
+        System.out.println();
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
@@ -154,7 +159,7 @@ public class ControllerMain extends HttpServlet {
             System.out.println("je suis dans la section inscription");
             if (request.getParameter("doIt2") != null) {
                 System.out.println("jai appuyer sur ok");
-                if(bCompte.check(request.getParameter("name2"), request.getParameter("prenom2"),request.getParameter("pseudo2"), request.getParameter("password2"),request.getParameter("email2"))){                 
+                if (bCompte.check(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("pseudo2"), request.getParameter("password2"), request.getParameter("email2"))) {
 //                    try {
 //                        bCompte.addCustomer(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("password2"),request.getParameter("email2"));
 //                    } catch (SQLException ex) {
