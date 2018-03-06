@@ -5,9 +5,15 @@
         <group>
             <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/css/moncss.css</file>
             <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/src/java/controleurs/ControllerMain.java</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/jspLogin.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/jspFatalError.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/home.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/menus/menu-main.jsp</file>
             <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/catalogue.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/jspMain.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/web/WEB-INF/menus/jspNewCompte.jsp</file>
+            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/src/java/traitements/GestionLivres.java</file>
             <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/src/java/accesBDD/LivresDAO.java</file>
-            <file>file:/C:/Users/cdi206/Documents/GitHub/LibrairieFusion-v1.0/src/java/obj/Livres.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,12 +1,10 @@
-
 package obj;
 
 import java.io.Serializable;
 import java.util.Date;
 
+public class LigneCommande extends Commande implements Serializable {
 
-public class LigneCommande implements Serializable {
-    
     private String IDLigneCommande;
     private String IDCommandeLigneCommande;
     private String IDLivreLigneCommande;
@@ -15,19 +13,10 @@ public class LigneCommande implements Serializable {
     private float prixHTLivreLigneCommande;
     private float valeurPromoLigneCommande;
     private String IDStatutLigneCommande;
-    private Date dateStatutLigneCommande;   
+    private Date dateStatutLigneCommande;
 
     public LigneCommande() {
-        
-    }
 
-    public LigneCommande(String IDLigneCommande, String IDLivreLigneCommande, int quantiteLigneCommande, float TVALigneCommande, float prixHTLivreLigneCommande, float valeurPromoLigneCommande) {
-        this.IDLigneCommande = IDLigneCommande;
-        this.IDLivreLigneCommande = IDLivreLigneCommande;
-        this.quantiteLigneCommande = quantiteLigneCommande;
-        this.TVALigneCommande = TVALigneCommande;
-        this.prixHTLivreLigneCommande = prixHTLivreLigneCommande;
-        this.valeurPromoLigneCommande = valeurPromoLigneCommande;
     }
 
     public String getIDLigneCommande() {
@@ -101,9 +90,11 @@ public class LigneCommande implements Serializable {
     public void setDateStatutLigneCommande(Date dateStatutLigneCommande) {
         this.dateStatutLigneCommande = dateStatutLigneCommande;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "LigneCommande{" + "IDLigneCommande=" + IDLigneCommande + ", IDCommandeLigneCommande=" + IDCommandeLigneCommande + ", IDLivreLigneCommande=" + IDLivreLigneCommande + ", quantiteLigneCommande=" + quantiteLigneCommande + ", TVALigneCommande=" + TVALigneCommande + ", prixHTLivreLigneCommande=" + prixHTLivreLigneCommande + ", valeurPromoLigneCommande=" + valeurPromoLigneCommande + ", IDStatutLigneCommande=" + IDStatutLigneCommande + ", dateStatutLigneCommande=" + dateStatutLigneCommande + '}';
     }
 
     
+}
