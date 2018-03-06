@@ -46,9 +46,7 @@ public class ControllerMain extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-
         HttpSession session = request.getSession();
-
         String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/home.jsp";
@@ -239,6 +237,7 @@ public class ControllerMain extends HttpServlet {
 
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
+//            System.out.println("hello");
 
             try {
                 pageJSP = "/WEB-INF/order.jsp";
@@ -251,7 +250,7 @@ public class ControllerMain extends HttpServlet {
         }
 
         if ("orderLine".equals(section)) {
-            System.out.println("hello orderline");
+            System.out.println("hello");
             try {
                 pageJSP = "/WEB-INF/orderLine.jsp";
                 LigneCommandeDAO gestionLC = new LigneCommandeDAO();
@@ -266,11 +265,9 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
         //Par defaut pas logué
 //            session.setAttribute("logOn", false);
-
         if (getServletContext().getAttribute("GestionLogin") == null) {
             try {
                 getServletContext().setAttribute("GestionLogin", new GestionLogin());
@@ -281,19 +278,6 @@ public class ControllerMain extends HttpServlet {
         GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
         Cookie c = getCookie(request.getCookies(), "login");
         if (c != null) {
-
-            pageJSP = "/WEB-INF/jspWelcome.jsp";
-            request.setAttribute("welcome", c.getValue());
-        }
-        if (request.getParameter("deconnect") != null) {
-            System.out.println("deconnection");
-            pageJSP = "/WEB-INF/jspLogin.jsp";
-//                    request.setAttribute("login", c.getValue());
-            Cookie cc = new Cookie("login", "");
-            cc.setMaxAge(0);
-            response.addCookie(cc);
-        }
-
             pageJSP = "/WEB-INF/home.jsp";
             System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
             request.setAttribute("welcome", c.getValue());
@@ -319,7 +303,6 @@ public class ControllerMain extends HttpServlet {
 //            cc.setMaxAge(0);
 //            response.addCookie(cc);
 //        }
-
         c = getCookie(request.getCookies(), "try");
         if (c != null) {
             if (c.getValue().length() >= 3) {
@@ -327,7 +310,6 @@ public class ControllerMain extends HttpServlet {
                 request.setAttribute("fatalError", "Trop de tentatives !!!!!");
             }
         }
-
         if ("login".equals(section)) {
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
@@ -337,19 +319,13 @@ public class ControllerMain extends HttpServlet {
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
                     c = new Cookie("login", login);
-
-                    c.setMaxAge(60);
-                    c.setPath("/");
-
                     c.setMaxAge(120);
                     c.setPath(File.separator);
                     session.setAttribute("logOn", true);
-
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");
                     c2.setMaxAge(0);
                     response.addCookie(c2);
-
                 } else {
                     pageJSP = "/WEB-INF/jspLogin.jsp";
                     request.setAttribute("login", request.getParameter("login"));
@@ -365,22 +341,14 @@ public class ControllerMain extends HttpServlet {
                     c.setMaxAge(9);
                     System.out.println(c.getValue());
                     response.addCookie(c);
-
                     if (c.getValue().length() >= 3) {
                         pageJSP = "/WEB-INF/jspFatalError.jsp";
                         request.setAttribute("fatalError", "Trop de tentatives !!!");
                     }
                 }
-
-
-            }
-        }
-
-
             }
         }
 /////////////////////////////////
-
         if (getServletContext().getAttribute("gestionPays") == null) {
             try {
                 getServletContext().setAttribute("gestionPays", new GestionPays());
