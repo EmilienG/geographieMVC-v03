@@ -17,9 +17,11 @@
                 <br>
                 Un dépôt effectué par l'intermédiaire du site Librairie-Fusion ne saurait se substituer à un dépôt de brevet, de marque ou de modèle tels que prévus notamment par le Code de la Propriété Intellectuelle (France). 
                 <br>
-                Toutefois, la jurisprudence ayant démontré qu'en cas de litige portant sur la paternité d'une production intellectuelle, l'auteur devait apporter une preuve d'antériorité, Librairie-Fusion permet à ses déposants de disposer d'une preuve d'antériorité utilisable en Justice.
+                Toutefois, la jurisprudence ayant démontré qu'en cas de litige portant sur la paternité d'une production intellectuelle, l'auteur devait apporter une preuve d'antériorité, 
+                <br>Librairie-Fusion permet à ses déposants de disposer d'une preuve d'antériorité utilisable en Justice.
                 <br>
-                Les noms des sites Internet cités, les marques citées ainsi que les logos correspondants sont la propriété de leurs auteurs ou de leurs ayant-droits. Toute reproduction, même partielle des éléments du site Librairie-Fusion donnera systématiquement lieu à des poursuites judiciaires.
+                Les noms des sites Internet cités, les marques citées ainsi que les logos correspondants sont la propriété de leurs auteurs ou de leurs ayant-droits. 
+                <br>Toute reproduction, même partielle des éléments du site Librairie-Fusion donnera systématiquement lieu à des poursuites judiciaires.
                 <br>
                 Le nom Librairie-Fusion n'est pas une marque déposée.
                 <br>

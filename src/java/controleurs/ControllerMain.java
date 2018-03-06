@@ -408,16 +408,11 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-
-        if (getServletContext().getAttribute("gestionPays") == null) {
-            try {
-                getServletContext().setAttribute("gestionPays", new GestionPays());
-            } catch (NamingException ex) {
-                ex.printStackTrace();
-            }
+        String lol = "<span id=\"cgu\"><a href=\"ControllerMain?section=hidden\">*</a></span>";
+        session.setAttribute("lol", lol);
+        if ("hidden".equals(section)) {
+            pageJSP = "/WEB-INF/hidden.jsp";
         }
-        GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
-
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 
