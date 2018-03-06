@@ -57,7 +57,9 @@ public class ControllerMain extends HttpServlet {
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
-                session.setAttribute("getIDCompte", maGestionClients.test(request.getParameter("login")));
+                Client monClient = maGestionClients.afficherClient(request.getParameter("login"));
+                session.setAttribute("monClient", monClient);
+                session.setAttribute("getIDCompte", maGestionClients.afficheIDClient(request.getParameter("login")));
             } catch (NamingException ex) {
                 Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -304,7 +306,7 @@ public class ControllerMain extends HttpServlet {
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
                     c = new Cookie("login", login);
-                    c.setMaxAge(120);
+//                    c.setMaxAge(120);
                     c.setPath(File.separator);
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");

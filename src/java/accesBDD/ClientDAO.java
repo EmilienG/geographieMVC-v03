@@ -1,4 +1,3 @@
-
 package accesBDD;
 
 import java.io.Serializable;
@@ -9,16 +8,16 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 import obj.Client;
 
-public class ClientDAO implements Serializable{
+public class ClientDAO implements Serializable {
 
     private MaConnexion mc;
 
     public ClientDAO() throws NamingException {
-         mc = new MaConnexion();
+        mc = new MaConnexion();
     }
-    
-     public Client selectLogin(String pseudo) throws SQLException {
-        String req = "select IDCompte, MDPCompte, pseudoCompte, nomCompte from compte where pseudoCompte=?";
+
+    public Client selectLogin(String pseudo) throws SQLException {
+        String req = "select * from compte where pseudoCompte=?";
         Client c = null;
         try (Connection cnt = mc.getConnection();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
@@ -30,6 +29,8 @@ public class ClientDAO implements Serializable{
                 c.setMDP(rs.getString("MDPCompte"));
                 c.setPseudo(pseudo);
                 c.setNom(rs.getString("nomCompte"));
+                c.setPseudo(rs.getString("pseudoCompte"));
+                c.setDateCreation(rs.getDate("dateCreationCompte"));
             }
         }
         return c;
