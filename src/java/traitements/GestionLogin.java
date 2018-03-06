@@ -9,7 +9,6 @@ import accesBDD.ClientDAO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import javax.naming.NamingException;
-import javax.servlet.http.Cookie;
 import obj.Client;
 
 /**
@@ -27,7 +26,8 @@ public class GestionLogin implements Serializable{
     public boolean check(String pseudo, String password) {
         try {
             Client c;
-            c = cDAO.selectLogin(pseudo);            
+            String monID = cDAO.selectIDClientByName(pseudo);
+            c = cDAO.selectLoginByID(monID);            
             if( pseudo==null) return false;
             if( password==null) return false;
             if( pseudo.trim().isEmpty()) return false;

@@ -25,7 +25,7 @@ public class CoupDeCoeurDAO {
         String req = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                 + " from CoupDeCoeur"
                 + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
-                + "join livre on IDLivre = IDLivreMiseEnAvant"
+                + " join livre on IDLivre = IDLivreMiseEnAvant"
                 + " WHERE IDStatutCoupDeCoeur!= 3";
         System.out.println(req);
         Connection cnt = mc.getConnection();
@@ -36,7 +36,7 @@ public class CoupDeCoeurDAO {
             req2 = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                     + " from CoupDeCoeur"
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
-                    + "join livre on IDLivre = IDLivreMiseEnAvant"
+                    + " join livre on IDLivre = IDLivreMiseEnAvant"
                     + " WHERE IDStatutCoupDeCoeur!= 3 and nomCoupDeCoeur like ? or descriptionCoupDeCoeur like ?"
                     + "or ISBNLivre like ? or titreLivre like ?";
             pstm = cnt.prepareStatement(req2);
