@@ -10,7 +10,7 @@
     </head>
     <body>
     <center>
-        <h1><span> Tricheur, voleur !!!</span></h1>
+        <h1><span> Tricheur, voleur, honte à toi et sur ta famille !!!</span></h1>
         <font color='red'>${fatalError}</font>  
     </center>
 </body>
