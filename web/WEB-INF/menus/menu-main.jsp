@@ -20,6 +20,9 @@
                     <li> 
                         <c:url value="ControllerMain?section=order" var="url05" /><a href="${url05}">Commandes</a>
                     </li>
+                     <li> 
+                        <c:url value="ControllerMain?section=CoupDeCoeur" var="url07" /><a href="${url07}">Coup De Coeur</a>
+                    </li>
                 </ul>
             </div>
         </td>

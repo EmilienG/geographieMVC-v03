@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import obj.Commande;
+import obj.CoupDeCoeur;
 import obj.Evenement;
 import obj.LigneCommande;
 import obj.Livres;
 import obj.Pays;
 import traitements.GestionCommandes;
+import traitements.GestionCoupDeCoeur;
 import traitements.GestionEvenement;
 import traitements.GestionLivres;
 import traitements.GestionLogin;
@@ -42,7 +46,7 @@ public class ControllerMain extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -61,6 +65,28 @@ public class ControllerMain extends HttpServlet {
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
+//-------------------CoupDeCoeur----------------------------
+        
+          if ("CoupDeCoeur".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
+                GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
+                ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
+
+                ArrayList<String> s = new ArrayList<>();
+                
+           session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+//                }
+
+                System.out.println(s);
+            }
+
+           catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+//----------------------------------------------------------
+        
         //-------------------------------------------
         //Si on clic sur ajouter panier :
         if (request.getParameter("IDLivre") != null) {
@@ -237,6 +263,7 @@ public class ControllerMain extends HttpServlet {
             cc.setMaxAge(0);
             session.setAttribute("logOn", false);
             response.addCookie(cc);
+            
         }
 //        if (request.getParameter("deconnecter") != null) {
 //            System.out.println("deconnection");
@@ -338,7 +365,11 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -352,7 +383,11 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
