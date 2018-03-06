@@ -52,13 +52,6 @@ public class ControllerMain extends HttpServlet {
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
-        String log = request.getParameter("log");
-
-        ArrayList<String> compteur = new ArrayList<>();
-        compteur.add("1");
-        compteur.add("2");
-        compteur.add("3");
-        request.setAttribute("compteur", compteur);
 
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
@@ -86,15 +79,16 @@ public class ControllerMain extends HttpServlet {
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(false, saisie);
                 request.setAttribute("maListeLivres", mesLivres);
-                //*******************************************************
                 int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
                 request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(false, saisie,0, 1);
-                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(false, saisie,2, 3);
-                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(false, saisie,4, 5);
-                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(false, saisie,6, 7);
-                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(false, saisie,8, 9);
-                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(false, saisie,10, 11);
+
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(false, saisie, 0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(false, saisie, 2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(false, saisie, 4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(false, saisie, 6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(false, saisie, 8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(false, saisie, 10, 11);
+
                 ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
@@ -109,9 +103,6 @@ public class ControllerMain extends HttpServlet {
                 listDeListDeList.add(page2);
                 listDeListDeList.add(page3);
                 request.setAttribute("listDeListDeList", listDeListDeList);
-                //*******************************************************
-
-                //*******************************************************
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -128,39 +119,25 @@ public class ControllerMain extends HttpServlet {
             System.out.println("je suis dans la section inscription");
             if (request.getParameter("ok") != null) {
                 System.out.println("jai appuyer sur ok");
-                if (bCompte.check(request.getParameter("name"), request.getParameter("prenom"),request.getParameter("password"),request.getParameter("email"))) {
+                if (bCompte.check(request.getParameter("name"), request.getParameter("prenom"), request.getParameter("password"), request.getParameter("email"))) {
                     System.out.println("tout les champs son remplis");
                     pageJSP = "/WEB-INF/home.jsp";
-                String nom = request.getParameter("name");
+                    String nom = request.getParameter("name");
                     request.setAttribute("welcome", nom);
-//                GestionCompte maGestionCompte = new GestionCompte();
-               
                 } else {
                     System.out.println("champs manquant");
                     pageJSP = "/WEB-INF/inscription.jsp";
                     request.setAttribute("msg", "veuillez remplir tout les champs !!!");
-//                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(false, saisie);
+                }
+            }
+        }
 
-//                ArrayList<String> s = new ArrayList<>();
-//                for (Evenement mesEvenement : mesEvenements) {
-//                    s.add(mesEvenement.toString());
-//
-//                session.setAttribute("mesEvenements", mesEvenements);
-//                }
-        }}}
         if ("Evenement".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(false, saisie);
-
-//                ArrayList<String> s = new ArrayList<>();
-//                for (Evenement mesEvenement : mesEvenements) {
-//                    s.add(mesEvenement.toString());
-//
                 session.setAttribute("mesEvenements", mesEvenements);
-//                }
-
             } catch (NamingException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
@@ -193,6 +170,7 @@ public class ControllerMain extends HttpServlet {
         }
         if ("Recherche".equals(section)) {
             try {
+
 //               pageJSP = "/WEB-INF/recherche.jsp";
 //                pageJSP = "/WEB-INF/catalogue.jsp";
 //                GestionLivres maGestionLivre = new GestionLivres();
@@ -201,19 +179,17 @@ public class ControllerMain extends HttpServlet {
 //                ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true, request.getParameter("recherche"));
 //               session.setAttribute("mesResultats", mesResultats);
 //                request.setAttribute("maListeLivres", mesLivres);
+
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
                 ArrayList<Livres> mesLivres = maGestionLivre.findLivres(true, request.getParameter("recherche"));
                 request.setAttribute("maListeLivres", mesLivres);
-                //*******************************************************
-//                int sizeMesLivres = round(maGestionLivre.findLivres(false, "").size());
-//                request.setAttribute("sizeMesLivres", sizeMesLivres);
-                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),0, 1);
-                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),2, 3);
-                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),4, 5);
-                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),6, 7);
-                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),8, 9);
-                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"),10, 11);
+                ArrayList<Livres> mesLivres1 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 0, 1);
+                ArrayList<Livres> mesLivres2 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 2, 3);
+                ArrayList<Livres> mesLivres3 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 4, 5);
+                ArrayList<Livres> mesLivres4 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 6, 7);
+                ArrayList<Livres> mesLivres5 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 8, 9);
+                ArrayList<Livres> mesLivres6 = maGestionLivre.findLivresPagin(true, request.getParameter("recherche"), 10, 11);
                 ArrayList<ArrayList<Livres>> page1 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page2 = new ArrayList<>();
                 ArrayList<ArrayList<Livres>> page3 = new ArrayList<>();
@@ -232,15 +208,47 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                //
             }
         }
 
 
+//=====================COMMANDES================================================        
+        if ("order".equals(section)) {
+//            System.out.println("hello");
+            String monIDcompte = session.getAttribute("IDcompte").toString();
+
+            try {
+                pageJSP = "/WEB-INF/order.jsp";
+                GestionCommandes gestionC = new GestionCommandes();
+                List<Commande> com = gestionC.findOrder();
+                request.setAttribute("gestionC", com);
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if ("orderLine".equals(section)) {
+            System.out.println("hello");
+            try {
+                pageJSP = "/WEB-INF/orderLine.jsp";
+                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
+                for (LigneCommande ldc : lcom) {
+                    System.out.println(ldc.getIDLigneCommande());
+                }
+                request.setAttribute("gestionLC", lcom);
+
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
-        //Par defaut pas logué
-//            session.setAttribute("logOn", false);
+                //Par defaut pas logué
+        if (getCookie(request.getCookies(), "login") == null) {
+            session.setAttribute("logOn", false);
+        }
+
         if (getServletContext().getAttribute("GestionLogin") == null) {
             try {
                 getServletContext().setAttribute("GestionLogin", new GestionLogin());
@@ -251,9 +259,11 @@ public class ControllerMain extends HttpServlet {
         GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
         Cookie c = getCookie(request.getCookies(), "login");
         if (c != null) {
-            pageJSP = "/WEB-INF/home.jsp";
-            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
+            //Pour aller sur la page d'acceuil quand on se log
+//            pageJSP = "/WEB-INF/home.jsp";
+//            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
             request.setAttribute("welcome", c.getValue());
+            session.setAttribute("logOn", true);
         }
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
@@ -262,7 +272,7 @@ public class ControllerMain extends HttpServlet {
         if ("deconnecter".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
 //            pageJSP = "/WEB-INF/menus/menu-main.jsp";
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
             Cookie cc = new Cookie("login", "");
             cc.setMaxAge(0);
             session.setAttribute("logOn", false);
@@ -284,6 +294,12 @@ public class ControllerMain extends HttpServlet {
             }
         }
         if ("login".equals(section)) {
+            System.out.println("mlkmkmml");
+            if(request.getParameter("IDCompte")!=null){
+                String hiddenIDcomtpe = request.getParameter("IDCompte");
+                System.out.println("Hidde  "+hiddenIDcomtpe);
+                session.setAttribute("IDCompte2", hiddenIDcomtpe);
+            }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
@@ -321,6 +337,7 @@ public class ControllerMain extends HttpServlet {
                 }
             }
         }
+
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
 //            System.out.println("hello");
@@ -364,19 +381,8 @@ public class ControllerMain extends HttpServlet {
         }
         GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
 
-        if ("afficher-pays".equals(section)) {
-            try {
-                HashMap<String, List<Pays>> mp = gestionPays.findPays();
-                List<String> clefs = gestionPays.getCleDefaut();
-                request.setAttribute("mapPays", mp);
-                request.setAttribute("clefs", clefs);
-                pageJSP = "/WEB-INF/pays.jsp";
-            } catch (SQLException ex) {
-                ex.printStackTrace();
 
-                // to do
-            }
-        }
+
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 

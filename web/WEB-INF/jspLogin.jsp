@@ -24,6 +24,7 @@
                         <br>
                         <br>
                         <input type='submit' name='doIt' value='Ok' />     
+                        <input type="hidden" value="1" name="IDCompte"/>
                     </form>
                     <c:url value="ControllerMain?section=inscription" var="url08" />
                     <a href="${url08}">Creer un compte</a>
