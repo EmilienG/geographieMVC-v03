@@ -20,7 +20,7 @@ public class CommandeDAO implements Serializable {
     }
 
     public List<Commande> selectOrderByCustomer() throws SQLException {
-        String req = "SELECT IDCommande , dateCommande, ad1.nomDestinataireAdresse, montantCommande, descriptionStatut "
+        String req = "SELECT IDCommande , dateCommande, ad1.nomDestinataireAdresse, ad1.prenomDestinatireAdresse, montantCommande, descriptionStatut "
             + "FROM Compte ct "
             + "JOIN Adresse ad1 "
             + "ON ct.IDCompte = ad1.IDCompteClientAdresse "
@@ -41,12 +41,16 @@ public class CommandeDAO implements Serializable {
 
                  
             while (rs.next()) {              
+                Commande c = new Commande();
                 String numCommande = rs.getString("IDCommande");
+                c.setIDCommande(numCommande);
                 Date dateCommande = rs.getDate("dateCommande");
+                c.setDateCommande(dateCommande);
                 Float montantCommande = rs.getFloat("montantCommande");
+                c.setMontantCommande(montantCommande);
                 String statutCommande = rs.getString("descriptionStatut");
-                        
-                Commande c = new Commande(numCommande, dateCommande, montantCommande, statutCommande);               
+                c.setDescriptionStatut(statutCommande);
+                                                       
                 com.add(c);
             }
             rs.close();

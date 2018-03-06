@@ -1,12 +1,10 @@
-
 package obj;
 
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class Commande implements Serializable {
-    
+
     private String IDCommande;
     private String IDAdresseFacturationCommande;
     private String IDAdresseLivraisonCommande;
@@ -30,13 +28,6 @@ public class Commande implements Serializable {
     private String descriptionStatut;
 
     public Commande() {
-    }
-
-    public Commande(String IDCommande, Date dateCommande, float montantCommande, String descriptionStatut) {
-        this.IDCommande = IDCommande;
-        this.dateCommande = dateCommande;
-        this.montantCommande = montantCommande;
-        this.descriptionStatut = descriptionStatut;
     }
 
     public String getIDCommande() {
@@ -207,17 +198,11 @@ public class Commande implements Serializable {
         this.descriptionStatut = descriptionStatut;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Commande{" + "IDCommande=" + IDCommande + ", IDAdresseFacturationCommande=" + IDAdresseFacturationCommande + ", IDAdresseLivraisonCommande=" + IDAdresseLivraisonCommande + ", IDCompteCommande=" + IDCompteCommande + ", IDLivreurCommande=" + IDLivreurCommande + ", IDOrganismePaiementCommande=" + IDOrganismePaiementCommande + ", dateCommande=" + dateCommande + ", adresseIPCommande=" + adresseIPCommande + ", commentaireCommande=" + commentaireCommande + ", IDStatutCommande=" + IDStatutCommande + ", tarifLivraisonCommande=" + tarifLivraisonCommande + ", modeLivraisonCommande=" + modeLivraisonCommande + ", IDLivraisonCommande=" + IDLivraisonCommande + ", IDStatutLivraisonCommande=" + IDStatutLivraisonCommande + ", montantCommande=" + montantCommande + ", modeReglementCommande=" + modeReglementCommande + ", numTransactionReglementCommande=" + numTransactionReglementCommande + ", dateExpeditionCommande=" + dateExpeditionCommande + ", IDStatutReglementCommande=" + IDStatutReglementCommande + ", dateStatutCommande=" + dateStatutCommande + ", descriptionStatut=" + descriptionStatut + '}';
+    }
     
     
 
-    
-
-    
-
-    
-   
-    
-    
 }
