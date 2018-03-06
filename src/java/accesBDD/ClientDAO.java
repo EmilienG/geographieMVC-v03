@@ -13,13 +13,9 @@ public class ClientDAO implements Serializable{
 
     private MaConnexion mc;
 
-    
     public ClientDAO() throws NamingException {
          mc = new MaConnexion();
     }
-    
-    
-    
     
      public Client selectLogin(String pseudo) throws SQLException {
         String req = "select IDCompte, MDPCompte, pseudoCompte, nomCompte from compte where pseudoCompte=?";
@@ -35,7 +31,6 @@ public class ClientDAO implements Serializable{
                 c.setPseudo(pseudo);
                 c.setNom(rs.getString("nomCompte"));
             }
-
         }
         return c;
     }

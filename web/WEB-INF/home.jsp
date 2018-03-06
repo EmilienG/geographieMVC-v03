@@ -9,6 +9,7 @@
     <body>
     <center>
         <h1><span>Page d'Acceuil !</span></h1>
+        ID compte = ${getIDCompte}
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />

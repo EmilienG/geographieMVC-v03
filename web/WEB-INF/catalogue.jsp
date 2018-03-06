@@ -76,6 +76,9 @@
             </table>
         </div>
         <a href="#">Précédente</a> |<a href="#">page 1</a>| <a href="#">page 2</a>| <a href="#">page 3</a>|  <a href="#">...</a>| <a href="#">Suivante</a>
+       
+        <c:url value="ControllerMain?section=footer" var="url02" />
+        <c:import url="${url02}" />
     </center>
 </body>
 </html>
