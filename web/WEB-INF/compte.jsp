@@ -16,19 +16,19 @@
         </nav>
         Ici on modifie son compte.<br>
         
-        ID compte = ${getIDCompte}
-        Membre depuis = ${monClient.getDateCreation()}
+        ID compte = ${monClient.id}
+        Membre depuis = ${monClient.dateCreation}
         <form id="RegisterUserForm" action="" method="post">
             <fieldset>
-                <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="${monClient.getNom()}" />
+                <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="${monClient.nom}" />
                 <br>
-                <label for="name">Prenom</label> <input class="text" id="name" type="text" name="prenom" value="${monClient.getPrenom()}" />
+                <label for="name">Prenom</label> <input class="text" id="name" type="text" name="prenom" value="${monClient.prenom}" />
                 <br>
-                <label for="tel">Pseudo</label> <input class="text" id="tel" type="tel" name="tel" value="${monClient.getPseudo()}" />
+                <label for="tel">Pseudo</label> <input class="text" id="tel" type="tel" name="tel" value="${monClient.pseudo}" />
                 <br>
-                <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="${monClient.getEmail()}" />
+                <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="${monClient.email}" />
                 <br>
-                <label for="email">Telephone</label> <input class="text" id="email" type="email" name="email" value="${monClient.getTelephone()}" />
+                <label for="email">Telephone</label> <input class="text" id="email" type="email" name="email" value="${monClient.telephone}" />
                 <br>
                 <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password" value="*****"/>
                 <br>
