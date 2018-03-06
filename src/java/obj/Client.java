@@ -19,25 +19,25 @@ public class Client {
 
     public Client() {
     }
-    
+
     public String getPseudo() {
         return pseudo;
-    }
-
-    public String getMDP() {
-        return MDP;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
+    public String getMDP() {
+        return MDP;
+    }
+
     public void setMDP(String MDP) {
         this.MDP = MDP;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
@@ -56,65 +56,64 @@ public class Client {
         return prenom;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getIdPermission() {
-        return idPermission;
-    }
-
-    public String getIdstatut() {
-        return idstatut;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-    
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public Date getDateDestruction() {
-        return dateDestruction;
-    }
-
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
+    public String getIdPermission() {
+        return idPermission;
+    }
+
     public void setIdPermission(String idPermission) {
         this.idPermission = idPermission;
+    }
+
+    public String getIdstatut() {
+        return idstatut;
     }
 
     public void setIdstatut(String idstatut) {
         this.idstatut = idstatut;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
     }
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
 
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
     public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public Date getDateDestruction() {
+        return dateDestruction;
     }
 
     public void setDateDestruction(Date dateDestruction) {
         this.dateDestruction = dateDestruction;
     }
-    
     
 }
