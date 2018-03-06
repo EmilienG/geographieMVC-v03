@@ -38,8 +38,8 @@ public class EvenementDAO {
                     + " join presentation on IDEvenement = IDEvenementPresentation"
                     + " join livre on IDLivre = IDLivrePresentation"
                     + " WHERE IDStatutEvenement != 3 and nomEvenement like ? or typeEvenement like ?"
-                    + "or descriptionEvenement like ? or commentaireEvenement like ?"
-                    + "or ISBNLivre like ? or titreLivre like ?";
+                    + " or descriptionEvenement like ? or commentaireEvenement like ?"
+                    + " or ISBNLivre like ? or titreLivre like ?";
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
