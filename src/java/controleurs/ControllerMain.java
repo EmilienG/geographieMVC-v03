@@ -19,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import obj.Client;
 import obj.Commande;
+import obj.CoupDeCoeur;
 import obj.Evenement;
 import obj.LigneCommande;
 import obj.Livres;
 import traitements.GestionClients;
 import traitements.GestionCommandes;
+import traitements.GestionCoupDeCoeur;
 import traitements.GestionCompte;
 import traitements.GestionEvenement;
 import traitements.GestionLivres;
@@ -45,7 +47,7 @@ public class ControllerMain extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -68,6 +70,28 @@ public class ControllerMain extends HttpServlet {
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
+//-------------------CoupDeCoeur----------------------------
+        
+          if ("CoupDeCoeur".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
+                GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
+                ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
+
+                ArrayList<String> s = new ArrayList<>();
+                
+           session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+//                }
+
+                System.out.println(s);
+            }
+
+           catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+//----------------------------------------------------------
+        
         //-------------------------------------------
         //Si on clic sur ajouter panier :
         if (request.getParameter("IDLivre") != null) {
@@ -280,6 +304,7 @@ public class ControllerMain extends HttpServlet {
             cc.setMaxAge(0);
             session.setAttribute("logOn", false);
             response.addCookie(cc);
+            
         }
 
         c = getCookie(request.getCookies(), "try");
@@ -393,7 +418,11 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -407,7 +436,11 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
