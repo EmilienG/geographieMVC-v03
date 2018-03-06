@@ -203,6 +203,7 @@ public class ControllerMain extends HttpServlet {
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
 //            System.out.println("hello");
+            String monIDcompte = session.getAttribute("IDcompte").toString();
 
             try {
                 pageJSP = "/WEB-INF/order.jsp";
@@ -280,6 +281,12 @@ public class ControllerMain extends HttpServlet {
             }
         }
         if ("login".equals(section)) {
+            System.out.println("mlkmkmml");
+            if(request.getParameter("IDCompte")!=null){
+                String hiddenIDcomtpe = request.getParameter("IDCompte");
+                System.out.println("Hidde  "+hiddenIDcomtpe);
+                session.setAttribute("IDCompte2", hiddenIDcomtpe);
+            }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
