@@ -45,12 +45,12 @@
             <div id="conteneur-menu2">
                 <ul> 
                     <li>
-                        <h3>Logué ${logOn}</h3> 
+                        <h3><c:if test="${logOn}">Connecté : Oui :)</c:if><c:if test="!${logOn}">Connecté : Non !</c:if></h3> 
                     </li>
                     <li>
                         <c:url value="ControllerMain?section=panier" var="url06" /><a href="${url06}">Panier</a>
                     </li>
-                    <c:if test="${logOn}">
+                    <c:if test="${logOn}" >
                         <li>
                             <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte</a>
                         </li>

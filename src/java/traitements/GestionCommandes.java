@@ -17,9 +17,12 @@ public class GestionCommandes implements Serializable {
         cDAO = new CommandeDAO();
     }
     
-    public List<Commande> findOrder() throws SQLException{
-    List<Commande> Commandes = cDAO.selectOrderByCustomer();
+    public List<Commande> findOrder(String IDCompte) throws SQLException{
+    List<Commande> Commandes = cDAO.selectOrderByCustomer(IDCompte);
     return Commandes;
 }
-    
+//      public List<Commande> findOrder() throws SQLException{
+//    List<Commande> Commandes = cDAO.selectOrderByCustomer();
+//    return Commandes;
+//}
 }

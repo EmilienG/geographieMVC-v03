@@ -13,11 +13,11 @@ public class GestionCompte {
         cDAO = new CompteDAO();
     }
     
-      public boolean check(String nom, String prenom, String pseudo, String mdp,String email,String tel, String commentaire) {
+      public boolean check(String nom, String prenom,  String mdp,String email) {
         try {
             Client c;
-            c = cDAO.ajoutClient( nom,  prenom,  pseudo,  mdp, email, tel,  commentaire);            
-            if( nom==null ||  prenom==null || pseudo==null || mdp== null || email== null ||  tel== null){
+            c = cDAO.ajoutClient( nom,  prenom, mdp, email);            
+            if( nom==null ||  prenom==null || mdp== null || email== null){
                 return false;
             }else{
             

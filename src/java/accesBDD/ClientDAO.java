@@ -13,16 +13,12 @@ public class ClientDAO implements Serializable{
 
     private MaConnexion mc;
 
-    
     public ClientDAO() throws NamingException {
          mc = new MaConnexion();
     }
     
-    
-    
-    
      public Client selectLogin(String pseudo) throws SQLException {
-        String req = "select MDPCompte, pseudoCompte, nomCompte from compte where pseudoCompte=?";
+        String req = "select IDCompte, MDPCompte, pseudoCompte, nomCompte from compte where pseudoCompte=?";
         Client c = null;
         try (Connection cnt = mc.getConnection();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
@@ -30,11 +26,11 @@ public class ClientDAO implements Serializable{
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 c = new Client();
+                c.setId(rs.getString("IDCompte"));
                 c.setMDP(rs.getString("MDPCompte"));
                 c.setPseudo(pseudo);
                 c.setNom(rs.getString("nomCompte"));
             }
-
         }
         return c;
     }

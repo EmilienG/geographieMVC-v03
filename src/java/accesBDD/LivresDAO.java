@@ -18,13 +18,42 @@ public class LivresDAO implements Serializable {
         mc = new MaConnexion();
     }
 
-    public ArrayList<Livres> selectLivrePagin(int debut, int pas) throws SQLException {
+    public ArrayList<Livres> selectLivrePagin(boolean atif, String saisie, int debut, int pas) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
+            Connection cnt = mc.getConnection();
+        Statement stm = cnt.createStatement();
+        PreparedStatement pstm = null;
         String req = "SELECT * FROM ( "
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
-//        System.out.println(req);
-        try (Connection cnt = mc.getConnection(); Statement stm = cnt.createStatement(); ResultSet rs = stm.executeQuery(req);) {
+                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas ;
+        String req2= null;
+
+            if (atif) {
+                req2 = "SELECT * FROM ( "
+                + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas +" and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
+                    + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
+                    + " nomGenreAuteur like ?" ;
+        System.out.println(req2);
+        pstm = cnt.prepareStatement(req2);
+            if (saisie != null) {
+                System.out.println(saisie);
+                pstm.setString(1, "%" + saisie + "%");
+                pstm.setString(2, "%" + saisie + "%");
+                pstm.setString(3, "%" + saisie + "%");
+                pstm.setString(4, "%" + saisie + "%");
+                pstm.setString(5, "%" + saisie + "%");
+                pstm.setString(6, "%" + saisie + "%");
+                pstm.setString(7, "%" + saisie + "%");
+            }
+            }
+             try {
+            ResultSet rs = null;
+            if (atif) {
+                rs = pstm.executeQuery();
+            } else {
+                rs = stm.executeQuery(req);
+            }
             while (rs.next()) {
                 Livres monLivre = new Livres();
                 monLivre.setIDLivre(rs.getString("IDLivre"));
@@ -40,7 +69,11 @@ public class LivresDAO implements Serializable {
                 monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
                 mesLivres.add(monLivre);
             }
-        }
+            rs.close();
+        }finally {
+            if (cnt != null) {
+                cnt.close();
+            }}
         return mesLivres;
     }
 

@@ -79,7 +79,7 @@ body {
     padding: 0;
     color: #656565;
     text-shadow:0 0px, 1px 1px #d6a6ff;
-   /* background: #de4666 url(../img/fond-menu.png) no-repeat top center;*/
+    /* background: #de4666 url(../img/fond-menu.png) no-repeat top center;*/
 }
 
 #conteneur-menu2 {
@@ -258,19 +258,26 @@ input[type=submit] {
 #registration {
     color: #fff;
     background: #de4666;
- 
-     -moz-border-radius: 10px;
-     -webkit-border-radius: 10px;
-     border-radius: 10px;
-     margin: 10px;
-     width: 430px;
-     }
- 
- #registration a {
-      color: #8c910b;
-      text-shadow: 0px -1px 0px #000;
-      }
- 
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 430px;
+}
+
+#registration a {
+    color: #8c910b;
+    text-shadow: 0px -1px 0px #000;
+}
+
 #registration fieldset {
-      padding: 20px;
-      }
+    padding: 20px;
+}
+
+h3{
+    letter-spacing: 8px;
+    font-size: 1.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+}

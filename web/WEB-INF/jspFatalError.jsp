@@ -6,11 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Acceuil Fusion !</title>
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
-        <meta http-equiv="refresh" content="10" url="ControllerMain.jsp">
+
     </head>
     <body>
     <center>
-        <h1><span> Tricheur, voleur !!!</span></h1>
+        <h1><span> Tricheur, voleur, honte à toi et sur ta famille !!!</span></h1>
         <font color='red'>${fatalError}</font>  
     </center>
 </body>
