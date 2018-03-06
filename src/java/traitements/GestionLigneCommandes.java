@@ -20,11 +20,6 @@ public class GestionLigneCommandes implements Serializable {
         return LigneCommandes;
     }
 
-//    public String findISBNBooks() throws SQLException {
-//        List<LigneCommande> LigneCommandes = lcDAO.selectISBNBook();
-//        return LigneCommandes;
-//        
-//        }
-    
+
 
 }
