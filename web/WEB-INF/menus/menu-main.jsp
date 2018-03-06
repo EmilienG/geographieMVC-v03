@@ -3,12 +3,13 @@
 </c:if><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
-<table id="test">
-    <tr>
-        <td>
-            <div id="conteneur-menu2">
-                <ul>
-                    <li>  <c:url value="ControllerMain?section=home" var="url01" />
+<h3><c:if test="${logOn}">Connecté</c:if><c:if test="!${logOn}">Deconnecté</c:if></h3> 
+    <table id="test">
+        <tr>
+            <td>
+                <div id="conteneur-menu2">
+                    <ul>
+                            <li>  <c:url value="ControllerMain?section=home" var="url01" />
                         <a href="${url01}">Accueil</a>
                     </li>
                     <li>
@@ -19,6 +20,9 @@
                     </li>
                     <li> 
                         <c:url value="ControllerMain?section=order" var="url05" /><a href="${url05}">Commandes</a>
+                    </li>
+                     <li> 
+                        <c:url value="ControllerMain?section=CoupDeCoeur" var="url07" /><a href="${url07}">Coup De Coeur</a>
                     </li>
                 </ul>
             </div>
@@ -41,9 +45,6 @@
         <td>
             <div id="conteneur-menu2">
                 <ul> 
-                    <li>
-                        <h3><c:if test="${logOn}">Connecté : Oui :)</c:if><c:if test="!${logOn}">Connecté : Non !</c:if></h3> 
-                    </li>
                     <li>
                         <c:url value="ControllerMain?section=panier" var="url06" /><a href="${url06}">Panier</a>
                     </li>

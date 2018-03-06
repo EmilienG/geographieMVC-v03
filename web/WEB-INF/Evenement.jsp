@@ -21,52 +21,66 @@
         <table  id="tableau">
             <thead>
                 <tr>
-                    <td colspan="5">Mon Catalogue Fusion</td>
+                    <td colspan="20">Mon Catalogue Fusion</td>
                 </tr>
-            <th scope="col">
+            <th scope="col" colspan="20">
                 Nos Evenements
             </th>
 
             </thead>
             <tbody>
-
                 <c:forEach var="unEvenement" items="${mesEvenements}">
+                <hr>
+                    <tr>
+                      
+                        <td> ${unEvenement.nomEvenement} </td>  
 
-                <th>
-                <tr> <td> ${unEvenement.nomEvenement} </td>  </tr>
-                <tr> <td> ${unEvenement.dateDebutEvenement} </td> </tr>
-                <tr> <td> ${unEvenement.dateFinEvenement} </td> </tr>
-                <tr> <td> ${unEvenement.typeEvenement} </td> </tr>
-                <tr> <td> ${unEvenement.descriptionEvenement} </td> </tr>
-                <tr> <td> ${unEvenement.commentaireEvenement} </td> </tr>
-                <tr> <td> ${unEvenement.titreLivre} </td> </tr>
-                <tr> <td> ${unEvenement.ISBNLivre} </td> </tr>
+                        <td> ${unEvenement.dateDebutEvenement} </td> 
+
+                        <td> ${unEvenement.dateFinEvenement} </td>
+
+                        <td> ${unEvenement.typeEvenement} </td> 
+
+                        <td> ${unEvenement.descriptionEvenement} </td>
+
+                        <td> ${unEvenement.commentaireEvenement} </td>
+
+                        <td> ${unEvenement.titreLivre} </td>
+
+                        <td> ${unEvenement.ISBNLivre} </td> 
+           
                 <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
-                </th>
+                   
+                </tr>
+                </hr>
+              
             </c:forEach>
+
             </tbody>
-          
+
             <tfoot>
                 <tr>
-                    <td colspan="5">Librairie Fusion Since 2018</td>
+                    <td colspan="20">Librairie Fusion Since 2018</td>
                 </tr>
             </tfoot>
 
         </table>
     </center>
-  
+
     <footer>
- Merci de votre visite à bientot
+        <center>
+        Merci de votre visite à bientot
+        </center>
     </footer>
     <form action="ControllerMain?section=RechercheEvenement" method="post">
-            <input type="hidden" name="section" value="RechercheEvenement" />
-            <div align="right"><input type="text" name="rechercheEvenement" value=""
-                                      placeholder="Trouvez un Evenement" 
-                                      required="required" size="20"/>
-                <a href="${url06}">
-                    <input type="submit" value="Ok" name="doItEv" />
-                </a>  
-        </form>
-      </body>
+        <input type="hidden" name="section" value="RechercheEvenement" />
+        <div align="right"><input type="text" name="rechercheEvenement" value=""
+                                  placeholder="Trouvez un Evenement" 
+                                  required="required" size="20"/>
+            <a href="${url06}">
+                <input type="submit" value="Ok" name="doItEv" />
+            </a>  
+    </form>
+</body>
 
 </html>

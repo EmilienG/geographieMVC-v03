@@ -16,15 +16,21 @@
         </nav>
         Ici on modifie son compte.<br>
         
+        ID compte = ${getIDCompte}
+        Membre depuis = ${monClient.getDateCreation()}
         <form id="RegisterUserForm" action="" method="post">
             <fieldset>
-                <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="" />
+                <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="${monClient.getNom()}" />
                 <br>
-                <label for="tel">Prenom</label> <input class="text" id="tel" type="tel" name="tel" value="" />
+                <label for="name">Prenom</label> <input class="text" id="name" type="text" name="prenom" value="${monClient.getPrenom()}" />
                 <br>
-                <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="" />
+                <label for="tel">Pseudo</label> <input class="text" id="tel" type="tel" name="tel" value="${monClient.getPseudo()}" />
                 <br>
-                <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password" />
+                <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="${monClient.getEmail()}" />
+                <br>
+                <label for="email">Telephone</label> <input class="text" id="email" type="email" name="email" value="${monClient.getTelephone()}" />
+                <br>
+                <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password" value="*****"/>
                 <br>
                 <input type="submit" value="ok"/>
             </fieldset>

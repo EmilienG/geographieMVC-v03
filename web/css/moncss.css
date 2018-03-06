@@ -88,7 +88,7 @@ body {
     width: 80%;
     padding-top: 0.5%;
     margin: 0.5% auto 0 auto;
-    text-shadow:0 0px, 3px 4px #4f3663;
+    text-shadow:0 0px, 2px 2px #4f3663;
 }
 
 #conteneur-menu2 ul {
@@ -258,7 +258,6 @@ input[type=submit] {
 #registration {
     color: #fff;
     background: #de4666;
-
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -276,8 +275,7 @@ input[type=submit] {
 }
 
 h3{
-    letter-spacing: 8px;
-    font-size: 1.2em;
-    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: small;
     text-transform: uppercase;
 }
