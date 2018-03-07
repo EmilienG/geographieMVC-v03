@@ -1,5 +1,6 @@
 package controleurs;
 
+import accesBDD.ClientDAO;
 import accesBDD.LigneCommandeDAO;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class ControllerMain extends HttpServlet {
         return null;
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
@@ -85,7 +86,7 @@ public class ControllerMain extends HttpServlet {
                 ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
 
                 for (CoupDeCoeur mesCoupDeCoeur : mesCoupDeCoeurs) {
-                    
+
 //                    System.out.println(mesCoupDeCoeur.getTitreClean());
                 }
                 session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
@@ -111,6 +112,25 @@ public class ControllerMain extends HttpServlet {
 
         if ("compte".equals(section)) {
             pageJSP = "/WEB-INF/compte.jsp";
+            if (request.getParameter("modifierCompte") != null) {
+                Client monCompte = new Client();
+                monCompte.setNom(request.getParameter("name"));
+                monCompte.setPrenom(request.getParameter("prenom"));
+                monCompte.setPseudo(request.getParameter("pseudo"));
+                monCompte.setEmail(request.getParameter("email"));
+                monCompte.setTelephone(request.getParameter("tel"));
+                monCompte.setMDP(request.getParameter("password"));
+                session.setAttribute("monCompte", monCompte);
+                //Ici faire requete SQL pour update
+                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
+                GestionCompte ges = new GestionCompte();
+//                try {
+//                    ges.modifCompte(session.getAttribute("monClient").toString(), request.getParameter("name"), request.getParameter("pseudo"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"), request.getParameter("password"));
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+
+            }
         }
         if ("catalogue".equals(section)) {
             try {
@@ -445,8 +465,12 @@ public class ControllerMain extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException, UnsupportedEncodingException {
+        try {
+            processRequest(request, response);
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -460,7 +484,13 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (UnsupportedEncodingException ex) {
+            ex.printStackTrace();
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**

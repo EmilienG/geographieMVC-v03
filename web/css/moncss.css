@@ -297,10 +297,16 @@ h3{
 }
 
 #cgu{
-  font-size: xx-small;
-  color: buttonface;
+    font-size: xx-small;
+    color: buttonface;
 }
 #cgu a{
-  font-size: xx-small;
-  text-decoration: none;
+    font-size: xx-small;
+    text-decoration: none;
+}
+
+#conteneur {
+  display: flex;
+
+    justify-content: space-around;
 }

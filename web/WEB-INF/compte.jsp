@@ -14,30 +14,30 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        Ici on modifie son compte.<br>
-
-        ID compte = ${monClient.id}
-        Membre depuis = ${monClient.dateCreation}
+        Ici vous pouvez visualiser et modifier les informations de votre compte personnel.<br>
         <div id="registration">
             <form id="RegisterUserForm" action="" method="post">
                 <u>Vos informations personelles :</u>
+                <br>
+                <i>Membre depuis = ${monClient.dateCreation}</i>
                 <fieldset>
                     <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="${monClient.nom}" />
                     <br>
-                    <label for="name">Prenom</label> <input class="text" id="name" type="text" name="prenom" value="${monClient.prenom}" />
+                    <label for="prenom">Prenom</label> <input class="text" id="prenom" type="text" name="prenom" value="${monClient.prenom}" />
                     <br>
-                    <label for="tel">Pseudo</label> <input class="text" id="tel" type="tel" name="tel" value="${monClient.pseudo}" />
+                    <label for="pseudo">Pseudo</label> <input class="text" id="pseudo" type="text" name="pseudo" value="${monClient.pseudo}" />
                     <br>
                     <label for="email">Email</label> <input class="text" id="email" type="email" name="email" value="${monClient.email}" />
                     <br>
-                    <label for="email">Telephone</label> <input class="text" id="email" type="email" name="email" value="${monClient.telephone}" />
+                    <label for="tel">Telephone</label> <input class="text" id="tel" type="tel" name="tel" value="${monClient.telephone}" />
                     <br>
                     <label for="password">Mot de passe</label> <input class="text" id="password" type="password" name="password" value="*****"/>
                     <br>
-                    <input type="submit" value="ok"/>
+                    <input type="submit" value="ok" name="modifierCompte"/>
                 </fieldset>
             </form>
         </div>
+        (ID compte = ${monClient.id})
         <c:url value="ControllerMain?section=footer" var="url02" />
         <c:import url="${url02}" />
     </center>
