@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Coup De Coeur</title>
+        <title> Coup De Coeur </title>
         <link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -21,9 +21,7 @@
 
         <table  id="tableau">
             <thead>
-                <tr>
-                    <td colspan="20">Mon Catalogue Fusion</td>
-                </tr>
+               
             <th scope="col" colspan="20">
                 Nos Coup De Coeur
             </th>
@@ -39,7 +37,7 @@
                             ${unCoupDeCoeur.titreClean}
                         </td>
                         <td> ${unCoupDeCoeur.ISBNLivre} </td>
-                <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
+               
 
                 </tr>
 

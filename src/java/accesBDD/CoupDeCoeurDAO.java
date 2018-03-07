@@ -68,15 +68,17 @@ public class CoupDeCoeurDAO {
             CoupDeCoeur lastCoupDeCoeur = null;
             while (rs.next()) {
                 int id = rs.getInt("IDCoupDeCoeur");
-//                System.out.println(">>>>  id1" + id + " id2" + lastCoupDeCoeur.getIDCoupDeCoeur());
+//               
                 if (lastCoupDeCoeur == null || (id != lastCoupDeCoeur.getIDCoupDeCoeur())) {
-//                    System.out.println("<<<<< id1" + id + " id2" + lastCoupDeCoeur.getIDCoupDeCoeur());
+//                 
                     int IDCoupDeCoeur = rs.getInt("IDCoupDeCoeur");
                     String nomCoupDeCoeur = rs.getString("nomCoupDeCoeur");
                     String descriptionCoupDeCoeur = rs.getString("descriptionCoupDeCoeur");
                     String ISBNLivre = rs.getString("ISBNLivre");
                     String titreLivre = rs.getString("titreLivre");
+                    
                     lastCoupDeCoeur = new CoupDeCoeur(IDCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, titreLivre, ISBNLivre);
+                    
                     if (titreLivre != null) {
                         List<String> titreLivres = lastCoupDeCoeur.getTitresLivres();
 

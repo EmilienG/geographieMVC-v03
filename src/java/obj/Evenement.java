@@ -2,6 +2,8 @@
 package obj;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Evenement implements Serializable{
@@ -16,24 +18,25 @@ public class Evenement implements Serializable{
     String dateStatutEvenement;
     String titreLivre;
     String ISBNLivre ;
+    private List<String> titresLivres;
+    private String titreClean;
 
     public Evenement() {
+        titresLivres = new ArrayList<>();
+        
     }
 
    
 
     
 
-    public Evenement(int IDEvenement, String dateDebutEvenement, String dateFinEvenement, String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement, int IDStatutEvenement, String dateStatutEvenement, String titreLivre, String ISBNLivre) {
+    public Evenement(int IDEvenement,String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement,String titreLivre, String ISBNLivre) {
+        this();
         this.IDEvenement = IDEvenement;
-        this.dateDebutEvenement = dateDebutEvenement;
-        this.dateFinEvenement = dateFinEvenement;
         this.nomEvenement = nomEvenement;
         this.typeEvenement = typeEvenement;
         this.descriptionEvenement = descriptionEvenement;
         this.commentaireEvenement = commentaireEvenement;
-        this.IDStatutEvenement = IDStatutEvenement;
-        this.dateStatutEvenement = dateStatutEvenement;
         this.titreLivre = titreLivre;
         this.ISBNLivre = ISBNLivre;
     }
@@ -125,6 +128,32 @@ public class Evenement implements Serializable{
 
     public void setISBNLivre(String ISBNLivre) {
         this.ISBNLivre = ISBNLivre;
+        
+    }
+
+    public List<String> getTitresLivres() {
+        return titresLivres;
+    }
+
+    public void setTitresLivres(List<String> titresLivres) {
+        this.titresLivres = titresLivres;
+    }
+    
+    
+        public String getTitreClean() {
+        String s = null;
+        for (int i = 0; i < titresLivres.size(); i++) {
+            if (s == null) {
+                s = titresLivres.get(i);
+            } else {
+                s = s + ", " + titresLivres.get(i);
+            }
+        }
+        return s;
+    }
+
+    public void setTitreClean(String titreClean) {
+//     this.tameme;
     }
     
 
