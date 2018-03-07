@@ -34,5 +34,7 @@
             </tr>
         </table>
     </center>
+                        <c:url value="ControllerMain?section=footer" var="url02" />
+        <c:import url="${url02}" />
 </body>
 </html>

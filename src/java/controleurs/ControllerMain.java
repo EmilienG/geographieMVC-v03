@@ -3,9 +3,11 @@ package controleurs;
 import accesBDD.LigneCommandeDAO;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import static java.lang.Math.round;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,6 @@ import traitements.GestionCompte;
 import traitements.GestionEvenement;
 import traitements.GestionLivres;
 import traitements.GestionLogin;
-import traitements.GestionPays;
 
 @WebServlet(name = "ControllerMain", urlPatterns = {"/ControllerMain"})
 public class ControllerMain extends HttpServlet {
@@ -46,26 +47,29 @@ public class ControllerMain extends HttpServlet {
         return null;
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(10000);
         String saisie = null;
         request.setAttribute("path", "/LibrairieFusion-v1.0/img/");
         String pageJSP = "/WEB-INF/home.jsp";
         String section = request.getParameter("section");
 
+        Date maDate = new Date();
+        String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
+        session.setAttribute("nextYear", nextYear);
+        System.out.println();
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
-                Client monClient = maGestionClients.afficherClient(request.getParameter("login"));
+                String monID = maGestionClients.afficherClientByName(request.getParameter("login"));
+                System.out.println("Mon ID : " + monID);
+                Client monClient = maGestionClients.afficherClientByID(monID);
                 session.setAttribute("monClient", monClient);
-                session.setAttribute("getIDCompte", maGestionClients.afficheIDClient(request.getParameter("login")));
-            } catch (NamingException ex) {
-                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
             }
         }
 
@@ -79,13 +83,17 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
                 GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
                 ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
+
                 for (CoupDeCoeur mesCoupDeCoeur : mesCoupDeCoeurs) {
                     
 //                    System.out.println(mesCoupDeCoeur.getTitreClean());
                 }
                 session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            } catch (NamingException ex) {
+                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 //----------------------------------------------------------
@@ -100,9 +108,7 @@ public class ControllerMain extends HttpServlet {
         if ("panier".equals(section)) {
             pageJSP = "/WEB-INF/panier.jsp";
         }
-        if ("inscription".equals(section)) {
-            pageJSP = "/WEB-INF/inscription.jsp";
-        }
+
         if ("compte".equals(section)) {
             pageJSP = "/WEB-INF/compte.jsp";
         }
@@ -148,11 +154,17 @@ public class ControllerMain extends HttpServlet {
             }
         }
         GestionCompte bCompte = (GestionCompte) getServletContext().getAttribute("GestionCompte");
-        if ("Inscription".equals(section)) {
+        if ("inscription".equals(section)) {
+            pageJSP = "/WEB-INF/inscription.jsp";
             System.out.println("je suis dans la section inscription");
-            if (request.getParameter("ok") != null) {
+            if (request.getParameter("doIt2") != null) {
                 System.out.println("jai appuyer sur ok");
-                if (bCompte.check(request.getParameter("name"), request.getParameter("prenom"), request.getParameter("password"), request.getParameter("email"))) {
+                if (bCompte.check(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("pseudo2"), request.getParameter("password2"), request.getParameter("email2"))) {
+//                    try {
+//                        bCompte.addCustomer(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("password2"),request.getParameter("email2"));
+//                    } catch (SQLException ex) {
+//                        Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                     System.out.println("tout les champs son remplis");
                     pageJSP = "/WEB-INF/home.jsp";
                     String nom = request.getParameter("name");
@@ -317,6 +329,12 @@ public class ControllerMain extends HttpServlet {
                 String hiddenIDcomtpe = request.getParameter("IDCompte");
                 System.out.println("monHiddenCompte = " + hiddenIDcomtpe);
                 session.setAttribute("IDCompte2", hiddenIDcomtpe);
+//                boolean rempli = false;
+//                System.out.println("rempli faux");
+//                if (request.getParameter("login") != null && request.getParameter("password") != null) {
+//                    rempli = true;
+//                    System.out.println("rempli ok");
+//                }
             }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
@@ -327,7 +345,7 @@ public class ControllerMain extends HttpServlet {
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
                     c = new Cookie("login", login);
-//                    c.setMaxAge(120);
+                    c.setMaxAge(10000);
                     c.setPath(File.separator);
                     response.addCookie(c);
                     Cookie c2 = new Cookie("try", "");
@@ -340,9 +358,9 @@ public class ControllerMain extends HttpServlet {
                     c = getCookie(request.getCookies(), "try");
                     if (c == null) {
                         c = new Cookie("try", "*");
-                        System.out.println("nouveau cookie essai" + c);
+                        System.out.println("nouveau cookie essai" + c.toString());
                     } else {
-                        System.out.println("cookie existant" + c);
+                        System.out.println("cookie existant" + c.toString());
                         c.setValue(c.getValue() + "*");
                     }
                     c.setMaxAge(9);
@@ -389,16 +407,14 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-
-        if (getServletContext().getAttribute("gestionPays") == null) {
-            try {
-                getServletContext().setAttribute("gestionPays", new GestionPays());
-            } catch (NamingException ex) {
-                ex.printStackTrace();
-            }
+        if ("don".equals(section)) {
+            pageJSP = "/WEB-INF/don.jsp";
         }
-        GestionPays gestionPays = (GestionPays) getServletContext().getAttribute("gestionPays");
-
+        String lol = "<span id=\"cgu\"><a href=\"ControllerMain?section=hidden\">*</a></span>";
+        session.setAttribute("lol", lol);
+        if ("hidden".equals(section)) {
+            pageJSP = "/WEB-INF/hidden.jsp";
+        }
         pageJSP = response.encodeURL(pageJSP);
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 
@@ -416,11 +432,7 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -434,11 +446,7 @@ public class ControllerMain extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (NamingException ex) {
-            Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

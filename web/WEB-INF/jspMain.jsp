@@ -9,5 +9,6 @@
     <body>
         <jsp:include page="/ControllerMain?section=menu-main" flush="true"/>
         <hr/>
+        JSP MAIN/PIED
     </body>
 </html>

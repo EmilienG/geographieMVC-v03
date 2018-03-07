@@ -27,9 +27,11 @@ public class CoupDeCoeurDAO {
                 + " from CoupDeCoeur"
                 + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                 + " join livre on IDLivre = IDLivreMiseEnAvant"
+
                 + " WHERE IDStatutCoupDeCoeur!= 3"
                 + " ORDER BY IDCoupDeCoeur";
 //        System.out.println(req);
+
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         PreparedStatement pstm = null;
@@ -40,8 +42,10 @@ public class CoupDeCoeurDAO {
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                     + " join livre on IDLivre = IDLivreMiseEnAvant"
                     + " WHERE IDStatutCoupDeCoeur!= 3 and nomCoupDeCoeur like ? or descriptionCoupDeCoeur like ?"
+
                     + " or ISBNLivre like ? or titreLivre like ?"
                     + " ORDER BY IDCoupDeCoeur";
+
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);

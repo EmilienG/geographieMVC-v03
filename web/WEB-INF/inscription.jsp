@@ -16,11 +16,13 @@
         </nav>
         <div id="registration">
             <h2>Creer un compte</h2>
-            <form id="RegisterUserForm" action="ControllerMain?section=Inscription" method="post">
+            <form id="RegisterUserForm" action="ControllerMain?section=inscription" method="post">
                 <fieldset>
                     <label for="name">Nom</label> <input class="text" id="name" type="text" name="name2" value="" />
                     <br>
-                    <label for="tel">Prenom</label> <input class="text" id="tel" type="text" name="prenom2" value="" />
+                    <label for="prenom">Prenom</label> <input class="text" id="prenom" type="text" name="prenom2" value="" />
+                    <br>
+                    <label for="pseudo">pseudo</label> <input class="text" id="pseudo" type="text" name="pseudo2" value="" />
                     <br>
                     <label for="email">Email</label> <input class="text" id="email" type="email" name="email2" value="" />
                     <br>
@@ -29,12 +31,14 @@
                     <input id="acceptTerms" type="checkbox" name="acceptTerms" />
                     <label for="acceptTerms"> J'accepte <a>les Termes et Conditions<br></a> comme quoi je donne <a>tout à Librairie.Fusion</a> </label>
                     <br>
-                    <input type="submit" value="ok"/>
+                    <input type="submit" value="ok" name="doIt2"/>
                     <br>
                     <font color='red'>${msg}</font>  
                 </fieldset>
             </form>
         </div>
     </center>
+    <c:url value="ControllerMain?section=footer" var="url02" />
+    <c:import url="${url02}" />
 </body>
 </html>
