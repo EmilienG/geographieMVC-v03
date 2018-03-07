@@ -84,12 +84,12 @@ public class ControllerMain extends HttpServlet {
                 GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
                 ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
 
-                ArrayList<String> s = new ArrayList<>();
-
+                for (CoupDeCoeur mesCoupDeCoeur : mesCoupDeCoeurs) {
+                    
+//                    System.out.println(mesCoupDeCoeur.getTitreClean());
+                }
                 session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
-//                }
 
-                System.out.println(s);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } catch (NamingException ex) {

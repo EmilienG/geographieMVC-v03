@@ -1,4 +1,5 @@
 
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,17 +32,13 @@
             <tbody>
 
                 <c:forEach var="unCoupDeCoeur" items="${mesCoupDeCoeurs}">
-
                     <tr>
-
                         <td> ${unCoupDeCoeur.nomCoupDeCoeur} </td>  
-
                         <td> ${unCoupDeCoeur.descriptionCoupDeCoeur} </td>
-
-                        <td> ${unCoupDeCoeur.titreLivre} </td>
-
-                        <td> ${unCoupDeCoeur.ISBNLivre} </td> 
-
+                        <td>
+                            ${unCoupDeCoeur.titreClean}
+                        </td>
+                        <td> ${unCoupDeCoeur.ISBNLivre} </td>
                 <img src="${path}${unLivre.couvertureLivre}" alt="${unLivre.couvertureLivre}"  width="150"/>  
 
                 </tr>
@@ -74,8 +71,5 @@
                 <input type="submit" value="Ok" name="doItEv" />
             </a>  
     </form>
-    <c:url value="ControllerMain?section=footer" var="url02" />
-    <c:import url="${url02}" />
 </body>
-
 </html>
