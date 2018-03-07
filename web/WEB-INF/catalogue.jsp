@@ -11,6 +11,9 @@
         <h1><span>Catalogue</span></h1>
         <c:url value="ControllerMain?section=menu-main" var="url01" />
         <c:import url="${url01}" />
+
+       
+
         <div style="overflow-x:auto;">
             <table  id="tableau">
                 <thead>
@@ -19,6 +22,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                     <div id="conteneur">
+            <div class="element">Elément 1</div>
+            <div class="element">Elément 2</div>
+            <div class="element">Elément 3</div>
+        </div>
                     <c:forEach  var="uneListeDeListe" items="${listDeListDeList}">
                         <tr>
                             <c:forEach  var="uneListeDeLivre" items="${uneListeDeListe}">
