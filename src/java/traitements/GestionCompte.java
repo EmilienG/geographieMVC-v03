@@ -13,21 +13,19 @@ public class GestionCompte {
         cDAO = new CompteDAO();
     }
     
-      public boolean check(String nom, String prenom, String pseudo,  String mdp,String email) {
-        try {
-            Client c;
-            c = cDAO.ajoutClient( nom,  prenom,pseudo, mdp, email);            
-            if( nom==null ||  prenom==null ||pseudo==null|| mdp== null || email== null){
-                return false;
-            }else{
-            
-                    return true; 
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }    
+//      public boolean check(String nom, String prenom, String pseudo,  String mdp,String email) {
+//        try {
+//            Client c;
+//            c = cDAO.ajoutClient( nom,  prenom,pseudo, mdp, email);            
+//             if(nom!="" &&  prenom!="" && pseudo!="" && mdp!= "" && email!= ""){
+//            
+//                    return true; 
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        return false;
+//    }    
     public Client addCustomer(String nom, String prenom, String pseudo,  String mdp, String email) throws SQLException {
         Client cli = cDAO.ajoutClient(nom, prenom,pseudo, mdp, email);
         return cli;

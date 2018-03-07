@@ -153,24 +153,25 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        GestionCompte bCompte = (GestionCompte) getServletContext().getAttribute("GestionCompte");
+        
         if ("inscription".equals(section)) {
             pageJSP = "/WEB-INF/inscription.jsp";
-            System.out.println("je suis dans la section inscription");
             if (request.getParameter("doIt2") != null) {
-                System.out.println("jai appuyer sur ok");
-                if (bCompte.check(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("pseudo2"), request.getParameter("password2"), request.getParameter("email2"))) {
-//                    try {
-//                        bCompte.addCustomer(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("password2"),request.getParameter("email2"));
-//                    } catch (SQLException ex) {
-//                        Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-                    System.out.println("tout les champs son remplis");
-                    pageJSP = "/WEB-INF/home.jsp";
-                    String nom = request.getParameter("name");
-                    request.setAttribute("welcome", nom);
+                if (!request.getParameter("name2").equalsIgnoreCase("") && !request.getParameter("prenom2").equalsIgnoreCase("") && !request.getParameter("pseudo2").equalsIgnoreCase("") && !request.getParameter("password2").equalsIgnoreCase("") && !request.getParameter("email2").equalsIgnoreCase("")) {;
+                    try {
+                        GestionCompte bCompte = (GestionCompte) getServletContext().getAttribute("GestionCompte");
+                        bCompte.addCustomer(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("pseudo2"), request.getParameter("password2"), request.getParameter("email2"));
+
+                        System.out.println("tout les champs son remplis");
+                        pageJSP = "/WEB-INF/home.jsp";
+                        String nom = request.getParameter("name");
+                        request.setAttribute("welcome", nom);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+
+                    }
+
                 } else {
-                    System.out.println("champs manquant");
                     pageJSP = "/WEB-INF/inscription.jsp";
                     request.setAttribute("msg", "veuillez remplir tout les champs !!!");
                 }
@@ -314,8 +315,6 @@ public class ControllerMain extends HttpServlet {
         if ("footer".equals(section)) {
             pageJSP = "/WEB-INF/menus/footer.jsp";
         }
-
-        
 
         c = getCookie(request.getCookies(), "try");
         if (c != null) {
