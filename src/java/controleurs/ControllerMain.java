@@ -154,7 +154,7 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        
+
         if ("inscription".equals(section)) {
             pageJSP = "/WEB-INF/inscription.jsp";
             if (request.getParameter("doIt2") != null) {
@@ -291,25 +291,10 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        if ("deconnecter".equals(section)) {
-            pageJSP = "/WEB-INF/home.jsp";
-//            pageJSP = "/WEB-INF/menus/menu-main.jsp";
-//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
-            session.setAttribute("logOn", false);
-            Cookie cc = new Cookie("login", "");
-            cc.setMaxAge(0);
-            response.addCookie(cc);
 
-        }
         GestionLogin bLogin = (GestionLogin) getServletContext().getAttribute("GestionLogin");
-        Cookie c = getCookie(request.getCookies(), "login");
-        if (c != null) {
-            //Pour aller sur la page d'acceuil quand on se log
-//            pageJSP = "/WEB-INF/home.jsp";
-//            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
-            request.setAttribute("welcome", c.getValue());
-//            session.setAttribute("logOn", true);
-        }
+        Cookie c = null;
+
         if ("menu-main".equals(section)) {
             pageJSP = "/WEB-INF/menus/menu-main.jsp";
         }
@@ -340,7 +325,9 @@ public class ControllerMain extends HttpServlet {
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
                     System.out.println("Connexion Réussie");
+                    request.setAttribute("welcome", request.getParameter("login"));
                     session.setAttribute("logOn", true);
+                    System.out.println(330 + "/" + session.getAttribute("logOn"));
                     pageJSP = "/WEB-INF/home.jsp";
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
@@ -372,6 +359,33 @@ public class ControllerMain extends HttpServlet {
                     }
                 }
             }
+        }
+        c = getCookie(request.getCookies(), "login");
+        if (c != null) {
+            //Pour aller sur la page d'acceuil quand on se log
+//            pageJSP = "/WEB-INF/home.jsp";
+//            System.out.println(">>>>>>>>>>>>>>>>>Cookie:" + pageJSP);
+            request.setAttribute("welcome", c.getValue());
+            if (session.getAttribute("logOn") != null) {
+                if ((boolean) session.getAttribute("logOn")) {
+                    session.setAttribute("logOn", true);
+                }
+            } else
+                    session.setAttribute("logOn", true);
+            System.out.println(375 + "/" + session.getAttribute("logOn"));
+        }
+        if ("deconnecter".equals(section)) {
+            System.out.println(">>>>>>>>>>>deconnecter");
+            pageJSP = "/WEB-INF/home.jsp";
+//            pageJSP = "/WEB-INF/menus/menu-main.jsp";
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
+            session.setAttribute("logOn", false);
+            System.out.println(378 + "/" + session.getAttribute("logOn"));
+
+            Cookie cc = new Cookie("login", "");
+            cc.setMaxAge(0);
+            response.addCookie(cc);
+
         }
 
 //=====================COMMANDES================================================        
@@ -413,6 +427,7 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/hidden.jsp";
         }
         pageJSP = response.encodeURL(pageJSP);
+        System.out.println(pageJSP + "/" + session.getAttribute("logOn"));
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 
     }

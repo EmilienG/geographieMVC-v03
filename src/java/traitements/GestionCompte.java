@@ -26,6 +26,7 @@ public class GestionCompte {
 //        }
 //        return false;
 //    }    
+    
     public Client addCustomer(String nom, String prenom, String pseudo,  String mdp, String email) throws SQLException {
         Client cli = cDAO.ajoutClient(nom, prenom,pseudo, mdp, email);
         return cli;
