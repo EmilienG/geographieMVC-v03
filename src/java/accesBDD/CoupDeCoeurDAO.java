@@ -27,8 +27,9 @@ public class CoupDeCoeurDAO {
                 + " from CoupDeCoeur"
                 + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                 + " join livre on IDLivre = IDLivreMiseEnAvant"
-                + " WHERE IDStatutCoupDeCoeur!= 3";
-        System.out.println(req);
+                + " WHERE IDStatutCoupDeCoeur!= 3"
+                + " ORDER BY IDCoupDeCoeur";
+//        System.out.println(req);
         Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         PreparedStatement pstm = null;
@@ -39,7 +40,8 @@ public class CoupDeCoeurDAO {
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                     + " join livre on IDLivre = IDLivreMiseEnAvant"
                     + " WHERE IDStatutCoupDeCoeur!= 3 and nomCoupDeCoeur like ? or descriptionCoupDeCoeur like ?"
-                    + " or ISBNLivre like ? or titreLivre like ?";
+                    + " or ISBNLivre like ? or titreLivre like ?"
+                    + " ORDER BY IDCoupDeCoeur";
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
@@ -52,51 +54,38 @@ public class CoupDeCoeurDAO {
             }
         }
 
-        String nomCoupDeCoeur = null;
-        String descriptionCoupDeCoeur = null;
-        String titreLivre = null;
-        String ISBNLivre = null ;
-//          String RSdateStatutEvenement = null;
         try {
-//            ResultSet rs = stm.executeQuery(req);
             ResultSet rs = null;
             if (atif) {
                 rs = pstm.executeQuery();
             } else {
                 rs = stm.executeQuery(req);
             }
-            
             CoupDeCoeur lastCoupDeCoeur = null;
-            
             while (rs.next()) {
-                
                 int id = rs.getInt("IDCoupDeCoeur");
-                
-                if (lastCoupDeCoeur == null ||(id != lastCoupDeCoeur.getIDCoupDeCoeur()) ){
-                    
-                CoupDeCoeur monCoupDeCoeur = new CoupDeCoeur();
+//                System.out.println(">>>>  id1" + id + " id2" + lastCoupDeCoeur.getIDCoupDeCoeur());
+                if (lastCoupDeCoeur == null || (id != lastCoupDeCoeur.getIDCoupDeCoeur())) {
+//                    System.out.println("<<<<< id1" + id + " id2" + lastCoupDeCoeur.getIDCoupDeCoeur());
+                    int IDCoupDeCoeur = rs.getInt("IDCoupDeCoeur");
+                    String nomCoupDeCoeur = rs.getString("nomCoupDeCoeur");
+                    String descriptionCoupDeCoeur = rs.getString("descriptionCoupDeCoeur");
+                    String ISBNLivre = rs.getString("ISBNLivre");
+                    String titreLivre = rs.getString("titreLivre");
+                    lastCoupDeCoeur = new CoupDeCoeur(IDCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, titreLivre, ISBNLivre);
+                    if (titreLivre != null) {
+                        List<String> titreLivres = lastCoupDeCoeur.getTitresLivres();
 
-                nomCoupDeCoeur = rs.getString("nomCoupDeCoeur");
-                monCoupDeCoeur.setNomCoupDeCoeur(nomCoupDeCoeur);
+                        titreLivres.add(titreLivre);
 
-                descriptionCoupDeCoeur = rs.getString("descriptionCoupDeCoeur");
-                monCoupDeCoeur.setDescriptionCoupDeCoeur(descriptionCoupDeCoeur);
+                    }
+                    mesCoupDeCoeurs.add(lastCoupDeCoeur);
 
-                ISBNLivre = rs.getString("ISBNLivre");
-                monCoupDeCoeur.setISBNLivre(ISBNLivre);
-
-                titreLivre = rs.getString("titreLivre");
-                monCoupDeCoeur.setTitreLivre(titreLivre);
-
-                mesCoupDeCoeurs.add(monCoupDeCoeur);
-
-
-                }  if (nomCoupDeCoeur != null) {
-                    
-                    List<String> titreLivre = lastCoupDeCoeur.getCategories();
-                    titreLivre.add(nomCoupDeCoeur); 
+                } else {
+                    String titreLivre = rs.getString("titreLivre");
+                    List<String> titreLivres = lastCoupDeCoeur.getTitresLivres();
+                    titreLivres.add(titreLivre);
                 }
-                
             }
             rs.close();
         } finally {

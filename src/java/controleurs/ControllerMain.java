@@ -73,27 +73,23 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/home.jsp";
         }
 //-------------------CoupDeCoeur----------------------------
-        
-          if ("CoupDeCoeur".equals(section)) {
+
+        if ("CoupDeCoeur".equals(section)) {
             try {
                 pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
                 GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
                 ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
-
-                ArrayList<String> s = new ArrayList<>();
-                
-           session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
-//                }
-
-                System.out.println(s);
-            }
-
-           catch (SQLException ex) {
+                for (CoupDeCoeur mesCoupDeCoeur : mesCoupDeCoeurs) {
+                    
+//                    System.out.println(mesCoupDeCoeur.getTitreClean());
+                }
+                session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+            } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
 //----------------------------------------------------------
-        
+
         //-------------------------------------------
         //Si on clic sur ajouter panier :
         if (request.getParameter("IDLivre") != null) {
@@ -306,7 +302,7 @@ public class ControllerMain extends HttpServlet {
             cc.setMaxAge(0);
             session.setAttribute("logOn", false);
             response.addCookie(cc);
-            
+
         }
 
         c = getCookie(request.getCookies(), "try");

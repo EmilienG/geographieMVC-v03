@@ -1,10 +1,11 @@
-
 package obj;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+public class CoupDeCoeur implements Serializable {
 
-public class CoupDeCoeur {
     private int IDCoupDeCoeur;
     private int IDCompteCoupDeCoeur;
     private String nomCoupDeCoeur;
@@ -13,21 +14,18 @@ public class CoupDeCoeur {
     private String dateStatutCoupDeCoeur;
     private String titreLivre;
     private String ISBNLivre;
-    private List<String> categories;
+    private List<String> titresLivres;
+    private String titreClean;
 
-    public CoupDeCoeur(List<String> categories) {
-        this.categories = categories;
+    public CoupDeCoeur() {
+        titresLivres = new ArrayList<>();
     }
 
-  
-
-    public CoupDeCoeur(int IDCoupDeCoeur, int IDCompteCoupDeCoeur, String nomCoupDeCoeur, String descriptionCoupDeCoeur, int IDStatutCoupDeCoeur, String dateStatutCoupDeCoeur, String titreLivre, String ISBNLivre) {
+    public CoupDeCoeur(int IDCoupDeCoeur, String nomCoupDeCoeur, String descriptionCoupDeCoeur, String titreLivre, String ISBNLivre) {
+        this();
         this.IDCoupDeCoeur = IDCoupDeCoeur;
-        this.IDCompteCoupDeCoeur = IDCompteCoupDeCoeur;
         this.nomCoupDeCoeur = nomCoupDeCoeur;
         this.descriptionCoupDeCoeur = descriptionCoupDeCoeur;
-        this.IDStatutCoupDeCoeur = IDStatutCoupDeCoeur;
-        this.dateStatutCoupDeCoeur = dateStatutCoupDeCoeur;
         this.titreLivre = titreLivre;
         this.ISBNLivre = ISBNLivre;
     }
@@ -96,20 +94,33 @@ public class CoupDeCoeur {
         this.ISBNLivre = ISBNLivre;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public List<String> getTitresLivres() {
+        return titresLivres;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setTitresLivres(List<String> titresLivres) {
+        this.titresLivres = titresLivres;
     }
-    
+
+    public String getTitreClean() {
+        String s = null;
+        for (int i = 0; i < titresLivres.size(); i++) {
+            if (s == null) {
+                s = titresLivres.get(i);
+            } else {
+                s = s + ", " + titresLivres.get(i);
+            }
+        }
+        return s;
+    }
+
+    public void setTitreClean(String titreClean) {
+//     this.tameme;
+    }
 
     @Override
     public String toString() {
         return "CoupDeCoeur{" + "IDCoupDeCoeur=" + IDCoupDeCoeur + ", IDCompteCoupDeCoeur=" + IDCompteCoupDeCoeur + ", nomCoupDeCoeur=" + nomCoupDeCoeur + ", descriptionCoupDeCoeur=" + descriptionCoupDeCoeur + ", IDStatutCoupDeCoeur=" + IDStatutCoupDeCoeur + ", dateStatutCoupDeCoeur=" + dateStatutCoupDeCoeur + ", titreLivre=" + titreLivre + ", ISBNLivre=" + ISBNLivre + '}';
     }
-    
-    
-    
+
 }
