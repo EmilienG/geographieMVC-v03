@@ -32,7 +32,6 @@ import traitements.GestionCompte;
 import traitements.GestionEvenement;
 import traitements.GestionLivres;
 import traitements.GestionLogin;
-import traitements.GestionPays;
 
 @WebServlet(name = "ControllerMain", urlPatterns = {"/ControllerMain"})
 public class ControllerMain extends HttpServlet {
@@ -407,6 +406,9 @@ public class ControllerMain extends HttpServlet {
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
+        }
+        if ("don".equals(section)) {
+            pageJSP = "/WEB-INF/don.jsp";
         }
         String lol = "<span id=\"cgu\"><a href=\"ControllerMain?section=hidden\">*</a></span>";
         session.setAttribute("lol", lol);

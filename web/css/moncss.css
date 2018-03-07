@@ -21,60 +21,61 @@ th, td {
 }
 
 h1{
-    color: #3296b7;
+    color: #d5cbb3;
     text-align:center;
     background:linear-gradient (
-        #dbd5ff 0%,
-        #dbd5ff 45%,
-        #3296b7 46%,
-        #3296b7 54%,  
-        #dbd5ff 54%,
-        #dbd5ff 100%);
+        #8f6a11 0%,
+        #8f6a11 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8f6a11 54%,
+        #8f6a11 100%);
     background:-webkit-linear-gradient(
-        #dbd5ff 0%,
-        #dbd5ff 45%,
-        #3296b7 46%,
-        #3296b7 54%,  
-        #dbd5ff 54%,
-        #dbd5ff 100%);
+        #8f6a11 0%,
+        #8f6a11 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8f6a11 54%,
+        #8f6a11 100%);
     background:    -moz-linear-gradient(
-        #dbd5ff 0%,
-        #dbd5ff 45%,
-        #3296b7 46%,
-        #3296b7 54%,  
-        #dbd5ff 54%,
-        #dbd5ff 100%);
+        #8f6a11 0%,
+        #8f6a11 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8f6a11 54%,
+        #8f6a11 100%);
     background:     -ms-linear-gradient(
-        #dbd5ff 0%,
-        #dbd5ff 45%,
-        #3296b7 46%,
-        #3296b7 54%,  
-        #dbd5ff 54%,
-        #dbd5ff 100%);
+        #8f6a11 0%,
+        #8f6a11 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8f6a11 54%,
+        #8f6a11 100%);
     background:      -o-linear-gradient(
-        #dbd5ff 0%,
-        #dbd5ff 45%,
-        #3296b7 46%,
-        #3296b7 54%,  
-        #dbd5ff 54%,
-        #dbd5ff 100%);
+        #8f6a11 0%,
+        #8f6a11 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8f6a11 54%,
+        #8f6a11 100%);
     padding: 1%;
     margin: 1%;
     width: 90%;
 }
 h1 span{
-    background:#dbd5ff;
+    background:#8f6a11;
     padding:0%;
 
 }
 tr:nth-child(even){
     background-color: #f2f2f2;
+    color: #bab059
 }
 
 body {
     font-family:'Abel', arial, serif; 
     font-size:medium;
-    background: #acef;
+    background: #c6ac85;
     margin: 0;
     padding: 0;
     color: #656565;
@@ -187,11 +188,11 @@ body {
     border-bottom: 1px solid #fff;
     color: #669;
     border-top: 1px solid #fff;
-    background: #e8edff url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
+    background: #ecdfd0 url('/LibrairieFusion-v1.0/img/gradback.png') repeat-x;
     text-align: center;
 }
 #tableau tfoot tr td {
-    background: #e8edff;
+    background: #ecdfd0;
     font-size: 16px;
     color: #99c;
     text-align:center;
