@@ -62,13 +62,13 @@
             Merci de votre visite à bientot
         </center>
     </footer>
-    <form action="ControllerMain?section=RechercheEvenement" method="post">
+    <form action="ControllerMain?section=RechercheCoupDeCoeur" method="post">
         <input type="hidden" name="section" value="RechercheCoupDeCoeur" />
         <div align="right"><input type="text" name="rechercheCoupDeCoeur" value=""
                                   placeholder="Trouvez un CoupDeCoeur" 
                                   required="required" size="20"/>
             <a href="${url07}">
-                <input type="submit" value="Ok" name="doItEv" />
+                <input type="submit" value="Ok" name="doItCDC" />
             </a>  
     </form>
 </body>
