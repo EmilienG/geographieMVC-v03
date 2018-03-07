@@ -20,8 +20,8 @@ public class GestionCoupDeCoeur implements Serializable{
    }
     
    public ArrayList<CoupDeCoeur>findCoupDeCoeur(boolean atif, String saisie) throws SQLException {
-       ArrayList<CoupDeCoeur>CoupDeCoeur = EDAO.selectAllCoupDeCoeur(atif, saisie);
-       return CoupDeCoeur;
+       ArrayList<CoupDeCoeur>ListCoupDeCoeur = EDAO.selectAllCoupDeCoeur(atif, saisie);
+       return ListCoupDeCoeur;
        
    }
   
