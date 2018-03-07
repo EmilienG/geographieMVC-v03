@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import obj.Livres;
 
@@ -20,22 +21,22 @@ public class LivresDAO implements Serializable {
 
     public ArrayList<Livres> selectLivrePagin(boolean atif, String saisie, int debut, int pas) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
-            Connection cnt = mc.getConnection();
+        Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         PreparedStatement pstm = null;
         String req = "SELECT * FROM ( "
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas ;
-        String req2= null;
+                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
+        String req2 = null;
 
-            if (atif) {
-                req2 = "SELECT * FROM ( "
-                + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas +" and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
+        if (atif) {
+            req2 = "SELECT * FROM ( "
+                    + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                    + " ) a WHERE a.row > " + debut + " and a.row <= " + pas + " and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
-                    + " nomGenreAuteur like ?" ;
-        System.out.println(req2);
-        pstm = cnt.prepareStatement(req2);
+                    + " nomGenreAuteur like ?";
+            System.out.println(req2);
+            pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
@@ -46,8 +47,8 @@ public class LivresDAO implements Serializable {
                 pstm.setString(6, "%" + saisie + "%");
                 pstm.setString(7, "%" + saisie + "%");
             }
-            }
-             try {
+        }
+        try {
             ResultSet rs = null;
             if (atif) {
                 rs = pstm.executeQuery();
@@ -70,10 +71,11 @@ public class LivresDAO implements Serializable {
                 mesLivres.add(monLivre);
             }
             rs.close();
-        }finally {
+        } finally {
             if (cnt != null) {
                 cnt.close();
-            }}
+            }
+        }
         return mesLivres;
     }
 
@@ -150,4 +152,42 @@ public class LivresDAO implements Serializable {
         }
         return mesLivres;
     }
+
+//    public List<Livres> selectBookByOrder(String IDCommande) throws SQLException {
+//        String req = "SELECT IDLivre, ISBNLivre, titreLivre "
+//                + " from Livre "
+//                + " Join LigneCommande "
+//                + " ON IDLivreLigneCommande =IDLivre "
+//                + " WHERE IDCommandeLigneCommande = ? and IDStatutLigneCommande != 3";
+//        System.out.println(req);
+//        Connection cnt = mc.getConnection();
+//        PreparedStatement pstm = cnt.prepareStatement(req);
+//        pstm.setString(1, IDCommande);
+//
+//        List<Livres> lv = new ArrayList<>();
+//
+//        try {
+//            ResultSet rs = pstm.executeQuery();
+//
+//            while (rs.next()) {
+//                Livres lvs = new Livres();
+//                String numLivre = rs.getString("IDLivre");
+//                lvs.setIDLivre(numLivre);
+//                String ISBNLivre = rs.getString("ISBNLivre");
+//                lvs.setISBNlivre(ISBNLivre);
+//                String titre = rs.getString("titreLivre");
+//                lvs.setTitreLivre(titre);
+//
+//                lv.add(lvs);
+//
+//            }
+//            rs.close();
+//        } finally {
+//            if (cnt != null) {
+//                cnt.close();
+//            }
+//        }
+//        return lv;
+//
+//    }
 }

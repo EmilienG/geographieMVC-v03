@@ -31,6 +31,7 @@ import traitements.GestionCommandes;
 import traitements.GestionCoupDeCoeur;
 import traitements.GestionCompte;
 import traitements.GestionEvenement;
+import traitements.GestionLigneCommandes;
 import traitements.GestionLivres;
 import traitements.GestionLogin;
 
@@ -74,8 +75,10 @@ public class ControllerMain extends HttpServlet {
 
                 String monID = maGestionClients.afficherClientByName(loginByField);
                 System.out.println("Mon ID : " + monID);
-                Client monClient = maGestionClients.afficherClientByID(monID);
-                session.setAttribute("monClient", monClient);
+//                Client monClient = maGestionClients.afficherClientByID(monID);
+//                session.setAttribute("monClient", monClient);
+                session.setAttribute("monClient", monID);
+
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -299,6 +302,24 @@ public class ControllerMain extends HttpServlet {
 //            }
         }
 
+//
+//        if ("orderLine".equals(section)) {
+//            System.out.println("hello");
+//            try {
+//                pageJSP = "/WEB-INF/orderLine.jsp";
+//                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+//                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
+//                for (LigneCommande ldc : lcom) {
+//                    System.out.println(ldc.getIDLigneCommande());
+//                }
+//                request.setAttribute("gestionLC", lcom);
+//
+//            } catch (NamingException | SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+
+
         if ("orderLine".equals(section)) {
 //            System.out.println("hello");
             try {
@@ -314,6 +335,7 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
+
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
 //        //Par defaut pas logué
@@ -419,32 +441,54 @@ public class ControllerMain extends HttpServlet {
 
 //=====================COMMANDES================================================        
         if ("order".equals(section)) {
-//            System.out.println("hello");
+            System.out.println("hello section order");
 
             try {
-                if (session.getAttribute("logOn") != null) {
-                    Client cl = new Client();
-                    pageJSP = "/WEB-INF/order.jsp";
-                    GestionCommandes gestionC = new GestionCommandes();
-                    List<Commande> com = gestionC.findOrder(cl.getId());
-//                List<Commande> com = gestionC.findOrder(cl);
-                    request.setAttribute("gestionC", com);
-                }
+                pageJSP = "/WEB-INF/order.jsp";
+                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
+                GestionCommandes gestionC = new GestionCommandes();
+                List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
+                request.getParameter("audrey");
+                System.out.println("je suis audrey" + request.getParameter("audrey"));
+                System.out.println("commande " + com);
+                request.setAttribute("gestionC", com);
+                System.out.println("hello if get id");
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
+            
+//            c = getCookie(request.getCookies(), "order");
+//            if(){
+//                session.getId();
+//            }
+//            response.addCookie(c);
         }
 
         if ("orderLine".equals(section)) {
-            System.out.println("hello");
+            System.out.println("hello order line");
             try {
+                System.out.println("hello get id orderline");
                 pageJSP = "/WEB-INF/orderLine.jsp";
-                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
-                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for (LigneCommande ldc : lcom) {
-                    System.out.println(ldc.getIDLigneCommande());
+                System.out.println("je suis audrey dans ma ligne de commande" + request.getParameter("audrey"));
+//                GestionLivres gestionLv = new GestionLivres();
+//                List<Livres> lv = gestionLv.findBookByOrder(session.getAttribute("monClient").toString());
+//                request.setAttribute("gestionLv", lv);
+                GestionLigneCommandes gestionLC = new GestionLigneCommandes();
+//                List<LigneCommande> lcom = gestionLC.findOrderLineByOrder(session.getAttribute("monClient").toString());
+//                List<Livres> lvs = gestionLC.findBookByOrder(session.getAttribute("monClient").toString());
+                List<LigneCommande> lcom = gestionLC.findOrderLineByOrder(request.getParameter("audrey"));
+                List<Livres> lvs = gestionLC.findBookByOrder(request.getParameter("audrey"));
+                for (Livres lv : lvs) {
+                    System.out.println("id orderline " + lv.getIDLivre());
+
                 }
-                request.setAttribute("gestionLC", lcom);
+//                System.out.println(lvs);
+                session.setAttribute("gestionLC", lcom);
+                session.setAttribute("gestionLV", lvs);
+//                boolean monBool = false;
+//                if () {
+//                    boolean monBool = false;
+//                }
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
@@ -464,15 +508,6 @@ public class ControllerMain extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, UnsupportedEncodingException {
@@ -483,14 +518,6 @@ public class ControllerMain extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -503,11 +530,6 @@ public class ControllerMain extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
