@@ -16,7 +16,10 @@
         <c:if test="${logOn}">
             Welcome ${welcome}!<br>
         </c:if>
-        Bienvenue dans notre super librairie en ligne,<br>dépensez autant que vous voulez !
+        Bienvenue dans notre super librairie en ligne,
+      <br>dépensez autant que vous voulez !<br>${lol}
+      <br>
+        <img src="/LibrairieFusion-v1.0/img/lib.png"/>
         <c:if test="${logOn}">
             <br>
             Vous êtes connecté

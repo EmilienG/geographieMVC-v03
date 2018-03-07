@@ -294,3 +294,12 @@ h3{
     text-align: center;
     alignment-adjust: middle;
 }
+
+#cgu{
+  font-size: xx-small;
+  color: buttonface;
+}
+#cgu a{
+  font-size: xx-small;
+  text-decoration: none;
+}
