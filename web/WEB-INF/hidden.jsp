@@ -27,6 +27,9 @@
             Merci. Au revoir.
             <br>
             Bisou ♥
+            <br>
+            <br>
+           <a href="ControllerMain?section=don">Quitter ce site !!!</a>
         </div>
         <br>
         <img src="/LibrairieFusion-v1.0/img/lib.png"/>

@@ -14,7 +14,7 @@ public class CompteDAO {
         mc = new MaConnexion();
     }
 
-    public Client ajoutClient(String nom, String prenom,String pseudo, String mdp, String email) throws SQLException {
+    public Client ajoutClient(String nom, String prenom, String pseudo, String mdp, String email) throws SQLException {
         String req = "insert into Compte(IDPermissionCompte, nomCompte,prenomCompte,pseudoCompte,"
                 + "MdPCompte,emailCompte,telephoneCompte,dateCreationCompte,"
                 + "IDStatutCompte)Values(3,?,?,?,?,?,'',GETDATE(),3)";
@@ -32,5 +32,27 @@ public class CompteDAO {
             pstm.executeUpdate();
         }
         return c;
+    }
+
+    //Mettre PREPARE STATEMENT !!!!!
+    public void modifClient(String IDcompte, String nom, String prenom, String pseudo, String email, String telephone, String password) throws SQLException {
+        String req = "UPDATE compte"
+                + " SET nomCompte = '" + nom + "'"
+                + " SET prenomCompte = '" + prenom + "'"
+                + " SET emailCompte = '" + email + "'"
+                + " SET telephoneCompte = '" + telephone + "'"
+                + " SET passwordCompte = '" + password + "'"
+                + " WHERE IDCompte = '" + IDcompte + "'";
+        System.out.println(req);
+        try (Connection cnt = mc.getConnection();
+                PreparedStatement stm = cnt.prepareStatement(req);) {
+//            stm.setString(1, nom);
+//            stm.setString(1, prenom);
+//            stm.setString(1, email);
+//            stm.setString(1, telephone);
+//            stm.setString(1, password);
+//            stm.executeQuery(req);
+            stm.executeUpdate(req);
+        }
     }
 }
