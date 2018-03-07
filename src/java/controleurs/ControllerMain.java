@@ -227,18 +227,23 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
-
-//                ArrayList<Evenement> s = new ArrayList<>();
-//                for (Evenement mesEvenement : mesEvenements) {
-//                    s.add(mesEvenement.getISBNLivre(),
-//                          mesEvenement.getNomEvenement(),
-//                          mesEvenement.getDateDebutEvenement(),
-//                          mesEvenement.getDateFinEvenement(),
-//                          mesEvenement.getDescriptionEvenement(),
-//                          mesEvenement.getTypeEvenement(),
-//                          mesEvenement.getTitreLivre(),
-//                          mesEvenement.getCommentaireEvenement());
                 request.setAttribute("mesEvenements", mesEvenements);
+
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if ("RechercheCoupDeCoeur".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
+                GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
+                ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(true, request.getParameter("rechercheCoupDeCoeur"));
+                session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+//                GestionEvenement maGestionEvenement = new GestionEvenement();
+//                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
+//                request.setAttribute("mesEvenements", mesEvenements);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();
