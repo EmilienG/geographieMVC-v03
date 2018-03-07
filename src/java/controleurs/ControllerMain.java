@@ -62,11 +62,18 @@ public class ControllerMain extends HttpServlet {
         Date maDate = new Date();
         String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
         session.setAttribute("nextYear", nextYear);
-        System.out.println();
+
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
-                String monID = maGestionClients.afficherClientByName(request.getParameter("login"));
+                String loginByField = request.getParameter("login");
+
+                Cookie cookLog = new Cookie("log", loginByField);
+                cookLog.setMaxAge(10000);
+                cookLog.setPath(File.separator);
+                response.addCookie(cookLog);
+
+                String monID = maGestionClients.afficherClientByName(loginByField);
                 System.out.println("Mon ID : " + monID);
 //                Client monClient = maGestionClients.afficherClientByID(monID);
 //                session.setAttribute("monClient", monClient);
@@ -74,6 +81,11 @@ public class ControllerMain extends HttpServlet {
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
+            }
+        } else if (request.getParameter("log") == null) {
+            if (getCookie(request.getCookies(), "log") != null) {
+                Cookie monCookLog = getCookie(request.getCookies(), "log");
+                System.out.println("Tazeaz : " + monCookLog);
             }
         }
 
@@ -115,6 +127,7 @@ public class ControllerMain extends HttpServlet {
 
         if ("compte".equals(section)) {
             pageJSP = "/WEB-INF/compte.jsp";
+
             if (request.getParameter("modifierCompte") != null) {
                 Client monCompte = new Client();
                 monCompte.setNom(request.getParameter("name"));
@@ -132,7 +145,6 @@ public class ControllerMain extends HttpServlet {
 //                } catch (SQLException ex) {
 //                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-
             }
         }
         if ("catalogue".equals(section)) {
@@ -218,18 +230,23 @@ public class ControllerMain extends HttpServlet {
                 pageJSP = "/WEB-INF/Evenement.jsp";
                 GestionEvenement maGestionEvenement = new GestionEvenement();
                 ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
-
-//                ArrayList<Evenement> s = new ArrayList<>();
-//                for (Evenement mesEvenement : mesEvenements) {
-//                    s.add(mesEvenement.getISBNLivre(),
-//                          mesEvenement.getNomEvenement(),
-//                          mesEvenement.getDateDebutEvenement(),
-//                          mesEvenement.getDateFinEvenement(),
-//                          mesEvenement.getDescriptionEvenement(),
-//                          mesEvenement.getTypeEvenement(),
-//                          mesEvenement.getTitreLivre(),
-//                          mesEvenement.getCommentaireEvenement());
                 request.setAttribute("mesEvenements", mesEvenements);
+
+            } catch (NamingException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if ("RechercheCoupDeCoeur".equals(section)) {
+            try {
+                pageJSP = "/WEB-INF/CoupDeCoeur.jsp";
+                GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
+                ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(true, request.getParameter("rechercheCoupDeCoeur"));
+                session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
+//                GestionEvenement maGestionEvenement = new GestionEvenement();
+//                ArrayList<Evenement> mesEvenements = maGestionEvenement.findEvenement(true, request.getParameter("rechercheEvenement"));
+//                request.setAttribute("mesEvenements", mesEvenements);
 
             } catch (NamingException ex) {
                 ex.printStackTrace();
@@ -284,6 +301,7 @@ public class ControllerMain extends HttpServlet {
 //                ex.printStackTrace();
 //            }
         }
+
 //
 //        if ("orderLine".equals(section)) {
 //            System.out.println("hello");
@@ -300,6 +318,24 @@ public class ControllerMain extends HttpServlet {
 //                ex.printStackTrace();
 //            }
 //        }
+
+
+        if ("orderLine".equals(section)) {
+//            System.out.println("hello");
+            try {
+                pageJSP = "/WEB-INF/orderLine.jsp";
+                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
+                for (LigneCommande ldc : lcom) {
+                    System.out.println(ldc.getIDLigneCommande());
+                }
+                request.setAttribute("gestionLC", lcom);
+
+            } catch (NamingException | SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
 //        //Par defaut pas logué
@@ -334,22 +370,15 @@ public class ControllerMain extends HttpServlet {
         if ("login".equals(section)) {
             if (request.getParameter("IDCompte") != null) {
                 String hiddenIDcomtpe = request.getParameter("IDCompte");
-                System.out.println("monHiddenCompte = " + hiddenIDcomtpe);
                 session.setAttribute("IDCompte2", hiddenIDcomtpe);
-//                boolean rempli = false;
-//                System.out.println("rempli faux");
-//                if (request.getParameter("login") != null && request.getParameter("password") != null) {
-//                    rempli = true;
-//                    System.out.println("rempli ok");
-//                }
             }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
-                    System.out.println("Connexion Réussie");
+//                    System.out.println("Connexion Réussie");
                     request.setAttribute("welcome", request.getParameter("login"));
                     session.setAttribute("logOn", true);
-                    System.out.println(330 + "/" + session.getAttribute("logOn"));
+//                    System.out.println(330 + "/" + session.getAttribute("logOn"));
                     pageJSP = "/WEB-INF/home.jsp";
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
@@ -392,22 +421,22 @@ public class ControllerMain extends HttpServlet {
                 if ((boolean) session.getAttribute("logOn")) {
                     session.setAttribute("logOn", true);
                 }
-            } else
-                    session.setAttribute("logOn", true);
-            System.out.println(375 + "/" + session.getAttribute("logOn"));
+            } else {
+                session.setAttribute("logOn", true);
+            }
+//            System.out.println(375 + "/" + session.getAttribute("logOn"));
         }
         if ("deconnecter".equals(section)) {
-            System.out.println(">>>>>>>>>>>deconnecter");
+//            System.out.println(">>>>>>>>>>>deconnecter");
             pageJSP = "/WEB-INF/home.jsp";
 //            pageJSP = "/WEB-INF/menus/menu-main.jsp";
 //            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
             session.setAttribute("logOn", false);
-            System.out.println(378 + "/" + session.getAttribute("logOn"));
+//            System.out.println(378 + "/" + session.getAttribute("logOn"));
 
             Cookie cc = new Cookie("login", "");
             cc.setMaxAge(0);
             response.addCookie(cc);
-
         }
 
 //=====================COMMANDES================================================        
