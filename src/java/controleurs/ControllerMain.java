@@ -61,16 +61,28 @@ public class ControllerMain extends HttpServlet {
         Date maDate = new Date();
         String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
         session.setAttribute("nextYear", nextYear);
-        System.out.println();
+
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
-                String monID = maGestionClients.afficherClientByName(request.getParameter("login"));
+                String loginByField = request.getParameter("login");
+
+                Cookie cookLog = new Cookie("log", loginByField);
+                cookLog.setMaxAge(10000);
+                cookLog.setPath(File.separator);
+                response.addCookie(cookLog);
+
+                String monID = maGestionClients.afficherClientByName(loginByField);
                 System.out.println("Mon ID : " + monID);
                 Client monClient = maGestionClients.afficherClientByID(monID);
                 session.setAttribute("monClient", monClient);
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
+            }
+        } else if (request.getParameter("log") == null) {
+            if (getCookie(request.getCookies(), "log") != null) {
+                Cookie monCookLog = getCookie(request.getCookies(), "log");
+                System.out.println("Tazeaz : " + monCookLog);
             }
         }
 
@@ -112,6 +124,7 @@ public class ControllerMain extends HttpServlet {
 
         if ("compte".equals(section)) {
             pageJSP = "/WEB-INF/compte.jsp";
+
             if (request.getParameter("modifierCompte") != null) {
                 Client monCompte = new Client();
                 monCompte.setNom(request.getParameter("name"));
@@ -129,7 +142,6 @@ public class ControllerMain extends HttpServlet {
 //                } catch (SQLException ex) {
 //                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-
             }
         }
         if ("catalogue".equals(section)) {
@@ -388,7 +400,7 @@ public class ControllerMain extends HttpServlet {
 //            System.out.println(375 + "/" + session.getAttribute("logOn"));
         }
         if ("deconnecter".equals(section)) {
-            System.out.println(">>>>>>>>>>>deconnecter");
+//            System.out.println(">>>>>>>>>>>deconnecter");
             pageJSP = "/WEB-INF/home.jsp";
 //            pageJSP = "/WEB-INF/menus/menu-main.jsp";
 //            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
