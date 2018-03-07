@@ -283,7 +283,7 @@ public class ControllerMain extends HttpServlet {
         }
 
         if ("orderLine".equals(section)) {
-            System.out.println("hello");
+//            System.out.println("hello");
             try {
                 pageJSP = "/WEB-INF/orderLine.jsp";
                 LigneCommandeDAO gestionLC = new LigneCommandeDAO();
@@ -331,22 +331,15 @@ public class ControllerMain extends HttpServlet {
         if ("login".equals(section)) {
             if (request.getParameter("IDCompte") != null) {
                 String hiddenIDcomtpe = request.getParameter("IDCompte");
-                System.out.println("monHiddenCompte = " + hiddenIDcomtpe);
                 session.setAttribute("IDCompte2", hiddenIDcomtpe);
-//                boolean rempli = false;
-//                System.out.println("rempli faux");
-//                if (request.getParameter("login") != null && request.getParameter("password") != null) {
-//                    rempli = true;
-//                    System.out.println("rempli ok");
-//                }
             }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
                 if (bLogin.check(request.getParameter("login"), request.getParameter("password"))) {
-                    System.out.println("Connexion Réussie");
+//                    System.out.println("Connexion Réussie");
                     request.setAttribute("welcome", request.getParameter("login"));
                     session.setAttribute("logOn", true);
-                    System.out.println(330 + "/" + session.getAttribute("logOn"));
+//                    System.out.println(330 + "/" + session.getAttribute("logOn"));
                     pageJSP = "/WEB-INF/home.jsp";
                     String login = request.getParameter("login");
                     request.setAttribute("name", login);
@@ -389,9 +382,10 @@ public class ControllerMain extends HttpServlet {
                 if ((boolean) session.getAttribute("logOn")) {
                     session.setAttribute("logOn", true);
                 }
-            } else
-                    session.setAttribute("logOn", true);
-            System.out.println(375 + "/" + session.getAttribute("logOn"));
+            } else {
+                session.setAttribute("logOn", true);
+            }
+//            System.out.println(375 + "/" + session.getAttribute("logOn"));
         }
         if ("deconnecter".equals(section)) {
             System.out.println(">>>>>>>>>>>deconnecter");
@@ -399,12 +393,11 @@ public class ControllerMain extends HttpServlet {
 //            pageJSP = "/WEB-INF/menus/menu-main.jsp";
 //            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
             session.setAttribute("logOn", false);
-            System.out.println(378 + "/" + session.getAttribute("logOn"));
+//            System.out.println(378 + "/" + session.getAttribute("logOn"));
 
             Cookie cc = new Cookie("login", "");
             cc.setMaxAge(0);
             response.addCookie(cc);
-
         }
 
 //=====================COMMANDES================================================        

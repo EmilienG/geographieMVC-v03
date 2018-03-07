@@ -47,10 +47,10 @@ public class CompteDAO {
         try (Connection cnt = mc.getConnection();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
 //            stm.setString(1, nom);
-//            stm.setString(1, prenom);
-//            stm.setString(1, email);
-//            stm.setString(1, telephone);
-//            stm.setString(1, password);
+//            stm.setString(2, prenom);
+//            stm.setString(3, email);
+//            stm.setString(4, telephone);
+//            stm.setString(5, password);
 //            stm.executeQuery(req);
             stm.executeUpdate(req);
         }
