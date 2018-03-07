@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.naming.NamingException;
 import obj.LigneCommande;
+import obj.Livres;
 
 public class GestionLigneCommandes implements Serializable {
 
@@ -15,11 +16,15 @@ public class GestionLigneCommandes implements Serializable {
         lcDAO = new LigneCommandeDAO();
     }
 
-    public List<LigneCommande> findOrderLine() throws SQLException {
-        List<LigneCommande> LigneCommandes = lcDAO.selectAllOrderLineByOrder();
+    public List<LigneCommande> findOrderLineByOrder(String IDCommande) throws SQLException {
+        List<LigneCommande> LigneCommandes = lcDAO.viewOrderLineByOrder(IDCommande);
         return LigneCommandes;
     }
 
+    public List<Livres> findBookByOrder(String IDCommande) throws SQLException{
+        List<Livres> livres = lcDAO.selectBookByOrder(IDCommande);
+        return livres;
+    }
 
 
 }
