@@ -3,6 +3,7 @@ package accesBDD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.naming.NamingException;
 import obj.Client;
 
@@ -37,15 +38,15 @@ public class CompteDAO {
     //Mettre PREPARE STATEMENT !!!!!
     public void modifClient(String IDcompte, String nom, String prenom, String pseudo, String email, String telephone, String password) throws SQLException {
         String req = "UPDATE compte"
-                + " SET nomCompte = '" + nom + "'"
-                + " SET prenomCompte = '" + prenom + "'"
-                + " SET emailCompte = '" + email + "'"
-                + " SET telephoneCompte = '" + telephone + "'"
-                + " SET passwordCompte = '" + password + "'"
+                + " SET nomCompte = '" + nom + "',"
+                + "  prenomCompte = '" + prenom + "',"
+                + "  emailCompte = '" + email + "',"
+                + "  telephoneCompte = '" + telephone + "',"
+                + "  MDPCompte = '" + password + "'"
                 + " WHERE IDCompte = '" + IDcompte + "'";
         System.out.println(req);
         try (Connection cnt = mc.getConnection();
-                PreparedStatement stm = cnt.prepareStatement(req);) {
+                Statement stm = cnt.createStatement();) {
 //            stm.setString(1, nom);
 //            stm.setString(2, prenom);
 //            stm.setString(3, email);

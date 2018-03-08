@@ -50,7 +50,7 @@
                     </li>
                     <c:if test="${logOn}" >
                         <li>
-                            <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte ${welcome}</a>
+                            <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte [${welcome}]</a>
                         </li>
                         <li>
                             <c:url value="ControllerMain?section=deconnecter" var="url09" /><a href="${url09}">Log-Out</a>

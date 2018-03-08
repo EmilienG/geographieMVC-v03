@@ -74,9 +74,7 @@ public class ControllerMain extends HttpServlet {
                 String monID = maGestionClients.getIDCompteByName(loginByField);
                 Client monClient = maGestionClients.afficherClientByID(monID);
                 session.setAttribute("monClient", monClient);
-                System.out.println("--------- monClient " + monClient.getDateCreation() + " monID " + monID);
                 session.setAttribute("monID", monID);
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -128,21 +126,27 @@ public class ControllerMain extends HttpServlet {
 
             if (request.getParameter("modifierCompte") != null) {
                 Client monCompte = new Client();
-                monCompte.setNom(request.getParameter("name"));
-                monCompte.setPrenom(request.getParameter("prenom"));
-                monCompte.setPseudo(request.getParameter("pseudo"));
-                monCompte.setEmail(request.getParameter("email"));
-                monCompte.setTelephone(request.getParameter("tel"));
-                monCompte.setMDP(request.getParameter("password"));
+                String id = session.getAttribute("monID").toString();
+                String name = request.getParameter("name");
+                String prenom = request.getParameter("prenom");
+                String pseudo = request.getParameter("pseudo");
+                String email = request.getParameter("email");
+                String tel = request.getParameter("tel");
+                String password = request.getParameter("password");
+                monCompte.setNom(name);
+                monCompte.setPrenom(prenom);
+                monCompte.setPseudo(pseudo);
+                monCompte.setEmail(email);
+                monCompte.setTelephone(tel);
+                monCompte.setMDP(password);
                 session.setAttribute("monCompte", monCompte);
                 //Ici faire requete SQL pour update
-//                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
                 GestionCompte ges = new GestionCompte();
-//                try {
-//                    ges.modifCompte(session.getAttribute("monClient").toString(), request.getParameter("name"), request.getParameter("pseudo"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"), request.getParameter("password"));
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    ges.modifCompte(id, name, prenom, pseudo, email, tel, password);
+                } catch (SQLException ex) {
+                   ex.printStackTrace();
+                }
             }
         }
         if ("catalogue".equals(section)) {
