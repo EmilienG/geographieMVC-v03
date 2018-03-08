@@ -93,8 +93,6 @@ public class ControllerMain extends HttpServlet {
             } catch (NamingException | SQLException ex) {
 
                 ex.printStackTrace();
-            } catch (SQLException ex) {
-                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             System.out.println("login = null !!");
@@ -148,6 +146,7 @@ public class ControllerMain extends HttpServlet {
                 if (request.getParameter("IDLivre2") != null) {
                     String monIDLivre2 = request.getParameter("IDLivre2");
                     session.setAttribute("monIDLivre2", monIDLivre2);
+                    System.out.println(monIDLivre2);
                 }
                 GestionLivres ges = new GestionLivres();
                 try {
@@ -516,7 +515,9 @@ public class ControllerMain extends HttpServlet {
                     pageJSP = "/WEB-INF/order.jsp";
 //                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
                     GestionCommandes gestionC = new GestionCommandes();
-                    List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
+                    Client monClient2 = (Client) session.getAttribute("monClient");
+                    String monIDClient = monClient2.getId();
+                    List<Commande> com = gestionC.findOrder(monIDClient);
                     request.getParameter("audrey");
 //                System.out.println("je suis audrey" + request.getParameter("audrey"));
 //                System.out.println("commande " + com);
