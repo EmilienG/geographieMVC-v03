@@ -1,7 +1,5 @@
 package controleurs;
 
-import accesBDD.ClientDAO;
-import accesBDD.LigneCommandeDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -63,6 +61,20 @@ public class ControllerMain extends HttpServlet {
         String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
         session.setAttribute("nextYear", nextYear);
 
+        if ("details".equals(section)) {
+            pageJSP = "/WEB-INF/details.jsp";
+            if (request.getParameter("IDLivre") != null) {
+                String monIDLivre = request.getParameter("IDLivre");
+                session.setAttribute("monIDLivre", monIDLivre);
+            }
+                GestionLivres ges = new GestionLivres();
+            try {
+                Livres monLivre = ges.findLivreByID(session.getAttribute("monIDLivre").toString());
+                session.setAttribute("monLivre", monLivre);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (request.getParameter("login") != null) {
             try {
                 GestionClients maGestionClients = new GestionClients();
@@ -145,7 +157,7 @@ public class ControllerMain extends HttpServlet {
                 try {
                     ges.modifCompte(id, name, prenom, pseudo, email, tel, password);
                 } catch (SQLException ex) {
-                   ex.printStackTrace();
+                    ex.printStackTrace();
                 }
             }
         }
@@ -179,6 +191,7 @@ public class ControllerMain extends HttpServlet {
                 listDeListDeList.add(page2);
                 listDeListDeList.add(page3);
                 request.setAttribute("listDeListDeList", listDeListDeList);
+
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
