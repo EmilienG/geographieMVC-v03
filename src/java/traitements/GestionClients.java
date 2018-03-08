@@ -13,7 +13,7 @@ public class GestionClients {
         cDAO = new ClientDAO();
     }
 
-    public String afficherClientByName(String nom) throws SQLException {
+    public String getIDCompteByName(String nom) throws SQLException {
         String s = cDAO.selectIDClientByName(nom);
         return s;
     }

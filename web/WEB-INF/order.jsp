@@ -13,45 +13,49 @@
             <c:import url="${url01}" />
         </nav>
         <hr />
-        <h1><span>Mes Commandes</span></h1>
-        <table class='tabOrder'>
-            <h3>Vos Commandes</h3>
-            <tr>
+        <div class="menu-order">
+            <h1><span class="sous-menu-order">Mes Commandes</span></h1>
+            <table class='tabOrder'>
+              
+                <h3>Vos Commandes</h3>
+                <tr>
                 <thead>
-                    <th>N° Commande</th>
-                    <th>Date de votre commande</th>
-                    <th>Statut Commande</th>
-                    <th>Montant Commande (€)</th>
-                    <th>Voir détails de la commande</th>
+                <th>N° Commande</th>
+                <th>Date de votre commande</th>
+                <th>Statut Commande</th>
+                <th>Montant Commande (€)</th>
+                <th>Voir détails de la commande</th>
                 </thead>
                 <tbody>
-                    
+
                     <c:forEach items="${gestionC}" var="oneOrder" >
-                    <tr>
-                        <td> 
-                            ${oneOrder.getIDCommande()}
-                        </td>                   
-                        <td> 
-                            ${oneOrder.getDateCommande()}
-                        </td>                 
-                        <td> 
-                            ${oneOrder.getDescriptionStatut()}
-                        </td>                  
-                        <td> 
-                            ${oneOrder.getMontantCommande()}
-                        </td>
-                        
-                        <td><a href="ControllerMain?section=orderLine"><span class="button"><img src="/LibrairieFusion-v1.0/img/detailOrder.jpg"/></a></span></td>
-                    </tr>
+                        <tr>
+                            <td> 
+                                ${oneOrder.getIDCommande()}
+                                <input type="hidden" name="audrey" value="${oneOrder.IDCommande}">
+                            </td>                   
+                            <td> 
+                                ${oneOrder.getDateCommande()}
+                            </td>                 
+                            <td> 
+                                ${oneOrder.getDescriptionStatut()}
+                            </td>                  
+                            <td> 
+                                ${oneOrder.getMontantCommande()}
+                            </td>
+
+                            <td><a href="ControllerMain?section=orderLine&audrey=${oneOrder.IDCommande}"><span class="button"><img src="/LibrairieFusion-v1.0/img/detailOrder.jpg"/></a></span></td>
+                        </tr>
                     </c:forEach>
                 </tbody>
-            </tr>
-    
-    
-</table>
-<c:url value="ControllerMain?section=footer" var="url02" />
-<c:import url="${url02}" />
-</body>
+                </tr>
+
+
+            </table>
+        </div>
+        <c:url value="ControllerMain?section=footer" var="url02" />
+        <c:import url="${url02}" />
+    </body>
 </html>
 
 

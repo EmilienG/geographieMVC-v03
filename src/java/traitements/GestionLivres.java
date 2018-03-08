@@ -1,10 +1,12 @@
 package traitements;
 
+import accesBDD.LigneCommandeDAO;
 import accesBDD.LivresDAO;
 import accesBDD.RechercheDAO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import obj.Livres;
 
@@ -12,6 +14,7 @@ public class GestionLivres implements Serializable {
 
     private LivresDAO lDAO;
     private RechercheDAO rDAO;
+    private LigneCommandeDAO lcDAO;
 
     public GestionLivres() throws NamingException {
         lDAO = new LivresDAO();
@@ -29,8 +32,17 @@ public class GestionLivres implements Serializable {
     }
 
     public ArrayList<Livres> findLivresbysearch(String saisie) throws SQLException {
-//        System.out.println(">>>>>>" + (rDAO == null));
         ArrayList<Livres> livres = rDAO.recherche(saisie);
         return livres;
     }
+
+    public Livres findLivreByID(String IDLivre) throws SQLException {
+        Livres monLivre = lDAO.getUnLivreByID(IDLivre);
+        return monLivre;
+    }
+
+//    public List<Livres> findBookByOrder(String IDCommande) throws SQLException{
+//        List<Livres> livres = lDAO.selectBookByOrder(IDCommande);
+//        return livres;
+//    }
 }

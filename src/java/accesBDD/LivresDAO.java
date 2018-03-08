@@ -11,31 +11,31 @@ import javax.naming.NamingException;
 import obj.Livres;
 
 public class LivresDAO implements Serializable {
-
+    
     private MaConnexion mc;
-
+    
     public LivresDAO() throws NamingException {
         mc = new MaConnexion();
     }
-
+    
     public ArrayList<Livres> selectLivrePagin(boolean atif, String saisie, int debut, int pas) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
-            Connection cnt = mc.getConnection();
+        Connection cnt = mc.getConnection();
         Statement stm = cnt.createStatement();
         PreparedStatement pstm = null;
         String req = "SELECT * FROM ( "
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas ;
-        String req2= null;
-
-            if (atif) {
-                req2 = "SELECT * FROM ( "
-                + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
-                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas +" and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
+                + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
+        String req2 = null;
+        
+        if (atif) {
+            req2 = "SELECT * FROM ( "
+                    + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
+                    + " ) a WHERE a.row > " + debut + " and a.row <= " + pas + " and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
-                    + " nomGenreAuteur like ?" ;
-        System.out.println(req2);
-        pstm = cnt.prepareStatement(req2);
+                    + " nomGenreAuteur like ?";
+            System.out.println(req2);
+            pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
                 System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
@@ -46,8 +46,8 @@ public class LivresDAO implements Serializable {
                 pstm.setString(6, "%" + saisie + "%");
                 pstm.setString(7, "%" + saisie + "%");
             }
-            }
-             try {
+        }
+        try {
             ResultSet rs = null;
             if (atif) {
                 rs = pstm.executeQuery();
@@ -70,13 +70,14 @@ public class LivresDAO implements Serializable {
                 mesLivres.add(monLivre);
             }
             rs.close();
-        }finally {
+        } finally {
             if (cnt != null) {
                 cnt.close();
-            }}
+            }
+        }
         return mesLivres;
     }
-
+    
     public ArrayList<Livres> selectAllLivre(boolean atif, String saisie) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
         Connection cnt = mc.getConnection();
@@ -139,7 +140,7 @@ public class LivresDAO implements Serializable {
                 monLivre.setResumeLivre(RSResume);
                 RSMotCle = rs.getString("descriptionMotClef");
                 monLivre.setDescriptionMotClef(RSMotCle);
-
+                
                 mesLivres.add(monLivre);
             }
             rs.close();
@@ -149,5 +150,31 @@ public class LivresDAO implements Serializable {
             }
         }
         return mesLivres;
+    }
+
+    //Mettre PREPARE STATEMENT !!!!!
+    public Livres getUnLivreByID(String IDLivre) throws SQLException {
+        Livres monLivre = new Livres();
+        String req = "select * from vueEmilien WHERE IDLivre = " + IDLivre;
+//        System.out.println(req);
+        try (Connection cnt = mc.getConnection();
+                Statement stm = cnt.createStatement();
+                ResultSet rs = stm.executeQuery(req);) {
+            while (rs.next()) {
+               monLivre.setIDLivre(rs.getString("IDLivre"));
+                monLivre.setTitreLivre(rs.getString("titreLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setISBNlivre(rs.getString("ISBNLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setDateParutionLivre(rs.getString("dateParutionLivre"));
+                monLivre.setCouvertureLivre(rs.getString("couvertureLivre"));
+                monLivre.setPrixHTLivre(rs.getFloat("prixHTLivre"));
+                monLivre.setQuantiteStockLivre(rs.getInt("quantiteStockLivre"));
+                monLivre.setResumeLivre(rs.getString("resumeLivre"));
+                monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
+                
+            }
+        }
+        return monLivre;
     }
 }
