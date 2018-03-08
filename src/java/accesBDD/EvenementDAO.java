@@ -23,7 +23,7 @@ public class EvenementDAO {
     public ArrayList<Evenement> selectAllEvenement(boolean atif, String saisie) throws SQLException {
         ArrayList<Evenement> mesEvenements = new ArrayList<>();
 
-        String req = "select IDEvenement, nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
+        String req = "select IDLivre, IDEvenement, nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
                 + " from Evenement"
                 + " join presentation on IDEvenement = IDEvenementPresentation"
                 + " join livre on IDLivre = IDLivrePresentation"
@@ -35,7 +35,7 @@ public class EvenementDAO {
         PreparedStatement pstm = null;
         String req2 = null;
         if (atif) {
-            req2 = "select IDEvenement, nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
+            req2 = "select IDLivre, IDEvenement, nomEvenement, dateDebutEvenement, dateFinEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, dateStatutEvenement, ISBNLivre, titreLivre"
                     + " from Evenement"
                     + " join presentation on IDEvenement = IDEvenementPresentation"
                     + " join livre on IDLivre = IDLivrePresentation"
@@ -76,8 +76,9 @@ public class EvenementDAO {
                     String commentaireEvenement = rs.getString("commentaireEvenement");
                     String ISBNLivre = rs.getString("ISBNLivre");
                     String titreLivre = rs.getString("titreLivre");
+                    String IDLivre = rs.getString("IDLivre");
 
-                    lastEvenement = new Evenement(IDEvenement, nomEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, titreLivre, ISBNLivre);
+                    lastEvenement = new Evenement(IDEvenement, nomEvenement, typeEvenement, descriptionEvenement, commentaireEvenement, titreLivre, ISBNLivre, IDLivre);
 
                     if (titreLivre != null) {
                         List<String> titreLivres = lastEvenement.getTitresLivres();

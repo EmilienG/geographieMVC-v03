@@ -16,19 +16,31 @@ public class CoupDeCoeur implements Serializable {
     private String ISBNLivre;
     private List<String> titresLivres;
     private String titreClean;
+    private String IDLivre;
 
     public CoupDeCoeur() {
         titresLivres = new ArrayList<>();
     }
 
-    public CoupDeCoeur(int IDCoupDeCoeur, String nomCoupDeCoeur, String descriptionCoupDeCoeur, String titreLivre, String ISBNLivre) {
+    public CoupDeCoeur(int IDCoupDeCoeur, String nomCoupDeCoeur, String descriptionCoupDeCoeur, String titreLivre, String ISBNLivre,String IDLivre) {
         this();
         this.IDCoupDeCoeur = IDCoupDeCoeur;
         this.nomCoupDeCoeur = nomCoupDeCoeur;
         this.descriptionCoupDeCoeur = descriptionCoupDeCoeur;
         this.titreLivre = titreLivre;
         this.ISBNLivre = ISBNLivre;
+        this.IDLivre = IDLivre;
     }
+
+    public String getIDLivre() {
+        return IDLivre;
+    }
+
+    public void setIDLivre(String IDLivre) {
+        this.IDLivre = IDLivre;
+    }
+    
+    
 
     public int getIDCoupDeCoeur() {
         return IDCoupDeCoeur;
@@ -106,9 +118,9 @@ public class CoupDeCoeur implements Serializable {
         String s = null;
         for (int i = 0; i < titresLivres.size(); i++) {
             if (s == null) {
-                s = titresLivres.get(i);
+                s = "<a href=ControllerMain?section=details&IDLivre="+this.IDLivre+">"+titresLivres.get(i)+"</a>";
             } else {
-                s = s + ", " + titresLivres.get(i);
+                s = s + ", " + "<a href=ControllerMain?section=details&IDLivre="+this.IDLivre+">"+titresLivres.get(i)+"</a>";
             }
         }
         return s;

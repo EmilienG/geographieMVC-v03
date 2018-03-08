@@ -21,9 +21,6 @@
                     <li> 
                         <c:url value="ControllerMain?section=order" var="url05" /><a href="${url05}">Commandes</a>
                     </li>
-                    <li> 
-                        <c:url value="ControllerMain?section=CoupDeCoeur" var="url07" /><a href="${url07}">Coup De Coeur</a>
-                    </li>
                 </ul>
             </div>
         </td>
@@ -45,9 +42,15 @@
         <td>
             <div id="conteneur-menu2">
                 <ul> 
-                    <li>
-                        <c:url value="ControllerMain?section=panier" var="url06" /><a href="${url06}">Panier</a>
+                    <li> 
+                        <c:url value="ControllerMain?section=CoupDeCoeur" var="url07" /><a href="${url07}">Coup De Coeur</a>
                     </li>
+                    <c:if test="${!panierVide}">
+                        <li>
+                            <c:url value="ControllerMain?section=panier" var="url06" /><a href="${url06}">Panier</a>
+                        </li>
+                    </c:if>
+
                     <c:if test="${logOn}" >
                         <li>
                             <c:url value="ControllerMain?section=compte" var="url07" /><a href="${url07}">Compte [${welcome}]</a>

@@ -23,7 +23,7 @@ public class CoupDeCoeurDAO {
     public ArrayList<CoupDeCoeur> selectAllCoupDeCoeur(boolean atif, String saisie) throws SQLException {
         ArrayList<CoupDeCoeur> mesCoupDeCoeurs = new ArrayList<>();
 
-        String req = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
+        String req = "select IDLivre, IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                 + " from CoupDeCoeur"
                 + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                 + " join livre on IDLivre = IDLivreMiseEnAvant"
@@ -37,7 +37,7 @@ public class CoupDeCoeurDAO {
         PreparedStatement pstm = null;
         String req2 = null;
         if (atif) {
-            req2 = "select IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
+            req2 = "select IDLivre, IDCoupDecoeur, IDCompteCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, IDStatutCoupDeCoeur, dateStatutCoupDeCoeur, ISBNLivre, titreLivre"
                     + " from CoupDeCoeur"
                     + " join MiseEnAvant on IDCoupDeCoeur = IDCoupDeCoeurMiseEnAvant"
                     + " join livre on IDLivre = IDLivreMiseEnAvant"
@@ -76,8 +76,10 @@ public class CoupDeCoeurDAO {
                     String descriptionCoupDeCoeur = rs.getString("descriptionCoupDeCoeur");
                     String ISBNLivre = rs.getString("ISBNLivre");
                     String titreLivre = rs.getString("titreLivre");
+                    String IDLivre = rs.getString("IDLivre");
                     
-                    lastCoupDeCoeur = new CoupDeCoeur(IDCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, titreLivre, ISBNLivre);
+                    
+                    lastCoupDeCoeur = new CoupDeCoeur(IDCoupDeCoeur, nomCoupDeCoeur, descriptionCoupDeCoeur, titreLivre, ISBNLivre, IDLivre);
                     
                     if (titreLivre != null) {
                         List<String> titreLivres = lastCoupDeCoeur.getTitresLivres();
