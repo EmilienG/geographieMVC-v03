@@ -67,20 +67,15 @@ public class ControllerMain extends HttpServlet {
             try {
                 GestionClients maGestionClients = new GestionClients();
                 String loginByField = request.getParameter("login");
-
-                Cookie cookLog = new Cookie("log", loginByField);
-                cookLog.setMaxAge(10000);
-                cookLog.setPath(File.separator);
-                response.addCookie(cookLog);
-
-                String monID = maGestionClients.afficherClientByName(loginByField);
-//                System.out.println("Mon ID : " + monID);
-                
-                
-                
-//                Client monClient = maGestionClients.afficherClientByID(monID);
-//                session.setAttribute("monClient", monClient);
-                session.setAttribute("monClient", monID);
+//                Cookie cookLog = new Cookie("log", loginByField);
+//                cookLog.setMaxAge(10000);
+//                cookLog.setPath(File.separator);
+//                response.addCookie(cookLog);
+                String monID = maGestionClients.getIDCompteByName(loginByField);
+                Client monClient = maGestionClients.afficherClientByID(monID);
+                session.setAttribute("monClient", monClient);
+                System.out.println("--------- monClient " + monClient.getDateCreation() + " monID " + monID);
+                session.setAttribute("monID", monID);
 
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
@@ -257,9 +252,9 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
-        
+
         if ("Recherche".equals(section)) {
-            
+
             try {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
@@ -290,7 +285,7 @@ public class ControllerMain extends HttpServlet {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }       
+        }
 //=====================COMMANDES================================================        
 //        if ("order".equals(section)) {
 //            System.out.println("hello");
@@ -322,8 +317,6 @@ public class ControllerMain extends HttpServlet {
 //                ex.printStackTrace();
 //            }
 //        }
-
-
 //        if ("orderLine".equals(section)) {
 ////            System.out.println("hello");
 //            try {
@@ -339,8 +332,6 @@ public class ControllerMain extends HttpServlet {
 //                ex.printStackTrace();
 //            }
 //        }
-
-
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
 //        //Par defaut pas logué
 //        if (getCookie(request.getCookies(), "login") == null) {
@@ -449,23 +440,23 @@ public class ControllerMain extends HttpServlet {
         if ("order".equals(section)) {
 //            System.out.println("hello section order");
 //            boolean deco = false;
-            if(session.getAttribute("monClient")!= null){
-            try {
+            if (session.getAttribute("monClient") != null) {
+                try {
 //                deco = true;
-                pageJSP = "/WEB-INF/order.jsp";
+                    pageJSP = "/WEB-INF/order.jsp";
 //                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
-                GestionCommandes gestionC = new GestionCommandes();
-                List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
-                request.getParameter("audrey");
+                    GestionCommandes gestionC = new GestionCommandes();
+                    List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
+                    request.getParameter("audrey");
 //                System.out.println("je suis audrey" + request.getParameter("audrey"));
 //                System.out.println("commande " + com);
-                request.setAttribute("gestionC", com);
+                    request.setAttribute("gestionC", com);
 //                System.out.println("hello if get id");
-            } catch (NamingException | SQLException ex) {
-                ex.printStackTrace();
+                } catch (NamingException | SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
-            }
-            
+
 //            c = getCookie(request.getCookies(), "order");
 //            if(){
 //                session.getId();
