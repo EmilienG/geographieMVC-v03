@@ -32,14 +32,17 @@ public class GestionLivres implements Serializable {
     }
 
     public ArrayList<Livres> findLivresbysearch(String saisie) throws SQLException {
-//        System.out.println(">>>>>>" + (rDAO == null));
         ArrayList<Livres> livres = rDAO.recherche(saisie);
         return livres;
     }
-    
+
+    public Livres findLivreByID(String IDLivre) throws SQLException {
+        Livres monLivre = lDAO.getUnLivreByID(IDLivre);
+        return monLivre;
+    }
+
 //    public List<Livres> findBookByOrder(String IDCommande) throws SQLException{
 //        List<Livres> livres = lDAO.selectBookByOrder(IDCommande);
 //        return livres;
 //    }
 }
-

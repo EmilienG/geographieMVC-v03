@@ -7,18 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.naming.NamingException;
 import obj.Livres;
 
 public class LivresDAO implements Serializable {
-
+    
     private MaConnexion mc;
-
+    
     public LivresDAO() throws NamingException {
         mc = new MaConnexion();
     }
-
+    
     public ArrayList<Livres> selectLivrePagin(boolean atif, String saisie, int debut, int pas) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
         Connection cnt = mc.getConnection();
@@ -28,7 +27,7 @@ public class LivresDAO implements Serializable {
                 + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
                 + " ) a WHERE a.row > " + debut + " and a.row <= " + pas;
         String req2 = null;
-
+        
         if (atif) {
             req2 = "SELECT * FROM ( "
                     + "  SELECT *, ROW_NUMBER() OVER (ORDER BY IDLivre) as row FROM VueEmilien"
@@ -78,7 +77,7 @@ public class LivresDAO implements Serializable {
         }
         return mesLivres;
     }
-
+    
     public ArrayList<Livres> selectAllLivre(boolean atif, String saisie) throws SQLException {
         ArrayList<Livres> mesLivres = new ArrayList<>();
         Connection cnt = mc.getConnection();
@@ -141,7 +140,7 @@ public class LivresDAO implements Serializable {
                 monLivre.setResumeLivre(RSResume);
                 RSMotCle = rs.getString("descriptionMotClef");
                 monLivre.setDescriptionMotClef(RSMotCle);
-
+                
                 mesLivres.add(monLivre);
             }
             rs.close();
@@ -153,41 +152,29 @@ public class LivresDAO implements Serializable {
         return mesLivres;
     }
 
-//    public List<Livres> selectBookByOrder(String IDCommande) throws SQLException {
-//        String req = "SELECT IDLivre, ISBNLivre, titreLivre "
-//                + " from Livre "
-//                + " Join LigneCommande "
-//                + " ON IDLivreLigneCommande =IDLivre "
-//                + " WHERE IDCommandeLigneCommande = ? and IDStatutLigneCommande != 3";
+    //Mettre PREPARE STATEMENT !!!!!
+    public Livres getUnLivreByID(String IDLivre) throws SQLException {
+        Livres monLivre = new Livres();
+        String req = "select * from vueEmilien WHERE IDLivre = " + IDLivre;
 //        System.out.println(req);
-//        Connection cnt = mc.getConnection();
-//        PreparedStatement pstm = cnt.prepareStatement(req);
-//        pstm.setString(1, IDCommande);
-//
-//        List<Livres> lv = new ArrayList<>();
-//
-//        try {
-//            ResultSet rs = pstm.executeQuery();
-//
-//            while (rs.next()) {
-//                Livres lvs = new Livres();
-//                String numLivre = rs.getString("IDLivre");
-//                lvs.setIDLivre(numLivre);
-//                String ISBNLivre = rs.getString("ISBNLivre");
-//                lvs.setISBNlivre(ISBNLivre);
-//                String titre = rs.getString("titreLivre");
-//                lvs.setTitreLivre(titre);
-//
-//                lv.add(lvs);
-//
-//            }
-//            rs.close();
-//        } finally {
-//            if (cnt != null) {
-//                cnt.close();
-//            }
-//        }
-//        return lv;
-//
-//    }
+        try (Connection cnt = mc.getConnection();
+                Statement stm = cnt.createStatement();
+                ResultSet rs = stm.executeQuery(req);) {
+            while (rs.next()) {
+               monLivre.setIDLivre(rs.getString("IDLivre"));
+                monLivre.setTitreLivre(rs.getString("titreLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setISBNlivre(rs.getString("ISBNLivre"));
+                monLivre.setSousTitreLivre(rs.getString("sousTitreLivre"));
+                monLivre.setDateParutionLivre(rs.getString("dateParutionLivre"));
+                monLivre.setCouvertureLivre(rs.getString("couvertureLivre"));
+                monLivre.setPrixHTLivre(rs.getFloat("prixHTLivre"));
+                monLivre.setQuantiteStockLivre(rs.getInt("quantiteStockLivre"));
+                monLivre.setResumeLivre(rs.getString("resumeLivre"));
+                monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
+                
+            }
+        }
+        return monLivre;
+    }
 }
