@@ -34,10 +34,10 @@ public class LivresDAO implements Serializable {
                     + " ) a WHERE a.row > " + debut + " and a.row <= " + pas + " and titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
                     + " nomGenreAuteur like ?";
-            System.out.println(req2);
+//            System.out.println(req2);
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
-                System.out.println(saisie);
+//                System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
                 pstm.setString(2, "%" + saisie + "%");
                 pstm.setString(3, "%" + saisie + "%");
@@ -89,10 +89,10 @@ public class LivresDAO implements Serializable {
             req2 = "select * from VueEmilien where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
                     + " nomGenreAuteur like ? ";
-            System.out.println(req2);
+//            System.out.println(req2);
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
-                System.out.println(saisie);
+//                System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
                 pstm.setString(2, "%" + saisie + "%");
                 pstm.setString(3, "%" + saisie + "%");
