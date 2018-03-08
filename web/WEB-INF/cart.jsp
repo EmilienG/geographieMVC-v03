@@ -13,12 +13,21 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        <ul class="cart">
-            <c:forEach var="c" items="${coms}">
-                <li> ${coms.getIDCommande()}, ${coms.getIDCompteCommande()} </li>
+
+            <c:if test="${panierVide}">
+                Panier vide !    
+            </c:if>
+            <c:if test="${!panierVide}">
+                <c:forEach var="i" items="${list}">
+                    ${i.ref}/${i.qty}
+                    <a href='ControllerMain?section=panier&add=${i.ref}'>+</a>
+                    <a href='ControllerMain?section=panier&dec=${i.ref}'>-</a>
+                    <a href='ControllerMain?section=panier&del=${i.ref}'>X</a>
+
+                    <br>        
                 </c:forEach>
-        </ul>
-        
+                <a href='ControllerMain?section=panier&clear'>Vider le panier !</a>         
+            </c:if>
 
 
     </body>

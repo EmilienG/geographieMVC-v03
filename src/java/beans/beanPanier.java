@@ -4,6 +4,7 @@ import obj.Item;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
+import obj.Livres;
 
 public class beanPanier implements Serializable {
 
