@@ -16,6 +16,9 @@
         </nav>
         Ici le panier
         <hr>
+        <c:if test="${panierVide}">
+            Panier vide !    
+        </c:if>
         <table>
             <tr>
                 <td> 
@@ -58,6 +61,21 @@
                     <c:if test="${!monLivre2.disponibilite}">
                         <span class="rupture"><b>Rupture</b></span>
                     </c:if>
+                        hello panier vide
+                    <c:if test="${!panierVide}">
+                        hello non panier vide
+                        <c:forEach var="unLivre" items="${uneListeDeLivre}">
+                            hello each
+                            ${i.ref}/${i.qty}
+                            <a href="ControllerMain?section=panier&add&IDLivre2=${unLivre.IDLivre}">+</a>
+                            <a href='ControllerMain?section=panier&dec&IDLivre2=${i.ref}'>-</a>
+                            <a href='ControllerMain?section=panier&del&IDLivre2=${i.ref}'>X</a>
+
+                            <br>        
+                        </c:forEach>
+                        <a href='ControllerMain?section=panier&clear'>Vider le panier !</a>         
+                    </c:if>
+                    
                 </td>
             </tr>
         </table>

@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+#footer em {
+    color: black;       
+    font-size: 15px;
+}
+
 .menu, .menu li, li a:hover, li a{
     display: inline;
     text-decoration: none;
