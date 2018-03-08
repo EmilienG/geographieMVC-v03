@@ -1,6 +1,7 @@
 
 package obj;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Client {
@@ -16,8 +17,12 @@ public class Client {
     private String commentaire;
     private Date dateCreation;
     private Date dateDestruction;
+    private ArrayList<String> adresses;
+    private String IDAdresse;
+    private String nomVoieAdresse;
 
     public Client() {
+        adresses = new ArrayList<>();
     }
 
     public String getPseudo() {
@@ -114,6 +119,30 @@ public class Client {
 
     public void setDateDestruction(Date dateDestruction) {
         this.dateDestruction = dateDestruction;
+    }
+
+    public ArrayList<String> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(ArrayList<String> adresses) {
+        this.adresses = adresses;
+    }
+
+    public String getIDAdresse() {
+        return IDAdresse;
+    }
+
+    public void setIDAdresse(String IDAdresse) {
+        this.IDAdresse = IDAdresse;
+    }
+
+    public String getNomVoieAdresse() {
+        return nomVoieAdresse;
+    }
+
+    public void setNomVoieAdresse(String nomVoieAdresse) {
+        this.nomVoieAdresse = nomVoieAdresse;
     }
     
 }

@@ -16,60 +16,54 @@
         </nav>
 
         <hr>
-        <c:if test="${panierVide}">
-            Panier vide !    
-        </c:if>
+       id livre : ${monIDLivre2}
         <table>
             <tr>
                 <td> 
-                    <span class="isbn"><i>ISBN:${monLivre2.ISBNlivre}</i></span>
+                    <span class="isbn"><i>ISBN:${monLivrePanier.ISBNlivre}</i></span>
                     <hr>
-                    <a href="ControllerMain?section=details&IDLivre=${monLivre2.IDLivre}">
+                    <a href="ControllerMain?section=details&IDLivre=${monLivrePanier.IDLivre}">
                         <span class="titre" >
-                            <b>${monLivre2.titreLivre}</b><br>${monLivre2.sousTitreLivre}
+                            <b>${monLivrePanier.titreLivre}</b><br>${monLivrePanier.sousTitreLivre}
                         </span>
                     </a>
                     <hr>
                     <span class="titre" >
-                        <span class="parution">(Parution : ${monLivre2.dateParutionLivre})</span>
+                        <span class="parution">(Parution : ${monLivrePanier.dateParutionLivre})</span>
                     </span>
                     <hr>  
                     <span class="couverture" >
-                        <img src="${path}${monLivre2.couvertureLivre}" alt="${monLivre2.couvertureLivre}"  width="150"/>                                      
+                        <img src="${path}${monLivrePanier.couvertureLivre}" alt="${monLivrePanier.couvertureLivre}"  width="150"/>                                      
                     </span>
                     <hr>
                     <span class="resume">
-                        <i>${monLivre2.resumeLivre}</i>
+                        <i>${monLivrePanier.resumeLivre}</i>
                     </span>
                 </td>
                 <td>
-                    <span class="motCle">Mots Clé : ${monLivre2.descriptionMotClef}</span>
+                    <span class="motCle">Mots Clé : ${monLivrePanier.descriptionMotClef}</span>
                     <hr>
-                    Prix : <b>${monLivre2.prixHTLivre} €</b>
+                    Prix : <b>${monLivrePanier.prixHTLivre} €</b>
                     <hr>
-                    <c:if test="${monLivre2.disponibilite}">
+                    <c:if test="${monLivrePanier.disponibilite}">
                         <span class="dispo">
                             <b>Disponible</b>
                         </span>
                         <hr>
+
+                        <span class="button">
+                            <a href="ControllerMain?section=panier&IDLivre=${monLivrePanier.IDLivre}">
+                                <img src="img/detailOrder.jpg"/>
+                            </a>
+                        </span>
+
                     </c:if> 
-                    <c:if test="${!monLivre2.disponibilite}">
+                    <c:if test="${!monLivrePanier.disponibilite}">
                         <span class="rupture"><b>Rupture</b></span>
                     </c:if>
 
-                    <c:if test="${!panierVide}">
-
-                        <c:forEach var="unLivre" items="${uneListeDeLivre}">
-                            ${i.ref}/${i.qty}
-                            <a href="ControllerMain?section=panier&add&IDLivre2=${unLivre.IDLivre}">+</a>
-                            <a href='ControllerMain?section=panier&dec&IDLivre2=${i.ref}'>-</a>
-                            <a href='ControllerMain?section=panier&del&IDLivre2=${i.ref}'>X</a>
-
-                            <br>        
-                        </c:forEach>
-                        <a href='ControllerMain?section=panier&clear'>Vider le panier !</a>         
-                    </c:if>
-                    
+                  
+                       
                 </td>
             </tr>
         </table>

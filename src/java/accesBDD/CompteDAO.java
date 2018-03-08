@@ -44,7 +44,7 @@ public class CompteDAO {
                 + "  telephoneCompte = '" + telephone + "',"
                 + "  MDPCompte = '" + password + "'"
                 + " WHERE IDCompte = '" + IDcompte + "'";
-        System.out.println(req);
+//        System.out.println(req);
         try (Connection cnt = mc.getConnection();
                 Statement stm = cnt.createStatement();) {
 //            stm.setString(1, nom);

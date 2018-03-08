@@ -63,7 +63,9 @@ public class ControllerMain extends HttpServlet {
         Date maDate = new Date();
         String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
         session.setAttribute("nextYear", nextYear);
-
+        if ("info-perso".equals(section)) {
+            pageJSP = "/WEB-INF/info-perso.jsp";
+        }
         if ("details".equals(section)) {
             pageJSP = "/WEB-INF/details.jsp";
             if (request.getParameter("IDLivre") != null) {
@@ -83,27 +85,23 @@ public class ControllerMain extends HttpServlet {
                 GestionClients maGestionClients = new GestionClients();
                 String loginByField = request.getParameter("login");
 
-                Cookie cookLog = new Cookie("log", loginByField);
-                cookLog.setMaxAge(10000);
-                cookLog.setPath(File.separator);
-                response.addCookie(cookLog);
-
                 String monID = maGestionClients.getIDCompteByName(loginByField);
 
-                session.setAttribute("monClient", monID);
 
-            } catch (NamingException ex) {
+            //    session.setAttribute("monClient", monID);
+
+                session.setAttribute("monID", monID);
+                Client monClient = maGestionClients.afficherClientByID(monID);
+                session.setAttribute("monClient", monClient);
+            System.out.println("login = pas null");
+            } catch (NamingException | SQLException ex) {
+
+
                 ex.printStackTrace();
-            } catch (SQLException ex) {
-                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (request.getParameter("log") == null) {
-            if (getCookie(request.getCookies(), "log") != null) {
-                Cookie monCookLog = getCookie(request.getCookies(), "log");
-//                System.out.println("Tazeaz : " + monCookLog);
-            }
+        }else{
+            System.out.println("login = null !!");
         }
-
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
         }
@@ -123,6 +121,7 @@ public class ControllerMain extends HttpServlet {
                 Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
 //----------------------------------------------------------
         if ("panier".equals(request.getParameter("section"))) {
             pageJSP = "/WEB-INF/panier.jsp";
@@ -148,6 +147,7 @@ public class ControllerMain extends HttpServlet {
                 if (request.getParameter("IDLivre2") != null) {
                     String monIDLivre2 = request.getParameter("IDLivre2");
                     session.setAttribute("monIDLivre2", monIDLivre2);
+                    System.out.println(monIDLivre2);
                 }
                 GestionLivres ges = new GestionLivres();
                 try {
@@ -169,11 +169,26 @@ public class ControllerMain extends HttpServlet {
             request.setAttribute("list", monPanier.list());
         }
         //-------------------------------------------
+
         //Si on clic sur ajouter panier :
         if (request.getParameter("IDLivre") != null) {
-            //On recupere le param (caché) IDLivre
             String IDLivre = request.getParameter("IDLivre");
             session.setAttribute("IDLivre", IDLivre);
+        }
+
+        if ("panier".equals(section)) {
+            pageJSP = "/WEB-INF/panier.jsp";
+            if (request.getParameter("IDLivrePanier") != null) {
+                String monIDLivrePanier = request.getParameter("IDLivrePanier");
+                session.setAttribute("monIDLivrePanier", monIDLivrePanier);
+                GestionLivres ges = new GestionLivres();
+                try {
+                    Livres monLivrePanier = ges.findLivreByID(session.getAttribute("monIDLivrePanier").toString());
+                    session.setAttribute("monLivrePanier", monLivrePanier);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
         if ("compte".equals(section)) {
@@ -415,6 +430,7 @@ public class ControllerMain extends HttpServlet {
             if (request.getParameter("IDCompte") != null) {
                 String hiddenIDcomtpe = request.getParameter("IDCompte");
                 session.setAttribute("IDCompte2", hiddenIDcomtpe);
+
             }
             pageJSP = "/WEB-INF/jspLogin.jsp";
             if (request.getParameter("doIt") != null) {
@@ -496,7 +512,9 @@ public class ControllerMain extends HttpServlet {
                     pageJSP = "/WEB-INF/order.jsp";
 //                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
                     GestionCommandes gestionC = new GestionCommandes();
-                    List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
+                    Client monClient2 = (Client) session.getAttribute("monClient");
+                    String monIDClient = monClient2.getId();
+                    List<Commande> com = gestionC.findOrder(monIDClient);
                     request.getParameter("audrey");
 //                System.out.println("je suis audrey" + request.getParameter("audrey"));
 //                System.out.println("commande " + com);

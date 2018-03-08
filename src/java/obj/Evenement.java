@@ -20,6 +20,7 @@ public class Evenement implements Serializable{
     String ISBNLivre ;
     private List<String> titresLivres;
     private String titreClean;
+    private String IDLivre;
 
     public Evenement() {
         titresLivres = new ArrayList<>();
@@ -30,7 +31,7 @@ public class Evenement implements Serializable{
 
     
 
-    public Evenement(int IDEvenement,String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement,String titreLivre, String ISBNLivre) {
+    public Evenement(int IDEvenement,String nomEvenement, String typeEvenement, String descriptionEvenement, String commentaireEvenement,String titreLivre, String ISBNLivre, String IDLivre) {
         this();
         this.IDEvenement = IDEvenement;
         this.nomEvenement = nomEvenement;
@@ -39,6 +40,7 @@ public class Evenement implements Serializable{
         this.commentaireEvenement = commentaireEvenement;
         this.titreLivre = titreLivre;
         this.ISBNLivre = ISBNLivre;
+        this.IDLivre = IDLivre;
     }
     
 
@@ -163,6 +165,14 @@ public class Evenement implements Serializable{
                 " type : " + typeEvenement + " description : " + descriptionEvenement +
                 " commentaire : " + commentaireEvenement
                  + "   " + dateStatutEvenement + " Le livre concerné est : " + titreLivre + " ISBN numéro : " + ISBNLivre; 
+    }
+
+    public String getIDLivre() {
+        return IDLivre;
+    }
+
+    public void setIDLivre(String IDLivre) {
+        this.IDLivre = IDLivre;
     }
 
     
