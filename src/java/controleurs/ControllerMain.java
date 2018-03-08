@@ -89,10 +89,7 @@ public class ControllerMain extends HttpServlet {
                 response.addCookie(cookLog);
 
                 String monID = maGestionClients.getIDCompteByName(loginByField);
-//                System.out.println("Mon ID : " + monID);
 
-//                Client monClient = maGestionClients.afficherClientByID(monID);
-//                session.setAttribute("monClient", monClient);
                 session.setAttribute("monClient", monID);
 
             } catch (NamingException ex) {
@@ -118,10 +115,6 @@ public class ControllerMain extends HttpServlet {
                 GestionCoupDeCoeur maGestionCoupDeCoeur = new GestionCoupDeCoeur();
                 ArrayList<CoupDeCoeur> mesCoupDeCoeurs = maGestionCoupDeCoeur.findCoupDeCoeur(false, saisie);
 
-                for (CoupDeCoeur mesCoupDeCoeur : mesCoupDeCoeurs) {
-
-//                    System.out.println(mesCoupDeCoeur.getTitreClean());
-                }
                 session.setAttribute("mesCoupDeCoeurs", mesCoupDeCoeurs);
 
             } catch (SQLException ex) {
@@ -198,11 +191,7 @@ public class ControllerMain extends HttpServlet {
                 //Ici faire requete SQL pour update
 //                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
                 GestionCompte ges = new GestionCompte();
-//                try {
-//                    ges.modifCompte(session.getAttribute("monClient").toString(), request.getParameter("name"), request.getParameter("pseudo"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"), request.getParameter("password"));
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+
             }
         }
         if ("catalogue".equals(section)) {
