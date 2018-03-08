@@ -19,7 +19,7 @@
             <form id="RegisterUserForm" action="" method="post">
                 <u>Vos informations personelles :</u>
                 <br>
-                <i>Membre depuis = ${monClient.dateCreation}</i>
+                <i>Membre depuis = ${monClient.getDateCreation()}</i>
                 <fieldset>
                     <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="${monClient.nom}" />
                     <br>
