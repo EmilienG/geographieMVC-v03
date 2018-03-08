@@ -61,7 +61,7 @@
                                         </span>
                                         <hr>
                                         <span class="button">
-                                            <a href="ControllerMain?section=panier&IDLivre=${unLivre.IDLivre}">
+                                            <a href="ControllerMain?section=panier&IDLivre2=${unLivre.IDLivre}">
                                                 <img src="img/detailOrder.jpg"/>
                                             </a>
                                         </span>

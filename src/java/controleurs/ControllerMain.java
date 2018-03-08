@@ -67,7 +67,7 @@ public class ControllerMain extends HttpServlet {
                 String monIDLivre = request.getParameter("IDLivre");
                 session.setAttribute("monIDLivre", monIDLivre);
             }
-                GestionLivres ges = new GestionLivres();
+            GestionLivres ges = new GestionLivres();
             try {
                 Livres monLivre = ges.findLivreByID(session.getAttribute("monIDLivre").toString());
                 session.setAttribute("monLivre", monLivre);
@@ -131,6 +131,17 @@ public class ControllerMain extends HttpServlet {
         }
         if ("panier".equals(section)) {
             pageJSP = "/WEB-INF/panier.jsp";
+            if (request.getParameter("IDLivre2") != null) {
+                String monIDLivre2 = request.getParameter("IDLivre2");
+                session.setAttribute("monIDLivre2", monIDLivre2);
+            }
+            GestionLivres ges = new GestionLivres();
+            try {
+                Livres monLivre2 = ges.findLivreByID(session.getAttribute("monIDLivre2").toString());
+                session.setAttribute("monLivre2", monLivre2);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 
         if ("compte".equals(section)) {
