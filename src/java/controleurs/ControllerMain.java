@@ -1,5 +1,8 @@
 package controleurs;
 
+import accesBDD.ClientDAO;
+import accesBDD.LigneCommandeDAO;
+import beans.beanPanier;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -81,13 +84,17 @@ public class ControllerMain extends HttpServlet {
             try {
                 GestionClients maGestionClients = new GestionClients();
                 String loginByField = request.getParameter("login");
+
                 String monID = maGestionClients.getIDCompteByName(loginByField);
                 session.setAttribute("monID", monID);
                 Client monClient = maGestionClients.afficherClientByID(monID);
                 session.setAttribute("monClient", monClient);
             System.out.println("login = pas null");
             } catch (NamingException | SQLException ex) {
+
                 ex.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             System.out.println("login = null !!");
@@ -116,15 +123,59 @@ public class ControllerMain extends HttpServlet {
             }
         }
 
-        boolean panierVide = true;
-        session.setAttribute("panierVide", true);
-        panierVide = false;
-        session.setAttribute("panierVide", false);
+//----------------------------------------------------------
+        if ("panier".equals(request.getParameter("section"))) {
+            pageJSP = "/WEB-INF/panier.jsp";
+            beanPanier monPanier = (beanPanier) session.getAttribute("monPanier");
+
+            if (monPanier == null) {
+                monPanier = new beanPanier();
+                session.setAttribute("monPanier", monPanier);
+            }
+            if (request.getParameter("add") != null) {
+                monPanier.add(request.getParameter("add"));
+            }
+            if (request.getParameter("dec") != null) {
+                monPanier.dec(request.getParameter("dec"));
+            }
+            if (request.getParameter("del") != null) {
+                monPanier.del(request.getParameter("del"));
+            }
+            if (request.getParameter("clear") != null) {
+                monPanier.clear();
+            }
+                
+                if (request.getParameter("IDLivre2") != null) {
+                    String monIDLivre2 = request.getParameter("IDLivre2");
+                    session.setAttribute("monIDLivre2", monIDLivre2);
+                }
+                GestionLivres ges = new GestionLivres();
+                try {
+                    Livres monLivre2 = ges.findLivreByID(session.getAttribute("monIDLivre2").toString());
+                    session.setAttribute("monLivre2", monLivre2);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            
+        }
+        if ("affichePanier".equals(request.getParameter("section"))) {
+            pageJSP = "/WEB-INF/cart.jsp";
+            beanPanier monPanier = (beanPanier) session.getAttribute("monPanier");
+            if (monPanier == null) {
+                monPanier = new beanPanier();
+                session.setAttribute("monPanier", monPanier);
+            }
+            request.setAttribute("panierVide", monPanier.isEmpty());
+            request.setAttribute("list", monPanier.list());
+        }
+        //-------------------------------------------
+
         //Si on clic sur ajouter panier :
         if (request.getParameter("IDLivre") != null) {
             String IDLivre = request.getParameter("IDLivre");
             session.setAttribute("IDLivre", IDLivre);
         }
+
         if ("panier".equals(section)) {
             pageJSP = "/WEB-INF/panier.jsp";
             if (request.getParameter("IDLivrePanier") != null) {
@@ -139,32 +190,27 @@ public class ControllerMain extends HttpServlet {
                 }
             }
         }
+
         if ("compte".equals(section)) {
             pageJSP = "/WEB-INF/compte.jsp";
 
             if (request.getParameter("modifierCompte") != null) {
                 Client monCompte = new Client();
-                String id = session.getAttribute("monID").toString();
-                String name = request.getParameter("name");
-                String prenom = request.getParameter("prenom");
-                String pseudo = request.getParameter("pseudo");
-                String email = request.getParameter("email");
-                String tel = request.getParameter("tel");
-                String password = request.getParameter("password");
-                monCompte.setNom(name);
-                monCompte.setPrenom(prenom);
-                monCompte.setPseudo(pseudo);
-                monCompte.setEmail(email);
-                monCompte.setTelephone(tel);
-                monCompte.setMDP(password);
+                monCompte.setNom(request.getParameter("name"));
+                monCompte.setPrenom(request.getParameter("prenom"));
+                monCompte.setPseudo(request.getParameter("pseudo"));
+                monCompte.setEmail(request.getParameter("email"));
+                monCompte.setTelephone(request.getParameter("tel"));
+                monCompte.setMDP(request.getParameter("password"));
                 session.setAttribute("monCompte", monCompte);
                 //Ici faire requete SQL pour update
+//                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
                 GestionCompte ges = new GestionCompte();
-                try {
-                    ges.modifCompte(id, name, prenom, pseudo, email, tel, password);
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+//                try {
+//                    ges.modifCompte(session.getAttribute("monClient").toString(), request.getParameter("name"), request.getParameter("pseudo"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"), request.getParameter("password"));
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ControllerMain.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
         }
         if ("catalogue".equals(section)) {
@@ -197,7 +243,6 @@ public class ControllerMain extends HttpServlet {
                 listDeListDeList.add(page2);
                 listDeListDeList.add(page3);
                 request.setAttribute("listDeListDeList", listDeListDeList);
-
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
@@ -464,8 +509,9 @@ public class ControllerMain extends HttpServlet {
         if ("order".equals(section)) {
 //            System.out.println("hello section order");
 //            boolean deco = false;
-            if (session.getAttribute("monClient") != null) {
+            if ((boolean) session.getAttribute("logOn")) {
                 try {
+                    System.out.println("session = " + session.getAttribute("monClient").toString());
 //                deco = true;
                     pageJSP = "/WEB-INF/order.jsp";
 //                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
@@ -479,6 +525,7 @@ public class ControllerMain extends HttpServlet {
                 } catch (NamingException | SQLException ex) {
                     ex.printStackTrace();
                 }
+
             }
 
 //            c = getCookie(request.getCookies(), "order");
@@ -493,7 +540,7 @@ public class ControllerMain extends HttpServlet {
             try {
 //                System.out.println("hello get id orderline");
                 pageJSP = "/WEB-INF/orderLine.jsp";
-//                System.out.println("je suis audrey dans ma ligne de commande" + request.getParameter("audrey"));
+                System.out.println("je suis audrey dans ma ligne de commande" + request.getParameter("audrey"));
 //                GestionLivres gestionLv = new GestionLivres();
 //                List<Livres> lv = gestionLv.findBookByOrder(session.getAttribute("monClient").toString());
 //                request.setAttribute("gestionLv", lv);
@@ -502,10 +549,10 @@ public class ControllerMain extends HttpServlet {
 //                List<Livres> lvs = gestionLC.findBookByOrder(session.getAttribute("monClient").toString());
                 List<LigneCommande> lcom = gestionLC.findOrderLineByOrder(request.getParameter("audrey"));
                 List<Livres> lvs = gestionLC.findBookByOrder(request.getParameter("audrey"));
-                for (Livres lv : lvs) {
-//                    System.out.println("id orderline " + lv.getIDLivre());
-
-                }
+//                for (Livres lv : lvs) {
+////                    System.out.println("id orderline " + lv.getIDLivre());
+//
+//                }
 //                System.out.println(lvs);
                 session.setAttribute("gestionLC", lcom);
                 session.setAttribute("gestionLV", lvs);

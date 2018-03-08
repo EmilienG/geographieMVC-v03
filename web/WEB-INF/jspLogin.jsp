@@ -18,7 +18,7 @@
             <tr>
                 <td><h2>Veuillez entrer votre pseudo<br>et votre mot de passe :</h2>
                     <form action='ControllerMain?section=login' method='post'>
-                        Utilisateur : <input type='text' name='login' value='${login}' />
+                        Utilisateur : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type='text' name='login' value='${login}' />
                         <br>            
                         Mot de passe : <input type='password' name='password' />
                         <br>

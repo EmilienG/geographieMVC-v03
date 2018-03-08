@@ -15,7 +15,7 @@
             <c:import url="${url01}" />
         </nav>
         <div id="registration">
-            <h2>Creer un compte</h2>
+            <div id="atif" >Creer un compte</div>
             <form id="RegisterUserForm" action="ControllerMain?section=inscription" method="post">
                 <fieldset>
                     <label for="name">Nom</label> <input class="text" id="name" type="text" name="name2" value="" />
