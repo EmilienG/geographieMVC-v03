@@ -17,7 +17,15 @@
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-
+        <form action="ControllerMain?section=RechercheEvenement" method="post">
+        <input type="hidden" name="section" value="RechercheEvenement" />
+        <div align="right"><input type="text" name="rechercheEvenement" value=""
+                                  placeholder="Trouvez un Evenement" 
+                                  required="required" size="20"/>
+            <a href="${url06}">
+                <input type="submit" value="Ok" name="doItEv" />
+            </a>  
+    </form>
         <table  id="tableau">
             <thead>
                 <tr>
@@ -29,6 +37,7 @@
 
             </thead>
             <tbody>
+                
                 <c:forEach var="unEvenement" items="${mesEvenements}">
 
                     <tr>
@@ -72,15 +81,7 @@
             Merci de votre visite à bientot
         </center>
     </footer>
-    <form action="ControllerMain?section=RechercheEvenement" method="post">
-        <input type="hidden" name="section" value="RechercheEvenement" />
-        <div align="right"><input type="text" name="rechercheEvenement" value=""
-                                  placeholder="Trouvez un Evenement" 
-                                  required="required" size="20"/>
-            <a href="${url06}">
-                <input type="submit" value="Ok" name="doItEv" />
-            </a>  
-    </form>
+    
     <c:url value="ControllerMain?section=footer" var="url02" />
     <c:import url="${url02}" />
 </body>
