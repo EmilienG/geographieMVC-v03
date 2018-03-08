@@ -13,7 +13,6 @@
         <c:import url="${url01}" />
 
        
-
         <div style="overflow-x:auto;">
             <table  id="tableau">
                 <thead>

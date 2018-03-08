@@ -74,7 +74,10 @@ public class ControllerMain extends HttpServlet {
                 response.addCookie(cookLog);
 
                 String monID = maGestionClients.afficherClientByName(loginByField);
-                System.out.println("Mon ID : " + monID);
+//                System.out.println("Mon ID : " + monID);
+                
+                
+                
 //                Client monClient = maGestionClients.afficherClientByID(monID);
 //                session.setAttribute("monClient", monClient);
                 session.setAttribute("monClient", monID);
@@ -85,7 +88,7 @@ public class ControllerMain extends HttpServlet {
         } else if (request.getParameter("log") == null) {
             if (getCookie(request.getCookies(), "log") != null) {
                 Cookie monCookLog = getCookie(request.getCookies(), "log");
-                System.out.println("Tazeaz : " + monCookLog);
+//                System.out.println("Tazeaz : " + monCookLog);
             }
         }
 
@@ -138,7 +141,7 @@ public class ControllerMain extends HttpServlet {
                 monCompte.setMDP(request.getParameter("password"));
                 session.setAttribute("monCompte", monCompte);
                 //Ici faire requete SQL pour update
-                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
+//                System.out.println("Nouveau Pseudo=" + monCompte.getPseudo());
                 GestionCompte ges = new GestionCompte();
 //                try {
 //                    ges.modifCompte(session.getAttribute("monClient").toString(), request.getParameter("name"), request.getParameter("pseudo"), request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"), request.getParameter("password"));
@@ -197,7 +200,7 @@ public class ControllerMain extends HttpServlet {
                         GestionCompte bCompte = (GestionCompte) getServletContext().getAttribute("GestionCompte");
                         bCompte.addCustomer(request.getParameter("name2"), request.getParameter("prenom2"), request.getParameter("pseudo2"), request.getParameter("password2"), request.getParameter("email2"));
 
-                        System.out.println("tout les champs son remplis");
+//                        System.out.println("tout les champs son remplis");
                         pageJSP = "/WEB-INF/home.jsp";
                         String nom = request.getParameter("name");
                         request.setAttribute("welcome", nom);
@@ -254,7 +257,9 @@ public class ControllerMain extends HttpServlet {
                 ex.printStackTrace();
             }
         }
+        
         if ("Recherche".equals(section)) {
+            
             try {
                 pageJSP = "/WEB-INF/catalogue.jsp";
                 GestionLivres maGestionLivre = new GestionLivres();
@@ -285,10 +290,9 @@ public class ControllerMain extends HttpServlet {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }
-
+        }       
 //=====================COMMANDES================================================        
-        if ("order".equals(section)) {
+//        if ("order".equals(section)) {
 //            System.out.println("hello");
 //            String monIDcompte = session.getAttribute("IDcompte").toString();
 //
@@ -300,7 +304,7 @@ public class ControllerMain extends HttpServlet {
 //            } catch (NamingException | SQLException ex) {
 //                ex.printStackTrace();
 //            }
-        }
+//        }
 
 //
 //        if ("orderLine".equals(section)) {
@@ -320,21 +324,21 @@ public class ControllerMain extends HttpServlet {
 //        }
 
 
-        if ("orderLine".equals(section)) {
-//            System.out.println("hello");
-            try {
-                pageJSP = "/WEB-INF/orderLine.jsp";
-                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
-                List<LigneCommande> lcom = gestionLC.selectAllOrderLineByOrder();
-                for (LigneCommande ldc : lcom) {
-                    System.out.println(ldc.getIDLigneCommande());
-                }
-                request.setAttribute("gestionLC", lcom);
-
-            } catch (NamingException | SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
+//        if ("orderLine".equals(section)) {
+////            System.out.println("hello");
+//            try {
+//                pageJSP = "/WEB-INF/orderLine.jsp";
+//                LigneCommandeDAO gestionLC = new LigneCommandeDAO();
+//                List<LigneCommande> lcom = gestionLC.viewOrderLineByOrder();
+//                for (LigneCommande ldc : lcom) {
+//                    System.out.println(ldc.getIDLigneCommande());
+//                }
+//                request.setAttribute("gestionLC", lcom);
+//
+//            } catch (NamingException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
 
 
 /////////////////////////////////LOGIN//////////////////////////////////////////////////////////
@@ -396,13 +400,13 @@ public class ControllerMain extends HttpServlet {
                     c = getCookie(request.getCookies(), "try");
                     if (c == null) {
                         c = new Cookie("try", "*");
-                        System.out.println("nouveau cookie essai" + c.toString());
+//                        System.out.println("nouveau cookie essai" + c.toString());
                     } else {
-                        System.out.println("cookie existant" + c.toString());
+//                        System.out.println("cookie existant" + c.toString());
                         c.setValue(c.getValue() + "*");
                     }
                     c.setMaxAge(9);
-                    System.out.println(c.getValue());
+//                    System.out.println(c.getValue());
                     response.addCookie(c);
                     if (c.getValue().length() >= 3) {
                         pageJSP = "/WEB-INF/jspFatalError.jsp";
@@ -432,6 +436,7 @@ public class ControllerMain extends HttpServlet {
 //            pageJSP = "/WEB-INF/menus/menu-main.jsp";
 //            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>" + pageJSP);
             session.setAttribute("logOn", false);
+            session.setAttribute("monClient", null);
 //            System.out.println(378 + "/" + session.getAttribute("logOn"));
 
             Cookie cc = new Cookie("login", "");
@@ -440,21 +445,25 @@ public class ControllerMain extends HttpServlet {
         }
 
 //=====================COMMANDES================================================        
+//       System.out.println("therherher   "+session.getAttribute("monClient"));
         if ("order".equals(section)) {
-            System.out.println("hello section order");
-
+//            System.out.println("hello section order");
+//            boolean deco = false;
+            if(session.getAttribute("monClient")!= null){
             try {
+//                deco = true;
                 pageJSP = "/WEB-INF/order.jsp";
-                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
+//                System.out.println("coucou ID n° " + session.getAttribute("monClient").toString());
                 GestionCommandes gestionC = new GestionCommandes();
                 List<Commande> com = gestionC.findOrder(session.getAttribute("monClient").toString());
                 request.getParameter("audrey");
-                System.out.println("je suis audrey" + request.getParameter("audrey"));
-                System.out.println("commande " + com);
+//                System.out.println("je suis audrey" + request.getParameter("audrey"));
+//                System.out.println("commande " + com);
                 request.setAttribute("gestionC", com);
-                System.out.println("hello if get id");
+//                System.out.println("hello if get id");
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
+            }
             }
             
 //            c = getCookie(request.getCookies(), "order");
@@ -465,11 +474,11 @@ public class ControllerMain extends HttpServlet {
         }
 
         if ("orderLine".equals(section)) {
-            System.out.println("hello order line");
+//            System.out.println("hello order line");
             try {
-                System.out.println("hello get id orderline");
+//                System.out.println("hello get id orderline");
                 pageJSP = "/WEB-INF/orderLine.jsp";
-                System.out.println("je suis audrey dans ma ligne de commande" + request.getParameter("audrey"));
+//                System.out.println("je suis audrey dans ma ligne de commande" + request.getParameter("audrey"));
 //                GestionLivres gestionLv = new GestionLivres();
 //                List<Livres> lv = gestionLv.findBookByOrder(session.getAttribute("monClient").toString());
 //                request.setAttribute("gestionLv", lv);
@@ -479,7 +488,7 @@ public class ControllerMain extends HttpServlet {
                 List<LigneCommande> lcom = gestionLC.findOrderLineByOrder(request.getParameter("audrey"));
                 List<Livres> lvs = gestionLC.findBookByOrder(request.getParameter("audrey"));
                 for (Livres lv : lvs) {
-                    System.out.println("id orderline " + lv.getIDLivre());
+//                    System.out.println("id orderline " + lv.getIDLivre());
 
                 }
 //                System.out.println(lvs);
@@ -503,7 +512,7 @@ public class ControllerMain extends HttpServlet {
             pageJSP = "/WEB-INF/hidden.jsp";
         }
         pageJSP = response.encodeURL(pageJSP);
-        System.out.println(pageJSP + "/" + session.getAttribute("logOn"));
+//        System.out.println(pageJSP + "/" + session.getAttribute("logOn"));
         getServletContext().getRequestDispatcher(pageJSP).include(request, response);
 
     }
