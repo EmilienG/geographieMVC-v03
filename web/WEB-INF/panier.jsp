@@ -9,12 +9,12 @@
     </head>
     <body>
     <center>
-        <h1><span>Hello Panier !</span></h1>
+        <h1><span>Panier</span></h1>
         <nav>
             <c:url value="ControllerMain?section=menu-main" var="url01" />
             <c:import url="${url01}" />
         </nav>
-        Ici le panier
+
         <hr>
         <c:if test="${panierVide}">
             Panier vide !    
@@ -52,20 +52,14 @@
                             <b>Disponible</b>
                         </span>
                         <hr>
-                        <span class="button">
-                            <a href="ControllerMain?section=panier&IDLivre=${monLivre2.IDLivre}">
-                                <img src="img/detailOrder.jpg"/>
-                            </a>
-                        </span>
                     </c:if> 
                     <c:if test="${!monLivre2.disponibilite}">
                         <span class="rupture"><b>Rupture</b></span>
                     </c:if>
-                        hello panier vide
+
                     <c:if test="${!panierVide}">
-                        hello non panier vide
+
                         <c:forEach var="unLivre" items="${uneListeDeLivre}">
-                            hello each
                             ${i.ref}/${i.qty}
                             <a href="ControllerMain?section=panier&add&IDLivre2=${unLivre.IDLivre}">+</a>
                             <a href='ControllerMain?section=panier&dec&IDLivre2=${i.ref}'>-</a>
