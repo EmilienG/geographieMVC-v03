@@ -18,24 +18,24 @@
             <c:import url="${url01}" />
         </nav>
         <form action="ControllerMain?section=RechercheEvenement" method="post">
-        <input type="hidden" name="section" value="RechercheEvenement" />
-        <div align="right"><input type="text" name="rechercheEvenement" value=""
-                                  placeholder="Trouvez un Evenement" 
-                                  required="required" size="20"/>
-            <a href="${url06}">
-                <input type="submit" value="Ok" name="doItEv" />
-            </a>  
-    </form>
+            <input type="hidden" name="section" value="RechercheEvenement" />
+            <div align="right"><input type="text" name="rechercheEvenement" value=""
+                                      placeholder="Trouvez un Evenement" 
+                                      required="required" size="20"/>
+                <a href="${url06}">
+                    <input type="submit" value="Ok" name="doItEv" />
+                </a>  
+        </form>
         <table  id="tableau">
             <thead>
-              
+
             <th scope="col" colspan="20">
                 Nos Evenements
             </th>
 
             </thead>
             <tbody>
-                
+
                 <c:forEach var="unEvenement" items="${mesEvenements}">
 
                     <tr>
@@ -52,23 +52,14 @@
 
                         <td> ${unEvenement.commentaireEvenement} </td>
 
-                        <td>
-                            ${unEvenement.titreClean}
+                        <td> 
+                            <a href="ControllerMain?section=details&IDLivre=${unEvenement.getIDLivre()}">
+                                ${unEvenement.titreClean}
+                            </a>  
                         </td>
-
                         <td> ${unEvenement.ISBNLivre} </td> 
-                        
-                        <span class="button">
-                              <a href="ControllerMain?section=details&catalogue&ISBNLivre=${unEvenement.ISBNLivre}">
-                             </a>
-                        </span>
-
-                
-
-                </tr>
-
-
-            </c:forEach>
+                    </tr>
+                </c:forEach>
 
             </tbody>
 
@@ -86,7 +77,7 @@
             Merci de votre visite à bientot
         </center>
     </footer>
-    
+
     <c:url value="ControllerMain?section=footer" var="url02" />
     <c:import url="${url02}" />
 </body>

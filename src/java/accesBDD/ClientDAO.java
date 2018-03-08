@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import obj.Client;
+import obj.CoupDeCoeur;
 
 public class ClientDAO implements Serializable {
 
@@ -34,8 +37,13 @@ public class ClientDAO implements Serializable {
         return s;
     }
 
+    //Pas besoin prepareStatement
     public Client selectLoginByID(String IDCompte) throws SQLException {
-        String req = "select * from compte where IDcompte=?";
+        ArrayList<String> mesAdresses = new ArrayList<>();
+        String req = "select * from compte "
+                + " JOIN Adresse"
+                + " ON IDAdresse = IDCompteClientAdresse"
+                + " where IDcompte=?";
         Client c = null;
         try (Connection cnt = mc.getConnection();
                 PreparedStatement stm = cnt.prepareStatement(req);) {
@@ -46,16 +54,16 @@ public class ClientDAO implements Serializable {
                 c.setId(IDCompte);
                 c.setPseudo(rs.getString("pseudoCompte"));
                 c.setMDP(rs.getString("MDPCompte"));
-                System.out.println(rs.getString("MDPCompte"));
                 c.setNom(rs.getString("nomCompte"));
                 c.setPrenom(rs.getString("prenomCompte"));
                 c.setPseudo(rs.getString("pseudoCompte"));
                 c.setDateCreation(rs.getDate("dateCreationCompte"));
                 c.setEmail(rs.getString("emailCompte"));
                 c.setTelephone(rs.getString("telephoneCompte"));
+                mesAdresses.add(rs.getString("IDAdresse") + " " + rs.getString("nomVoieAdresse"));
             }
+            c.setAdresses(mesAdresses);
+            return c;
         }
-        return c;
     }
-
 }

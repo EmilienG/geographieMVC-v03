@@ -37,7 +37,7 @@ public class LivresDAO implements Serializable {
             System.out.println(req2);
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
-                System.out.println(saisie);
+//                System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
                 pstm.setString(2, "%" + saisie + "%");
                 pstm.setString(3, "%" + saisie + "%");
@@ -67,6 +67,16 @@ public class LivresDAO implements Serializable {
                 monLivre.setQuantiteStockLivre(rs.getInt("quantiteStockLivre"));
                 monLivre.setResumeLivre(rs.getString("resumeLivre"));
                 monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
+                monLivre.setNomEditeur(rs.getString("nomEditeur"));
+                monLivre.setPrenomAuteur(rs.getString("prenomAuteur"));
+                monLivre.setNomAuteur(rs.getString("nomAuteur"));
+                monLivre.setGabariLivre(rs.getString("gabariLivre"));
+                monLivre.setNBPageLivre(rs.getInt("NBPageLivre"));
+                monLivre.setPoidsLivre(rs.getInt("poidsLivre"));
+                
+
+               
+                
                 mesLivres.add(monLivre);
             }
             rs.close();
@@ -89,10 +99,10 @@ public class LivresDAO implements Serializable {
             req2 = "select * from VueEmilien where titreLivre like ? or nomAuteur like ? or prenomAuteur like ? or"
                     + " sousTitreLivre like ? or nomEditeur like ? or nomEdition like ? or"
                     + " nomGenreAuteur like ? ";
-            System.out.println(req2);
+//            System.out.println(req2);
             pstm = cnt.prepareStatement(req2);
             if (saisie != null) {
-                System.out.println(saisie);
+//                System.out.println(saisie);
                 pstm.setString(1, "%" + saisie + "%");
                 pstm.setString(2, "%" + saisie + "%");
                 pstm.setString(3, "%" + saisie + "%");
@@ -141,6 +151,7 @@ public class LivresDAO implements Serializable {
                 RSMotCle = rs.getString("descriptionMotClef");
                 monLivre.setDescriptionMotClef(RSMotCle);
                 
+                
                 mesLivres.add(monLivre);
             }
             rs.close();
@@ -172,7 +183,12 @@ public class LivresDAO implements Serializable {
                 monLivre.setQuantiteStockLivre(rs.getInt("quantiteStockLivre"));
                 monLivre.setResumeLivre(rs.getString("resumeLivre"));
                 monLivre.setDescriptionMotClef(rs.getString("descriptionMotClef"));
-                
+                monLivre.setNomEditeur(rs.getString("nomEditeur"));
+                monLivre.setPrenomAuteur(rs.getString("prenomAuteur"));
+                monLivre.setNomAuteur(rs.getString("nomAuteur"));
+                monLivre.setGabariLivre(rs.getString("gabariLivre"));
+                monLivre.setNBPageLivre(rs.getInt("NBPageLivre"));
+                monLivre.setPoidsLivre(rs.getInt("poidsLivre"));
             }
         }
         return monLivre;
