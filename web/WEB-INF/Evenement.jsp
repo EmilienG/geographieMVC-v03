@@ -48,6 +48,11 @@
                         </td>
 
                         <td> ${unEvenement.ISBNLivre} </td> 
+                        
+                        <span class="button">
+                              <a href="ControllerMain?section=details&catalogue&ISBNLivre=${unEvenement.ISBNLivre}">
+                             </a>
+                        </span>
 
                 
 
