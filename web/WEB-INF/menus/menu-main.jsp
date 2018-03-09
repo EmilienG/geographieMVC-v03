@@ -2,7 +2,7 @@
 <c:if test="section=login">
 </c:if>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link href="/LibrairieFusion-v1.0/css/moncss.css" rel="stylesheet" type="text/css"/>
+<link href="${css}" rel="stylesheet" type="text/css"/>
 <h3><c:if test="${logOn}">Connecté</c:if><c:if test="!${logOn}">Deconnecté</c:if></h3> 
     <table id="test">
         <tr>
@@ -69,6 +69,16 @@
                     </c:if>
                 </ul>
             </div>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <a href="ControllerMain?style=1">Style1</a>
+        </td>
+        <td>
+            <a href="ControllerMain?style=2">Style2</a>
         </td>
     </tr>
 </table>

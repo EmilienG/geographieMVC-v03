@@ -1,0 +1,336 @@
+* {
+    box-sizing: border-box;
+}
+
+.menu, .menu li, li a:hover, li a{
+    display: inline;
+    text-decoration: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px groove #339;
+
+}
+
+th, td {
+    text-align: left;
+    padding: 1%;
+    border: 1px outset blanchedalmond;
+}
+
+h1{
+    color: #d3ddff;
+    text-align:center;
+    background:linear-gradient (
+        #8cade8 0%,
+        #8cade8 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8cade8 54%,
+        #8cade8 100%);
+    background:-webkit-linear-gradient(
+        #8cade8 0%,
+        #8cade8 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8cade8 54%,
+        #8cade8 100%);
+    background:    -moz-linear-gradient(
+        #8cade8 0%,
+        #8cade8 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8cade8 54%,
+        #8cade8 100%);
+    background:     -ms-linear-gradient(
+        #8cade8 0%,
+        #8cade8 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8cade8 54%,
+        #8cade8 100%);
+    background:      -o-linear-gradient(
+        #8cade8 0%,
+        #8cade8 45%,
+        #d5cbb3 46%,
+        #d5cbb3 54%,  
+        #8cade8 54%,
+        #8cade8 100%);
+    padding: 1%;
+    margin: 1%;
+    width: 90%;
+}
+h1 span{
+    background:#8cade8;
+    padding:0%;
+
+}
+tr:nth-child(even){
+    background-color: #f2f2f2;
+    color: #bab059
+}
+
+body {
+    font-family:'Abel', arial, serif; 
+    font-size:medium;
+    background: #efb79e;
+    margin: 0;
+    padding: 0;
+    color: #656565;
+    text-shadow:0 0px, 1px 1px #d6a6ff;
+     background-image: url(../img/gradhover2.png);
+}
+
+#conteneur-menu2 {
+    font-size: x-large;
+    height: 100%;
+    width: 80%;
+    padding-top: 0.5%;
+    margin: 0.5% auto 0 auto;
+    text-shadow:0 0px, 2px 2px #4f3663;
+}
+
+#conteneur-menu2 ul {
+    padding: 0;
+    margin: 0;
+    margin-left: 2%;
+    float: left;
+}
+
+#test {
+    padding: 2%;
+    margin: 2%;
+    width: 75%;
+    border-radius: 5px 10px 0 5px;
+}
+
+#conteneur-menu2 ul li {
+    list-style: none;
+    padding: 0;
+}
+
+#conteneur-menu2 ul li a {
+    text-decoration: none;
+    font-size: larger;
+    padding: 4px;
+    display: block;
+    color: #cbc9e5;
+    background: transparent;
+    width: 230px;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
+    line-height: 25px;
+}
+
+
+#conteneur-menu2 ul li a:hover {
+    background: #54B6A8;
+    padding-left: 25%;
+    width: 75%;
+    -moz-transition: all .7s; 
+    -webkit-transition: all .7s; 
+    -o-transition: all .7s; 
+    transition: all .7s;
+}
+.dispo{
+    color: green;
+    font-size: medium;
+    font-style: oblique;
+}
+.rupture{
+    color: red;
+    font-size: medium;
+    font-style: oblique;
+}
+.resume{
+    color: royalblue;
+    font-size: x-small;
+    font-style: oblique;
+    padding-left: 2%;
+}
+.parution{
+    color: midnightblue;
+    font-size: x-small;
+    font-style: italic;
+}
+.isbn{
+    margin-top: 1px;
+    color: darkblue;
+    font-size: x-small;
+    font-style: italic;
+    font-family: monospace;
+}
+#tableau {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: medium;
+    margin: 1%;
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+}
+#tableau th {
+    font-size: large;
+    font-weight: normal;
+    padding: 0.1%;
+    background: #b9c9fe url('/LibrairieFusion-v1.0/img/gradhead2.png') repeat-x;
+    border-top: 1px solid #d3ddff;
+    border-bottom: 1px solid #fff;
+    color: #039;
+    text-align: center;
+    margin: auto;
+}
+#tableau td {
+    padding: 0.1%;
+    border-bottom: 1px solid #fff;
+    color: #669;
+    border-top: 1px solid #fff;
+    background: #ecdfd0 url('/LibrairieFusion-v1.0/img/gradback2.png') repeat-x;
+    text-align: center;
+}
+#tableau tfoot tr td {
+    background: #ecdfd0;
+    font-size: 16px;
+    color: #99c;
+    text-align:center;
+}
+#tableau tbody  td:hover {
+    background: #d0dafd url('/LibrairieFusion-v1.0/img/gradhover2.png') repeat-x;
+    color: #339;
+}
+#tableau a:hover {
+    text-decoration:underline;
+}
+.titre{
+    /*  margin-left: 5%;*/
+}
+.couverture{
+    background-image: url('/LibrairieFusion-v1.0/img/font.png');
+}
+hr {
+    border: none;
+    border-bottom: 1px solid #fff; /* Ou border-top */
+}
+
+.tabOrder, .tabOrder td{
+    width: 1000px;
+    height: auto;
+    margin-left: 20px;
+    border-style: none;  
+    font-size: medium;
+    text-align: center;
+    columns: auto;
+    table-layout: fixed;
+    
+}
+
+.button img {
+    width: 40px;
+    height: 40px;
+    color: #669;
+    text-align: center
+    
+}
+
+.tabOrder th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-family: 'Arial';
+    font-size: small;
+    border-style: none; 
+
+}
+
+.tabOrder tr:hover{
+    background-color: #cccccc;
+    border-style: none;  
+}
+
+.motCle {
+    font-size: xx-small;
+}
+.pages{
+    color: wheat;
+}
+
+input[type=submit] {
+    width:10%;
+    height:10%;
+    background:#fafafa;
+    box-shadow:2px 2px 8px #aaa;
+    font:bold 13px Arial;
+    border-radius:50%;
+    color:#555;
+}
+
+#registration {
+    color: #fff;
+    background: #6f39ce;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 430px;
+
+    text-align: right;
+}
+
+#registration a {
+    color: #8c910b;
+    text-shadow: 0px -1px 0px #000;
+}
+
+#registration fieldset {
+    padding: 20px;
+}
+
+h3{
+    letter-spacing: 2px;
+    font-size: small;
+    text-transform: uppercase;
+}
+
+#copyright{
+    font-size: smaller;
+}
+#footer{
+    alignment-adjust: middle;
+    text-align: center;
+}
+
+#footer  td {
+    text-align: center;
+    alignment-adjust: middle;
+}
+
+#cgu{
+    font-size: xx-small;
+    color: buttonface;
+}
+#cgu a{
+    font-size: xx-small;
+    text-decoration: none;
+
+}
+
+#conteneur {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+#wiss{
+    text-align: center;
+    width: 50%;
+    font-family: New Century Schoolbook, TeX Gyre Schola, serif;
+}
+#wiss tr{
+    text-align: center;
+}
+#wiss td{
+    text-align: center;
+}

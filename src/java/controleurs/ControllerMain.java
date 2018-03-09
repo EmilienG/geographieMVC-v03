@@ -60,6 +60,18 @@ public class ControllerMain extends HttpServlet {
         Date maDate = new Date();
         String nextYear = "20" + String.valueOf(maDate.getYear() + 1).substring(1, 3);
         session.setAttribute("nextYear", nextYear);
+
+        String css = "/LibrairieFusion-v1.0/css/moncss.css";
+        session.setAttribute("css", css);
+        String style = request.getParameter("style");
+        if ("1".equals(style)) {
+            css = "/LibrairieFusion-v1.0/css/moncss.css";
+            session.setAttribute("css", css);
+        } else if ("2".equals(style)) {
+            css = "/LibrairieFusion-v1.0/css/moncss2.css";
+            session.setAttribute("css", css);
+        }
+
         if ("info-perso".equals(section)) {
             pageJSP = "/WEB-INF/info-perso.jsp";
         }
@@ -85,12 +97,12 @@ public class ControllerMain extends HttpServlet {
                 session.setAttribute("monID", monID);
                 Client monClient = maGestionClients.afficherClientByID(monID);
                 session.setAttribute("monClient", monClient);
-            System.out.println("login = pas null");
+//                System.out.println("login = pas null");
             } catch (NamingException | SQLException ex) {
                 ex.printStackTrace();
             }
-        }else{
-            System.out.println("login = null !!");
+        } else {
+//            System.out.println("login = null !!");
         }
         if ("home".equals(section)) {
             pageJSP = "/WEB-INF/home.jsp";
